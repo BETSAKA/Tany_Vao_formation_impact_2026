@@ -1,0 +1,72 @@
+---
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+# Programme {.unnumbered}
+
+Voici une proposition de programme sur neuf jours, visant une
+progression pédagogique pour commencer par les fondements conceptuels et
+techniques et approfondir progressivement jusqu'à une maîtrise des bases
+de l'évaluation d'impact et une réflexion approfondie sur les
+applications possibles dans son environnement professionnel. La
+formation combine des cours théoriques et des exercices pratiques,
+incluant l'utilisation du logiciel R.
+
+-   Jour 1 (1er juillet) :
+
+    -   Matin : Introduction et cadrage théorique.
+
+    -   Après-midi : Initiation à R
+
+-   Jour 2 (2 juillet) :
+
+    -   Matin : Principes de l’évaluation d’impact avec contrefactuel.
+
+    -   Après-midi : Initiation à R (suite)
+
+-   Jour 3 (3 juillet) :
+
+    -   Matin : Revue des types de données.
+
+    -   Après-midi : Initiation à R (fin)
+
+-   Jour 4 (4 juillet) :
+
+    -   Matin : Données spatiales (travail avec les données vectorielles
+        et raster)
+
+    -   Après-midi : Données spatiales (opérations avec les packages sf
+        et mapme.biodiversity)
+
+-   Jour 5 (7 juillet) :
+
+    -   Matin : Expérimentations aléatoires (théorie)
+
+    -   Après-midi : Expérimentations aléatoires (application)
+
+-   Jour 6 (8 juillet) :
+
+    -   Matin : Comparaisons avant-après ; Clarifications sur la définition et l’agrégation des unités d’analyse
+        d’analyse
+
+    -   Après-midi : Méthodes d’appariement (théorie)
+
+-   Jour 7 (9 juillet) :
+
+    -   Matin : Méthodes d’appariement (application)
+
+    -   Après-midi : Méthode des doubles différences (théorie)
+
+-   Jour 8 (10 juillet) :
+
+    -   Matin : Méthodes des doubles différences (application)
+
+    -   Après-midi : Projet de groupe.
+
+-   Jour 9 (11 juillet) :
+
+    -   Matin : Exercices pratiques dans R.
+
+    -   Après-midi : Restitution, évaluation et conclusion.

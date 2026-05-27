@@ -1,0 +1,26 @@
+# Introduction
+
+## Cadrage général pour les méthodes d'évaluation
+
+```{=html}
+<iframe src="/slides/fr/Jour 1_Introduction_Fondamentaux.pdf" width="100%" height="400px"></iframe>
+```
+
+[Cliquer ici pour télécharger la présentation](/slides/fr/Jour 1_Introduction_Fondamentaux.pdf)
+
+
+## Cadrage sur les données
+
+```{=html}
+<iframe src="/slides/fr/Jour 3_Donnees.pdf" width="100%" height="400px"></iframe>
+```
+
+[Cliquer ici pour télécharger la présentation](/slides/fr/Jour 3_Donnees.pdf)
+
+## Revue des articles
+
+On va revoir deux articles récents qui emploient des méthodes semblables à celles que nous allons étudier pendant le cours :
+
+- L'article "On track to achieve no net loss of forest at Madagascar's biggest mine" de Devenish et al. [-@devenish_track_2022] paru dans *Nature Sustainability*.
+- L'article "Collaborative management partnerships strongly decreased deforestation in the most at-risk protected areas in Africa since 2000", de Desbureaux et al. [-@desbureaux_collaborative_2025], paru dans *Proceedings of the National Academy of Sciences*.
+
