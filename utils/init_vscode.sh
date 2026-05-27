@@ -1,0 +1,1 @@
+mc cp -r s3/projet-betsaka/diffusion/tany_vao_2026/ /home/onyxia/work
