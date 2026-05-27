@@ -49,7 +49,7 @@ po/*~
 rsconnect/
 
 /.quarto/
-test/*
+test*
 
 core
 
