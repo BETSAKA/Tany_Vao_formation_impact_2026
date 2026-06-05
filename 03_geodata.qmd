@@ -48,6 +48,18 @@ Ce premier bloc permet déjà de répondre à trois questions utiles :
 - quelles variables descriptives sont disponibles ;
 - quelles colonnes pourront être mobilisées ensuite.
 
+**Visualisation avec `tmap` :**
+Afin d'avoir une première idée de la distribution géographique de ces aires protégées, nous pouvons utiliser le package `tmap`. Le mode "view" permet une exploration interactive :
+
+```{r}
+library(tmap)
+tmap_mode("view")
+
+tm_shape(AP_Vahatra) +
+  tm_borders() +
+  tm_fill("cat_iucn", fill.legend = tm_legend(title = "Catégorie IUCN"))
+```
+
 ## Lecture d'un raster avec `terra`
 
 On utilise ensuite une tuile de couvert forestier issue de la base
@@ -64,6 +76,13 @@ crs(gfc_raster)
 
 Cette lecture suffit pour comprendre qu'un raster n'est pas un tableau de
 polygones mais une grille régulière de cellules géoréférencées.
+
+**Visualisation d'un raster avec `terra` :**
+La fonction `plot()` du package `terra` offre un aperçu simple de la donnée :
+
+```{r}
+plot(gfc_raster, main = "Couvert forestier en 2000 (Tuile 10S, 50E)")
+```
 
 ## Faire correspondre vecteur et raster
 
@@ -83,6 +102,16 @@ AP_dans_tuile %>%
 
 Ce type d'opération est important, car une analyse spatiale exige de
 vérifier que les couches mobilisées se recouvrent effectivement.
+
+Pour visualiser cette correspondance spatiale :
+
+```{r}
+tm_shape(gfc_raster) +
+  tm_raster(col.scale = tm_scale_continuous(values = "Greens"), 
+            col.legend = tm_legend(title = "Couvert forestier (%)")) +
+  tm_shape(AP_Vahatra) +
+  tm_borders(col = "red")
+```
 
 ## Quelques opérations spatiales clés
 

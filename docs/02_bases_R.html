@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-36ae03c18bbf95dbbed4cf3d67a5adf8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-9bbc4b90b5b2030bbcb4cc78b7d3a562.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -243,7 +243,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#charger-des-packages" id="toc-charger-des-packages" class="nav-link" data-scroll-target="#charger-des-packages"><span class="header-section-number">2.5</span> Charger des packages</a></li>
   <li><a href="#lire-un-tableau-et-ses-colonnes" id="toc-lire-un-tableau-et-ses-colonnes" class="nav-link" data-scroll-target="#lire-un-tableau-et-ses-colonnes"><span class="header-section-number">2.6</span> Lire un tableau et ses colonnes</a></li>
   <li><a href="#le-pipeline-et-les-verbes-utiles-de-dplyr" id="toc-le-pipeline-et-les-verbes-utiles-de-dplyr" class="nav-link" data-scroll-target="#le-pipeline-et-les-verbes-utiles-de-dplyr"><span class="header-section-number">2.7</span> Le pipeline et les verbes utiles de <code>dplyr</code></a></li>
-  <li><a href="#lire-une-erreur-simple" id="toc-lire-une-erreur-simple" class="nav-link" data-scroll-target="#lire-une-erreur-simple"><span class="header-section-number">2.8</span> Lire une erreur simple</a></li>
+  <li><a href="#production-de-graphiques-avec-ggplot2" id="toc-production-de-graphiques-avec-ggplot2" class="nav-link" data-scroll-target="#production-de-graphiques-avec-ggplot2"><span class="header-section-number">2.8</span> Production de graphiques avec ggplot2</a>
+  <ul class="collapse">
+  <li><a href="#philosophie-de-la-grammaire-des-graphiques" id="toc-philosophie-de-la-grammaire-des-graphiques" class="nav-link" data-scroll-target="#philosophie-de-la-grammaire-des-graphiques"><span class="header-section-number">2.8.1</span> Philosophie de la “grammaire des graphiques”</a></li>
+  <li><a href="#introduction-à-ggplot2" id="toc-introduction-à-ggplot2" class="nav-link" data-scroll-target="#introduction-à-ggplot2"><span class="header-section-number">2.8.2</span> Introduction à ggplot2</a></li>
+  <li><a href="#exercice-créer-un-graphique-avec-ggplot2" id="toc-exercice-créer-un-graphique-avec-ggplot2" class="nav-link" data-scroll-target="#exercice-créer-un-graphique-avec-ggplot2"><span class="header-section-number">2.8.3</span> Exercice : Créer un graphique avec ggplot2</a></li>
+  </ul></li>
   <li><a href="#ce-quil-faut-retenir-pour-la-suite" id="toc-ce-quil-faut-retenir-pour-la-suite" class="nav-link" data-scroll-target="#ce-quil-faut-retenir-pour-la-suite"><span class="header-section-number">2.9</span> Ce qu’il faut retenir pour la suite</a></li>
   <li><a href="#ressources-pour-poursuivre-la-pratique" id="toc-ressources-pour-poursuivre-la-pratique" class="nav-link" data-scroll-target="#ressources-pour-poursuivre-la-pratique"><span class="header-section-number">2.10</span> Ressources pour poursuivre la pratique</a></li>
   </ul>
@@ -423,8 +428,113 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>L’enjeu n’est pas d’écrire spontanément ce type de pipeline sans aide, mais de savoir le lire, repérer ce qu’il transforme et vérifier si le résultat répond bien à la question posée.</p>
 </section>
-<section id="lire-une-erreur-simple" class="level2" data-number="2.8">
-<h2 data-number="2.8" class="anchored" data-anchor-id="lire-une-erreur-simple"><span class="header-section-number">2.8</span> Lire une erreur simple</h2>
+<section id="production-de-graphiques-avec-ggplot2" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="production-de-graphiques-avec-ggplot2"><span class="header-section-number">2.8</span> Production de graphiques avec ggplot2</h2>
+<p>Pour produire des graphiques de qualité avec R, nous utilisons souvent le package <code>ggplot2</code>. Ce package repose sur une approche appelée “la grammaire des graphiques”. Cette grammaire est une façon systématique de construire des visualisations, en combinant différents composants graphiques, comme des axes, des légendes, des points, des lignes, etc. Elle offre une grande flexibilité et permet de créer des graphiques complexes de manière progressive.</p>
+<section id="philosophie-de-la-grammaire-des-graphiques" class="level3" data-number="2.8.1">
+<h3 data-number="2.8.1" class="anchored" data-anchor-id="philosophie-de-la-grammaire-des-graphiques"><span class="header-section-number">2.8.1</span> Philosophie de la “grammaire des graphiques”</h3>
+<p>La grammaire des graphiques est une méthode de pensée pour créer des visualisations. Elle repose sur l’idée que tout graphique peut être décomposé en une série de couches. Par exemple :</p>
+<ol type="1">
+<li><strong>Données</strong> : La première étape consiste à spécifier les données à utiliser pour le graphique.</li>
+<li><strong>Aesthetic mappings (Mappings esthétiques)</strong> : Cela consiste à indiquer comment les variables des données seront représentées visuellement, par exemple, quel axe représente quelle variable, ou quelles couleurs représentent quelles catégories.</li>
+<li><strong>Geometries (Géométries)</strong> : Chaque graphique est composé de formes géométriques, comme des points, des lignes, des barres, etc. Ces géométries déterminent la manière dont les données seront visualisées.</li>
+<li><strong>Facettes</strong> : Cette étape permet de subdiviser le graphique en plusieurs sous-graphiques basés sur une variable, facilitant ainsi la comparaison entre catégories.</li>
+<li><strong>Statistiques</strong> : Certaines visualisations nécessitent des transformations statistiques, comme l’ajout de moyennes, de tendances ou d’intervalles de confiance.</li>
+<li><strong>Coordonnées</strong> : Il s’agit de définir les systèmes de coordonnées, tels que les axes cartésiens ou polaires.</li>
+<li><strong>Thème</strong> : Enfin, le thème est utilisé pour définir l’apparence générale du graphique, par exemple, les couleurs de fond, la taille des polices, etc.</li>
+</ol>
+<p>En combinant ces différentes couches, <code>ggplot2</code> permet de construire des visualisations claires et personnalisées, adaptées aux besoins spécifiques de l’analyse.</p>
+</section>
+<section id="introduction-à-ggplot2" class="level3" data-number="2.8.2">
+<h3 data-number="2.8.2" class="anchored" data-anchor-id="introduction-à-ggplot2"><span class="header-section-number">2.8.2</span> Introduction à ggplot2</h3>
+<p>Le package <code>ggplot2</code> suit cette logique en permettant d’ajouter chaque composant graphique avec le signe <code>+</code>. Voici une approche progressive pour comprendre <code>ggplot2</code> :</p>
+<ol type="1">
+<li><strong>Importer le package et les données</strong> :</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Création préalable de données simulées AP_superficie_annees</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>AP_superficie_annees <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">an_creation =</span> <span class="dv">1990</span><span class="sc">:</span><span class="dv">2020</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">superficie_cumulee =</span> <span class="fu">cumsum</span>(<span class="fu">runif</span>(<span class="dv">31</span>, <span class="dv">50</span>, <span class="dv">500</span>))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="2" type="1">
+<li><strong>Créer la base du graphique</strong> :</li>
+</ol>
+<p>La première étape consiste à spécifier les données et les mappings esthétiques. Par exemple, nous allons indiquer que l’axe des abscisses (<code>x</code>) représente l’année de création (<code>an_creation</code>) et l’axe des ordonnées (<code>y</code>) représente la superficie cumulée (<code>superficie_cumulee</code>).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> AP_superficie_annees, <span class="fu">aes</span>(<span class="at">x =</span> an_creation, <span class="at">y =</span> superficie_cumulee))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_bases_R_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="3" type="1">
+<li><strong>Ajouter des géométries</strong> :</li>
+</ol>
+<p>Pour visualiser les données, nous ajoutons des points (<code>geom_point()</code>) et des lignes (<code>geom_line()</code>).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> AP_superficie_annees, <span class="fu">aes</span>(<span class="at">x =</span> an_creation, <span class="at">y =</span> superficie_cumulee)) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_bases_R_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="4" type="1">
+<li><strong>Ajouter des labels</strong> :</li>
+</ol>
+<p>Pour rendre le graphique plus compréhensible, nous ajoutons des labels pour les axes et un titre.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> AP_superficie_annees, <span class="fu">aes</span>(<span class="at">x =</span> an_creation, <span class="at">y =</span> superficie_cumulee)) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Année"</span>, <span class="at">y =</span> <span class="st">"Superficie cumulée (km²)"</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Superficie cumulée en fonction de l'année de création"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_bases_R_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="5" type="1">
+<li><strong>Appliquer un thème</strong> :</li>
+</ol>
+<p>Le thème permet de personnaliser l’apparence générale du graphique. Ici, nous utilisons <code>theme_minimal()</code> pour une apparence épurée.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> AP_superficie_annees, <span class="fu">aes</span>(<span class="at">x =</span> an_creation, <span class="at">y =</span> superficie_cumulee)) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Année"</span>, <span class="at">y =</span> <span class="st">"Superficie cumulée (km²)"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Superficie cumulée en fonction de l'année de création"</span>) <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_bases_R_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="exercice-créer-un-graphique-avec-ggplot2" class="level3" data-number="2.8.3">
+<h3 data-number="2.8.3" class="anchored" data-anchor-id="exercice-créer-un-graphique-avec-ggplot2"><span class="header-section-number">2.8.3</span> Exercice : Créer un graphique avec ggplot2</h3>
+<ol type="1">
+<li><p><strong>Créer un graphique en nuages de points</strong> : Utilisez <code>ggplot2</code> pour créer un graphique de points qui montre la somme des superficies des aires protégées en fonction de leur année de création.</p></li>
+<li><p><strong>Ajouter des lignes de tendance</strong> : Ajoutez une une ligne reliant les points et une ligne de tendance (<code>geom_smooth()</code>).</p></li>
+</ol>
+<p>Ces étapes vous permettront de comprendre progressivement comment construire des graphiques en utilisant la grammaire des graphiques, et d’explorer différentes façons de visualiser vos données.<br>
+## Lire une erreur simple</p>
 <p>Quand un script échoue, il faut commencer par lire le message affiché au lieu de modifier le code au hasard. Trois causes fréquentes suffisent à bloquer une grande partie des scripts débutants :</p>
 <ul>
 <li>un objet n’existe pas ;</li>
@@ -437,6 +547,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>les noms de colonnes avec <code>names()</code> ;</li>
 <li>la présence de <code>library()</code> pour le package concerné.</li>
 </ol>
+</section>
 </section>
 <section id="ce-quil-faut-retenir-pour-la-suite" class="level2" data-number="2.9">
 <h2 data-number="2.9" class="anchored" data-anchor-id="ce-quil-faut-retenir-pour-la-suite"><span class="header-section-number">2.9</span> Ce qu’il faut retenir pour la suite</h2>

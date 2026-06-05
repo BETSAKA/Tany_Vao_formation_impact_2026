@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-36ae03c18bbf95dbbed4cf3d67a5adf8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-9bbc4b90b5b2030bbcb4cc78b7d3a562.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -199,7 +199,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07_unites_analyse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Clarification sur les unités d’analyse</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">library(mapme.biodiversity)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -320,28 +320,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="regarder-autour-de-lannée-de-création" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="regarder-autour-de-lannée-de-création"><span class="header-section-number">6.3</span> Regarder autour de l’année de création</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sequence_AP <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_drop_geometry</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(an_val_crea <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">5</span> <span class="sc">&amp;</span> an_val_crea <span class="sc">&lt;</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(an_val_crea) <span class="sc">%&gt;%</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">defor_moy =</span> <span class="fu">mean</span>(tx_defor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 2
-  an_val_crea defor_moy
-        &lt;dbl&gt;     &lt;dbl&gt;
-1          -4   0.0112 
-2          -3   0.00468
-3          -2   0.00895
-4          -1   0.0135 
-5           0   0.0109 
-6           1   0.0104 </code></pre>
-</div>
-</div>
+<p>df_temp &lt;- sequence_AP %&gt;% st_drop_geometry() %&gt;% filter(an_val_crea &gt; -5 &amp; an_val_crea &lt; 5) %&gt;% group_by(an_val_crea) %&gt;% summarise(defor_moy = mean(tx_defor, na.rm = TRUE), .groups = “drop”)</p>
+<p>df_temp %&gt;% head()</p>
+<p>df_temp %&gt;% ggplot(aes(x = an_val_crea, y = defor_moy)) + geom_point() + geom_vline(xintercept = 0, col = “blue”) + scale_y_continuous(labels = scales::label_percent()) + xlab(“Avant création &gt; Année de création &gt; Après création”) + ylab(“Taux moyen de déforestation”)</p>
 <p>Cette mise en temps relatif prépare la suite : raisonner autour d’une date de traitement est utile, mais devient beaucoup plus convaincant quand on dispose aussi d’un groupe de comparaison crédible.</p>
 </section>
 <section id="ce-quil-faut-retenir" class="level2" data-number="6.4">
@@ -759,8 +740,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./07_unites_analyse.html" class="pagination-link" aria-label="Clarification sur les unités d'analyse">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Clarification sur les unités d’analyse</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./07_unites_analyse.html" class="pagination-link" aria-label="library(mapme.biodiversity)">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">library(mapme.biodiversity)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

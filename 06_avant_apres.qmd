@@ -61,13 +61,22 @@ mais aussi d'autres changements intervenus en parallèle.
 ## Regarder autour de l'année de création
 
 ```{r}
-sequence_AP %>%
-	st_drop_geometry() %>%
-	filter(an_val_crea > -5 & an_val_crea < 5) %>%
-	group_by(an_val_crea) %>%
-	summarise(defor_moy = mean(tx_defor, na.rm = TRUE), .groups = "drop") %>%
-	head()
-```
+df_temp <- sequence_AP %>%
+        st_drop_geometry() %>%
+        filter(an_val_crea > -5 & an_val_crea < 5) %>%
+        group_by(an_val_crea) %>%
+        summarise(defor_moy = mean(tx_defor, na.rm = TRUE), .groups = "drop")
+
+df_temp %>% head()
+
+df_temp %>%
+  ggplot(aes(x = an_val_crea, y = defor_moy)) +
+  geom_point() +
+  geom_vline(xintercept = 0, col = "blue") +
+  scale_y_continuous(labels = scales::label_percent()) +
+  xlab("Avant création > Année de création > Après création") +
+  ylab("Taux moyen de déforestation")
+
 
 Cette mise en temps relatif prépare la suite : raisonner autour d'une
 date de traitement est utile, mais devient beaucoup plus convaincant

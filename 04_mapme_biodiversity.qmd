@@ -154,6 +154,21 @@ AP_long %>%
 Cette transformation est essentielle, car elle fait le pont entre le
 calcul spatial et la table d'analyse statistique.
 
+## Visualiser les indicateurs calculés
+
+Pour donner un sens concret à ces calculs, nous pouvons cartographier les valeurs obtenues pour l'ensemble du portefeuille. Par exemple, visualisons l'altitude moyenne de chaque aire protégée à l'aide de `tmap`.
+
+```{r}
+library(tmap)
+tmap_mode("view")
+
+AP_Vahatra_mapme %>%
+  portfolio_long() %>%
+  filter(variable == "elevation_mean") %>%
+  tm_shape() +
+  tm_polygons(fill = "value", fill.legend = tm_legend(title = "Altitude Moyenne (m)"))
+```
+
 ## Ce que produisent les indicateurs
 
 Dans la logique de cette formation, `mapme.biodiversity` ne sert pas à
