@@ -177,6 +177,91 @@ L'enjeu n'est pas d'écrire spontanément ce type de pipeline sans aide,
 mais de savoir le lire, repérer ce qu'il transforme et vérifier si le
 résultat répond bien à la question posée.
 
+## Production de graphiques avec ggplot2
+
+Pour produire des graphiques de qualité avec R, nous utilisons souvent le package `ggplot2`. Ce package repose sur une approche appelée "la grammaire des graphiques". Cette grammaire est une façon systématique de construire des visualisations, en combinant différents composants graphiques, comme des axes, des légendes, des points, des lignes, etc. Elle offre une grande flexibilité et permet de créer des graphiques complexes de manière progressive.
+
+### Philosophie de la "grammaire des graphiques"
+
+La grammaire des graphiques est une méthode de pensée pour créer des visualisations. Elle repose sur l'idée que tout graphique peut être décomposé en une série de couches. Par exemple :
+
+1.  **Données** : La première étape consiste à spécifier les données à utiliser pour le graphique.
+2.  **Aesthetic mappings (Mappings esthétiques)** : Cela consiste à indiquer comment les variables des données seront représentées visuellement, par exemple, quel axe représente quelle variable, ou quelles couleurs représentent quelles catégories.
+3.  **Geometries (Géométries)** : Chaque graphique est composé de formes géométriques, comme des points, des lignes, des barres, etc. Ces géométries déterminent la manière dont les données seront visualisées.
+4.  **Facettes** : Cette étape permet de subdiviser le graphique en plusieurs sous-graphiques basés sur une variable, facilitant ainsi la comparaison entre catégories.
+5.  **Statistiques** : Certaines visualisations nécessitent des transformations statistiques, comme l'ajout de moyennes, de tendances ou d'intervalles de confiance.
+6.  **Coordonnées** : Il s'agit de définir les systèmes de coordonnées, tels que les axes cartésiens ou polaires.
+7.  **Thème** : Enfin, le thème est utilisé pour définir l'apparence générale du graphique, par exemple, les couleurs de fond, la taille des polices, etc.
+
+En combinant ces différentes couches, `ggplot2` permet de construire des visualisations claires et personnalisées, adaptées aux besoins spécifiques de l'analyse.
+
+### Introduction à ggplot2
+
+Le package `ggplot2` suit cette logique en permettant d'ajouter chaque composant graphique avec le signe `+`. Voici une approche progressive pour comprendre `ggplot2` :
+
+1.  **Importer le package et les données** :
+
+```{r}
+library(ggplot2)
+# Création préalable de données simulées AP_superficie_annees
+AP_superficie_annees <- data.frame(
+  an_creation = 1990:2020,
+  superficie_cumulee = cumsum(runif(31, 50, 500))
+)
+```
+
+2.  **Créer la base du graphique** :
+
+La première étape consiste à spécifier les données et les mappings esthétiques. Par exemple, nous allons indiquer que l'axe des abscisses (`x`) représente l'année de création (`an_creation`) et l'axe des ordonnées (`y`) représente la superficie cumulée (`superficie_cumulee`).
+
+```{r}
+ggplot(data = AP_superficie_annees, aes(x = an_creation, y = superficie_cumulee))
+```
+
+3.  **Ajouter des géométries** :
+
+Pour visualiser les données, nous ajoutons des points (`geom_point()`) et des lignes (`geom_line()`).
+
+```{r}
+ggplot(data = AP_superficie_annees, aes(x = an_creation, y = superficie_cumulee)) +
+  geom_point() +
+  geom_line()
+```
+
+4.  **Ajouter des labels** :
+
+Pour rendre le graphique plus compréhensible, nous ajoutons des labels pour les axes et un titre.
+
+```{r}
+ggplot(data = AP_superficie_annees, aes(x = an_creation, y = superficie_cumulee)) +
+  geom_point() +
+  geom_line() +
+  labs(x = "Année", y = "Superficie cumulée (km²)",
+       title = "Superficie cumulée en fonction de l'année de création")
+```
+
+5.  **Appliquer un thème** :
+
+Le thème permet de personnaliser l'apparence générale du graphique. Ici, nous utilisons `theme_minimal()` pour une apparence épurée.
+
+```{r}
+ggplot(data = AP_superficie_annees, aes(x = an_creation, y = superficie_cumulee)) +
+  geom_point() +
+  geom_line() +
+  labs(x = "Année", y = "Superficie cumulée (km²)",
+       title = "Superficie cumulée en fonction de l'année de création") +
+  theme_minimal()
+  
+
+```
+
+### Exercice : Créer un graphique avec ggplot2
+
+1.  **Créer un graphique en nuages de points** : Utilisez `ggplot2` pour créer un graphique de points qui montre la somme des superficies des aires protégées en fonction de leur année de création. 
+
+2.  **Ajouter des lignes de tendance** : Ajoutez une une ligne reliant les points et une ligne de tendance (`geom_smooth()`). 
+
+Ces étapes vous permettront de comprendre progressivement comment construire des graphiques en utilisant la grammaire des graphiques, et d'explorer différentes façons de visualiser vos données.\
 ## Lire une erreur simple
 
 Quand un script échoue, il faut commencer par lire le message affiché au

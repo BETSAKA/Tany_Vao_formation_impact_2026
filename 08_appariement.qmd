@@ -35,6 +35,7 @@ petit jeu de variables d'appariement.
 
 ```{r}
 library(sf)
+library(mapme.biodiversity)
 library(tidyverse)
 library(lubridate)
 library(mapme.biodiversity)
@@ -110,6 +111,18 @@ La lecture à faire est simple : l'appariement a-t-il amélioré la
 comparabilité sur les variables retenues, et à quel coût en nombre
 d'observations ?
 
+On peut également représenter l'équilibre entre les variables avant et après traitement avec les graphiques suivants :
+
+```{r}
+bal.plot(appariement_ap, var.name = "dist_ville", which = "both")
+```
+
+```{r}
+bal.plot(appariement_ap, var.name = "couv_foret_2000", which = "both")
+```
+
+Ce diagnostic visuel aide à confirmer que la forme des distributions s'est bien rapprochée entre les différents groupes.
+
 ## Estimer un résultat pondéré
 
 Une fois l'appariement réalisé, on peut extraire l'échantillon apparié et
@@ -157,6 +170,28 @@ grille_matched %>%
 ```
 
 Cette transition prépare directement la double différence sur mailles.
+
+Nous pouvons observer la répartition spatiale de l'échantillon retenu après l'appariement.
+
+```{r}
+library(tmap)
+library(geodata)
+tmap_mode("plot")
+
+contour_mada <- gadm(country = "Madagascar", resolution = 1, level = 0, path = "data") %>%
+  st_as_sf() %>%
+  st_transform("EPSG:29739")
+
+tm_shape(contour_mada) +
+  tm_borders() +
+  tm_shape(grille_matched) +
+  tm_fill(
+    "traitement",
+    palette = "Set1", labels = c("Contrôle", "Traitement"),
+    title = "Groupes post-appariement"
+  ) +
+  tm_layout(legend.outside = TRUE)
+```
 
 ## Ce qu'il faut retenir
 

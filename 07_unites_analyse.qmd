@@ -1,3 +1,4 @@
+library(mapme.biodiversity)
 ---
 output: html_document
 editor_options:
@@ -90,6 +91,18 @@ Cette information sera ensuite importante pour distinguer des cellules :
 - à l'intérieur des aires protégées ;
 - en bordure ;
 - à l'extérieur.
+
+Nous pouvons visualiser la position des différentes mailles :
+
+```{r}
+library(tmap)
+tmap_mode("plot")
+
+tm_shape(grille_mada_summary_AP) +
+  tm_fill("position_ap", 
+          fill.legend = tm_legend(title = "Localisation par rapport aux aires protégées",
+                                  position = tm_pos_out("right", "center")))
+```
 
 ## Ce qu'il faut retenir
 
