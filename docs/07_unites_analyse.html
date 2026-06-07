@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Clarification sur les unités d’analyse – Evaluation d'impact de politiques et projets</title>
+<title>7&nbsp; library(mapme.biodiversity) – Evaluation d'impact de politiques et projets</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9bbc4b90b5b2030bbcb4cc78b7d3a562.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-42dbb3e0b7494ecd87b8c353a4276dc5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07_unites_analyse.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Clarification sur les unités d’analyse</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07_unites_analyse.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">library(mapme.biodiversity)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -199,7 +199,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07_unites_analyse.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Clarification sur les unités d’analyse</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">library(mapme.biodiversity)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -236,12 +236,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#pourquoi-cette-question-compte" id="toc-pourquoi-cette-question-compte" class="nav-link active" data-scroll-target="#pourquoi-cette-question-compte"><span class="header-section-number">7.1</span> Pourquoi cette question compte</a></li>
-  <li><a href="#pourquoi-passer-aux-mailles" id="toc-pourquoi-passer-aux-mailles" class="nav-link" data-scroll-target="#pourquoi-passer-aux-mailles"><span class="header-section-number">7.2</span> Pourquoi passer aux mailles</a></li>
-  <li><a href="#lire-une-grille-pré-calculée" id="toc-lire-une-grille-pré-calculée" class="nav-link" data-scroll-target="#lire-une-grille-pré-calculée"><span class="header-section-number">7.3</span> Lire une grille pré-calculée</a></li>
-  <li><a href="#quelques-variables-disponibles-au-niveau-maille" id="toc-quelques-variables-disponibles-au-niveau-maille" class="nav-link" data-scroll-target="#quelques-variables-disponibles-au-niveau-maille"><span class="header-section-number">7.4</span> Quelques variables disponibles au niveau maille</a></li>
-  <li><a href="#définir-la-position-par-rapport-aux-aires-protégées" id="toc-définir-la-position-par-rapport-aux-aires-protégées" class="nav-link" data-scroll-target="#définir-la-position-par-rapport-aux-aires-protégées"><span class="header-section-number">7.5</span> Définir la position par rapport aux aires protégées</a></li>
-  <li><a href="#ce-quil-faut-retenir" id="toc-ce-quil-faut-retenir" class="nav-link" data-scroll-target="#ce-quil-faut-retenir"><span class="header-section-number">7.6</span> Ce qu’il faut retenir</a></li>
+  <li><a href="#sec-mailles" id="toc-sec-mailles" class="nav-link active" data-scroll-target="#sec-mailles"><span class="header-section-number">8</span> Clarification sur les unités d’analyse</a>
+  <ul class="collapse">
+  <li><a href="#pourquoi-cette-question-compte" id="toc-pourquoi-cette-question-compte" class="nav-link" data-scroll-target="#pourquoi-cette-question-compte"><span class="header-section-number">8.1</span> Pourquoi cette question compte</a></li>
+  <li><a href="#pourquoi-passer-aux-mailles" id="toc-pourquoi-passer-aux-mailles" class="nav-link" data-scroll-target="#pourquoi-passer-aux-mailles"><span class="header-section-number">8.2</span> Pourquoi passer aux mailles</a></li>
+  <li><a href="#lire-une-grille-pré-calculée" id="toc-lire-une-grille-pré-calculée" class="nav-link" data-scroll-target="#lire-une-grille-pré-calculée"><span class="header-section-number">8.3</span> Lire une grille pré-calculée</a></li>
+  <li><a href="#quelques-variables-disponibles-au-niveau-maille" id="toc-quelques-variables-disponibles-au-niveau-maille" class="nav-link" data-scroll-target="#quelques-variables-disponibles-au-niveau-maille"><span class="header-section-number">8.4</span> Quelques variables disponibles au niveau maille</a></li>
+  <li><a href="#définir-la-position-par-rapport-aux-aires-protégées" id="toc-définir-la-position-par-rapport-aux-aires-protégées" class="nav-link" data-scroll-target="#définir-la-position-par-rapport-aux-aires-protégées"><span class="header-section-number">8.5</span> Définir la position par rapport aux aires protégées</a></li>
+  <li><a href="#ce-quil-faut-retenir" id="toc-ce-quil-faut-retenir" class="nav-link" data-scroll-target="#ce-quil-faut-retenir"><span class="header-section-number">8.6</span> Ce qu’il faut retenir</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -250,7 +253,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-mailles" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Clarification sur les unités d’analyse</span></span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">library(mapme.biodiversity)</span></h1>
 </div>
 
 
@@ -267,9 +270,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p>output: html_document editor_options: chunk_output_type: console —</p>
+<section id="sec-mailles" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Clarification sur les unités d’analyse</h1>
 <p>Ce chapitre est un pivot du format 5 jours. Quand on raisonne sur une évaluation d’impact spatialisée, il ne suffit pas de choisir une méthode et des covariables. Il faut aussi décider ce qui constitue une <strong>unité d’observation</strong>, c’est-à-dire ce qui devient une ligne du tableau d’analyse.</p>
-<section id="pourquoi-cette-question-compte" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="pourquoi-cette-question-compte"><span class="header-section-number">7.1</span> Pourquoi cette question compte</h2>
+<section id="pourquoi-cette-question-compte" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="pourquoi-cette-question-compte"><span class="header-section-number">8.1</span> Pourquoi cette question compte</h2>
 <p>Dans le cas de la conservation, on pourrait choisir comme unité :</p>
 <ul>
 <li>l’aire protégée elle-même ;</li>
@@ -286,8 +292,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>L’idée importante est donc la suivante : le choix de l’unité d’analyse n’est pas un détail technique, c’est une décision méthodologique.</p>
 </section>
-<section id="pourquoi-passer-aux-mailles" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="pourquoi-passer-aux-mailles"><span class="header-section-number">7.2</span> Pourquoi passer aux mailles</h2>
+<section id="pourquoi-passer-aux-mailles" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="pourquoi-passer-aux-mailles"><span class="header-section-number">8.2</span> Pourquoi passer aux mailles</h2>
 <p>Dans la seconde moitié de la formation, le raisonnement se déplace vers des mailles spatiales. Cela permet notamment :</p>
 <ul>
 <li>d’augmenter le nombre d’observations ;</li>
@@ -296,8 +302,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>La construction complète du maillage est coûteuse en temps de calcul et en complexité technique. Dans le format 5 jours, elle est donc préparée en amont, mais sa logique doit rester entièrement comprise.</p>
 </section>
-<section id="lire-une-grille-pré-calculée" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="lire-une-grille-pré-calculée"><span class="header-section-number">7.3</span> Lire une grille pré-calculée</h2>
+<section id="lire-une-grille-pré-calculée" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="lire-une-grille-pré-calculée"><span class="header-section-number">8.3</span> Lire une grille pré-calculée</h2>
 <p>On travaille ici avec un objet déjà préparé dans le dépôt.</p>
 <div class="cell">
 <details class="code-fold">
@@ -341,8 +347,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Cet objet contient à la fois la géométrie des mailles et plusieurs variables utiles pour l’analyse.</p>
 </section>
-<section id="quelques-variables-disponibles-au-niveau-maille" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="quelques-variables-disponibles-au-niveau-maille"><span class="header-section-number">7.4</span> Quelques variables disponibles au niveau maille</h2>
+<section id="quelques-variables-disponibles-au-niveau-maille" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="quelques-variables-disponibles-au-niveau-maille"><span class="header-section-number">8.4</span> Quelques variables disponibles au niveau maille</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -367,8 +373,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>On retrouve ici exactement le type de variables dont on aura besoin pour raisonner sur la comparabilité entre mailles traitées et non traitées.</p>
 </section>
-<section id="définir-la-position-par-rapport-aux-aires-protégées" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="définir-la-position-par-rapport-aux-aires-protégées"><span class="header-section-number">7.5</span> Définir la position par rapport aux aires protégées</h2>
+<section id="définir-la-position-par-rapport-aux-aires-protégées" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="définir-la-position-par-rapport-aux-aires-protégées"><span class="header-section-number">8.5</span> Définir la position par rapport aux aires protégées</h2>
 <p>L’un des intérêts majeurs du maillage est de pouvoir qualifier la position de chaque cellule par rapport aux aires protégées.</p>
 <div class="cell">
 <details class="code-fold">
@@ -413,8 +419,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="ce-quil-faut-retenir" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="ce-quil-faut-retenir"><span class="header-section-number">7.6</span> Ce qu’il faut retenir</h2>
+<section id="ce-quil-faut-retenir" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="ce-quil-faut-retenir"><span class="header-section-number">8.6</span> Ce qu’il faut retenir</h2>
 <p>Le passage aux mailles ne correspond pas à un simple raffinement cartographique. Il transforme profondément la stratégie empirique :</p>
 <ul>
 <li>il redéfinit l’unité observée ;</li>
@@ -425,6 +431,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Autrement dit, les chapitres suivants ne peuvent être compris correctement que si ce déplacement d’unité d’analyse est clair.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

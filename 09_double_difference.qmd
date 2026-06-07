@@ -97,7 +97,8 @@ did_result <- att_gt(
 	gname = "time_treated",
 	weightsname = "weights",
 	data = grille_matched_long,
-	panel = TRUE
+	panel = TRUE,
+	biters = 100
 )
 
 agg_att_mailles <- aggte(did_result, type = "dynamic")
