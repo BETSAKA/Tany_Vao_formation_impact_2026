@@ -6,9 +6,12 @@ editor:
 
 # Programme {.unnumbered}
 
-Cette formation sur cinq jours vise à faire comprendre une chaîne d'analyse pour une d'évaluation d'impact spatialisée appliquée au cas des aires protégées à
-Madagascar. L'objectif n'est pas de couvrir l'ensemble du programme initial à volume constant, mais de concentrer la progression sur les
-étapes indispensables pour raisonner sur une question causale, suivre des scripts fournis, vérifier des sorties et interpréter des résultats.
+Cette formation sur cinq jours vise à faire comprendre une chaîne d'analyse pour 
+une d'évaluation d'impact spatialisée appliquée au cas des aires protégées à 
+Madagascar. L'objectif n'est pas de couvrir l'ensemble du programme initial à 
+volume constant, mais de concentrer la progression sur les étapes indispensables 
+pour raisonner sur une question causale, suivre des scripts fournis, vérifier
+des sorties et interpréter des résultats.
 
 La formation combine :
 

@@ -13,8 +13,8 @@ de traitement du cas d'étude. Il permet de partir d'un portefeuille de
 polygones, d'acquérir les ressources spatiales utiles, puis de calculer
 des indicateurs exploitables dans les chapitres suivants.
 
-Dans le format 5 jours, la logique du package doit être pleinement
-conservée, mais les calculs les plus lourds sont traités en démonstration
+Dans le format 5 jours, la logique du package est présentée,
+mais les calculs les plus lourds sont traités en démonstration
 ou via des objets pré-calculés afin de préserver le temps de travail sur
 les méthodes d'évaluation.
 
@@ -175,6 +175,6 @@ Trois idées doivent rester en tête :
 1. le portefeuille de polygones est le point d'entrée de la chaîne ;
 2. les indicateurs calculés ne tombent pas du ciel, ils résultent d'une
 	 chaîne explicite de ressources et de fonctions ;
-3. dans le format 5 jours, on garde la logique complète du package, mais
-	 on s'appuie sur des objets pré-calculés dès que le temps de calcul
-	 deviendrait un obstacle pédagogique.
+3. dans le format 5 jours, on présente la logique complète du package, pour que 
+les participants sachent comment se procurer des données pour leurs propres études, 
+mais on utilise des objets pré-calculés pour se concentrer sur les méthodes d'évaluation.

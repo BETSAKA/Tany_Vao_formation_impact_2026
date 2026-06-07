@@ -8,10 +8,9 @@
 
 [Cliquer ici pour télécharger la présentation](/slides/fr/Jour 1_Introduction_Fondamentaux.pdf)
 
-Cette introduction installe le cadre du parcours en cinq jours. Le but
-est de comprendre comment construire et discuter une comparaison causale
-crédible lorsqu'on cherche à mesurer l'effet d'une politique ou d'un
-projet.
+Le but de cette introduction est de comprendre comment construire et discuter 
+une comparaison causale crédible lorsqu'on cherche à mesurer l'effet d'une 
+politique ou d'un projet.
 
 Dans le cas traité ici, la question directrice est la suivante : quel a
 été l'effet de la mise sous protection de certaines zones sur la
@@ -111,12 +110,8 @@ adapter les scripts utilisés dans le reste de la formation.
 
 [Cliquer ici pour télécharger la présentation](/slides/fr/Jour 3_Donnees.pdf)
 
-La revue détaillée d'articles n'est pas au cœur de ce format condensé.
-En revanche, il est utile de conserver quelques références pour situer
-les applications étudiées et prolonger la réflexion après la formation :
+Deux références pour situer les applications étudiées et prolonger la réflexion 
+après la formation :
 
 - l'article "On track to achieve no net loss of forest at Madagascar's biggest mine" de Devenish et al. [-@devenish_track_2022] ;
 - l'article "Collaborative management partnerships strongly decreased deforestation in the most at-risk protected areas in Africa since 2000" de Desbureaux et al. [-@desbureaux_collaborative_2025].
-
-Ces références servent ici de prolongement, pas de séquence centrale du
-parcours.
