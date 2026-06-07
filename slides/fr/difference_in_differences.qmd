@@ -1,0 +1,509 @@
+---
+title: "Méthodes des différences de différences"
+subtitle: "Tany Vao/Atelier 2 : Évaluation d'impact de politiques et de projets"
+author: "Florent Bédécarrats, Ingrid Dallmann, Diamondra Ramiandrisoa & Melvin Wong"
+date: 06/19/2026
+date-format: "DD/MM/YYYY"
+format: 
+  clean-revealjs:
+    slide-number: true
+    self-contained: true
+    pdf: true
+class: small-text
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+
+options(scipen = 999)
+
+base_theme <- theme_minimal(base_size = 18) +
+  theme(
+    legend.position = "bottom",
+    panel.grid.minor = element_blank()
+  )
+
+period_levels <- c("Avant", "Après")
+
+did_valid <- tibble::tribble(
+  ~groupe, ~periode, ~couvert,
+  "Autre", "Avant", 80,
+  "Autre", "Après", 60,
+  "Makay", "Avant", 50,
+  "Makay", "Après", 35,
+  "Makay contrefactuel", "Avant", 50,
+  "Makay contrefactuel", "Après", 30
+) |>
+  mutate(periode = factor(periode, levels = period_levels))
+
+did_invalid <- tibble::tribble(
+  ~groupe, ~periode, ~couvert,
+  "Autre", "Avant", 80,
+  "Autre", "Après", 60,
+  "Makay observé", "Avant", 50,
+  "Makay observé", "Après", 35,
+  "Makay contrefactuel", "Avant", 50,
+  "Makay contrefactuel", "Après", 70
+) |>
+  mutate(periode = factor(periode, levels = period_levels))
+
+plot_did <- function(data, title = NULL) {
+  ggplot(data, aes(x = periode, y = couvert, group = groupe, color = groupe)) +
+    geom_line(linewidth = 1.1) +
+    geom_point(size = 3) +
+    labs(
+      title = title,
+      x = NULL,
+      y = "Couvert forestier",
+      linetype = NULL
+    ) +
+    base_theme
+}
+```
+
+## Problème de départ
+
+Est-ce que le statut d'aire protégée a un impact sur le couvert forestier ?
+
+On voudrait connaître :
+
+$$
+ATT = \mathbb{E}[CF^1 \mid AP = 1] - \mathbb{E}[CF^0 \mid AP = 1]
+$$
+
+avec :
+
+- $CF^1$ : couvert forestier si la zone est protégée ;
+- $CF^0$ : couvert forestier si la même zone n'est pas protégée ;
+- $AP = 1$ : zone effectivement protégée.
+
+. . .
+
+Le problème est qu'on n'observe jamais simultanément les deux états pour la même zone au même moment.
+
+## Le contrefactuel manquant
+
+La question empirique devient :
+
+> Quel aurait été le couvert forestier des zones protégées si elles n'avaient pas été protégées ?
+
+Deux comparaisons simples sont tentantes :
+
+- comparer des zones protégées et non protégées au même moment ;
+- comparer les mêmes zones avant et après leur protection.
+
+. . .
+
+Chacune de ces comparaisons peut être biaisée.
+
+## Comparer des espaces différents ?
+
+:::: {.columns}
+::: {.column width="50%"}
+
+| Espace | Couvert forestier |
+|---|---:|
+| Makay | $CF_M = M + AP$ |
+| Autre | $CF_A = A$ |
+
+$M$ et $A$ représentent les caractéristiques propres à chaque espace.
+
+:::
+
+::: {.column width="50%"}
+
+Différence observée :
+
+$$
+CF_M - CF_A = AP + (M - A)
+$$
+
+On veut isoler $AP$, mais on capte aussi $(M-A)$.
+
+$\Rightarrow$ **Biais de sélection** lié aux différences structurelles entre zones.
+
+:::
+::::
+
+## Comparer avant et après ?
+
+:::: {.columns}
+::: {.column width="50%"}
+
+| Espace | Temps | Couvert forestier |
+|---|---|---:|
+| Makay | Avant | $CF_{av} = M$ |
+| Makay | Après | $CF_{ap} = M + T + AP$ |
+
+$T$ représente les facteurs temporels qui influencent le couvert forestier.
+
+:::
+
+::: {.column width="50%"}
+
+Différence observée :
+
+$$
+CF_{ap} - CF_{av} = T + AP
+$$
+
+On veut isoler $AP$, mais on capte aussi $T$.
+
+$\Rightarrow$ **Biais temporel** si d'autres facteurs changent sur la période.
+
+:::
+::::
+
+## Principe de la double différence
+
+La méthode combine les deux comparaisons :
+
+- une différence dans le temps pour les zones traitées ;
+- une différence dans le temps pour les zones de contrôle ;
+- puis la différence entre ces deux évolutions.
+
+$$
+DiD = (Y_{T,après} - Y_{T,avant}) - (Y_{C,après} - Y_{C,avant})
+$$
+
+L'évolution du groupe de contrôle sert à approximer ce qui se serait passé pour le groupe traité en l'absence de traitement.
+
+## Exemple stylisé
+
+::: {tbl-colwidths="[30,30,40,40]"}
+
+| Espace | Avant | Après | Évolution |
+|:---|:---:|---:|---:|
+| Makay | $M$ | $M + T + AP$ | $T + AP$ |
+| Autre | $A$ | $A + T$ | $T$ |
+
+:::
+
+La double différence donne :
+
+$$
+(T + AP) - T = AP
+$$
+
+L'idée est de retirer à l'évolution des zones protégées l'évolution observée dans des zones comparables non protégées.
+
+## Illustration graphique
+
+```{r}
+#| echo: false
+#| fig-cap: "Principe de la double différence"
+plot_did(did_valid) +
+  annotate("segment", x = 2.04, xend = 2.04, y = 30, yend = 35,
+           arrow = arrow(ends = "both", length = unit(0.12, "inches"))) +
+  annotate("text", x = 2.08, y = 32.5, label = "Effet DiD", hjust = 0, size = 5)
+```
+
+## Interprétation graphique
+
+Dans cette illustration :
+
+- la ligne du groupe de contrôle décrit la tendance temporelle commune ;
+- la ligne contrefactuelle prolonge cette tendance pour Makay ;
+- l'écart entre Makay observé et Makay contrefactuel après traitement est l'effet estimé.
+
+. . .
+
+La méthode ne suppose pas que les niveaux initiaux soient identiques.
+
+Elle suppose que les évolutions auraient été comparables en l'absence du traitement.
+
+## Hypothèses centrales
+
+La différence en différence repose principalement sur deux hypothèses.
+
+**Tendances parallèles**
+
+En l'absence du traitement, le groupe traité et le groupe de contrôle auraient connu la même évolution moyenne.
+
+**Composition stable**
+
+Les groupes comparés doivent être définis de manière stable entre les périodes.
+
+. . .
+
+Ces hypothèses sont des conditions de crédibilité, pas seulement des détails techniques.
+
+## Tendances parallèles
+
+Formellement, pour les unités traitées et non traitées :
+
+$$
+\mathbb{E}[Y^0_{après} - Y^0_{avant} \mid T = 1]
+=
+\mathbb{E}[Y^0_{après} - Y^0_{avant} \mid T = 0]
+$$
+
+Autrement dit, sans aire protégée, le couvert forestier des zones protégées aurait suivi la même tendance que celui des zones non protégées utilisées comme contrôle.
+
+## Peut-on vérifier cette hypothèse ?
+
+On ne peut pas la tester directement, car on n'observe pas le contrefactuel.
+
+On peut seulement chercher des éléments de plausibilité :
+
+- comparer les tendances avant le traitement ;
+- faire des tests placebo autour d'une fausse date de traitement ;
+- tester la robustesse avec d'autres groupes de contrôle ;
+- expliquer pourquoi les deux groupes devraient avoir été soumis aux mêmes chocs temporels.
+
+## Tendances prétraitement cohérentes
+
+```{r}
+#| echo: false
+#| fig-cap: "Cas favorable : tendances prétraitement compatibles avec l'hypothèse"
+pre_valid <- tibble::tribble(
+  ~groupe, ~periode, ~couvert,
+  "Autre", "t - 2", 88,
+  "Autre", "t - 1", 80,
+  "Autre", "t + 1", 60,
+  "Makay", "t - 2", 58,
+  "Makay", "t - 1", 50,
+  "Makay", "t + 1", 35,
+  "Makay contrefactuel", "t - 2", 58,
+  "Makay contrefactuel", "t - 1", 50,
+  "Makay contrefactuel", "t + 1", 30
+) |>
+  mutate(periode = factor(periode, levels = c("t - 2", "t - 1", "t + 1")))
+
+plot_did(pre_valid) +
+  geom_vline(xintercept = 2.5, linetype = "dotted") +
+  annotate("text", x = 2.55, y = 88, label = "Protection", hjust = 0, size = 5)
+```
+
+## Tendances prétraitement divergentes
+
+```{r}
+#| echo: false
+#| fig-cap: "Cas défavorable : les tendances prétraitement divergent"
+pre_invalid <- tibble::tribble(
+  ~groupe, ~periode, ~couvert,
+  "Autre", "t - 2", 88,
+  "Autre", "t - 1", 80,
+  "Autre", "t + 1", 60,
+  "Makay", "t - 2", 40,
+  "Makay", "t - 1", 50,
+  "Makay", "t + 1", 35,
+  "Makay contrefactuel", "t - 2", 40,
+  "Makay contrefactuel", "t - 1", 50,
+  "Makay contrefactuel", "t + 1", 70
+) |>
+  mutate(periode = factor(periode, levels = c("t - 2", "t - 1", "t + 1")))
+
+plot_did(pre_invalid) +
+  geom_vline(xintercept = 2.5, linetype = "dotted") +
+  annotate("text", x = 2.55, y = 88, label = "Protection", hjust = 0, size = 5)
+```
+
+## Composition stable
+
+La composition des groupes doit rester comparable entre les périodes.
+
+Exemples de problèmes possibles :
+
+- les zones traitées ou contrôles ne sont pas les mêmes avant et après ;
+- les ménages enquêtés changent de manière sélective ;
+- la définition du traitement change au cours du temps ;
+- certaines unités disparaissent de l'échantillon pour des raisons liées au traitement.
+
+$\Rightarrow$ Ce risque est particulièrement important avec des coupes transversales répétées.
+
+## Deux types de données possibles
+
+Pour mettre en œuvre une double différence, il faut au moins deux observations dans le temps.
+
+**Données de panel**
+
+Les mêmes unités sont observées avant et après.
+
+**Coupes transversales répétées**
+
+On observe des échantillons comparables tirés dans les mêmes populations, mais pas nécessairement les mêmes unités.
+
+. . .
+
+Dans les deux cas, il faut être explicite sur ce que signifie la stabilité des groupes.
+
+## Formalisation
+
+Supposons :
+
+- $Y^1_{it}$ : résultat de l'unité $i$ à la date $t$ si elle est traitée ;
+- $Y^0_{it}$ : résultat de l'unité $i$ à la date $t$ si elle n'est pas traitée.
+
+L'hypothèse centrale de la DiD est que, en l'absence du traitement, le résultat moyen des unités traitées aurait suivi :
+
+$$
+\mathbb{E}[Y^0_{it} \mid T_i = 1] = \beta_i + \gamma_t
+$$
+
+Les différences fixes entre unités sont absorbées par $\beta_i$ ; les tendances communes sont absorbées par $\gamma_t$.
+
+## Variables de traitement et de période
+
+On définit :
+
+$$
+Treat_i =
+\begin{cases}
+1 & \text{si l'unité est traitée} \\
+0 & \text{sinon}
+\end{cases}
+$$
+
+$$
+Post_t =
+\begin{cases}
+1 & \text{après le traitement} \\
+0 & \text{avant le traitement}
+\end{cases}
+$$
+
+L'interaction $Treat_i \times Post_t$ identifie les unités traitées après le traitement.
+
+## Estimation par régression
+
+Le modèle canonique à deux groupes et deux périodes s'écrit :
+
+$$
+Y_{it} = \alpha + \beta Treat_i + \gamma Post_t
++ \lambda (Treat_i \times Post_t) + \varepsilon_{it}
+$$
+
+Le coefficient $\lambda$ est l'estimateur de différence en différence.
+
+Il mesure l'évolution supplémentaire des unités traitées après le traitement, relativement à l'évolution du groupe de contrôle.
+
+## Pourquoi l'interaction donne la DiD ?
+
+| Groupe | Période | Espérance conditionnelle |
+|---|---|---:|
+| Contrôle | Avant | $\alpha$ |
+| Contrôle | Après | $\alpha + \gamma$ |
+| Traité | Avant | $\alpha + \beta$ |
+| Traité | Après | $\alpha + \beta + \gamma + \lambda$ |
+
+Donc :
+
+$$
+[(\alpha + \beta + \gamma + \lambda) - (\alpha + \beta)]
+-
+[(\alpha + \gamma) - \alpha]
+= \lambda
+$$
+
+## Implémentation minimale en R
+
+```{r}
+# Données stylisées
+example_did <- tibble::tribble(
+  ~zone, ~post, ~treat, ~forest,
+  "Autre", 0, 0, 80,
+  "Autre", 1, 0, 60,
+  "Makay", 0, 1, 50,
+  "Makay", 1, 1, 35
+)
+
+model <- lm(forest ~ treat * post, data = example_did)
+coef(model)
+```
+
+Le coefficient `treat:post` correspond à l'estimation DiD.
+
+## Choisir un groupe de contrôle
+
+Le groupe de contrôle doit être crédible comme trajectoire contrefactuelle.
+
+Deux stratégies fréquentes :
+
+- utiliser une expérience naturelle ou une règle d'assignation suffisamment exogène ;
+- construire un groupe comparable, par exemple par appariement sur des caractéristiques observables.
+
+. . .
+
+L'appariement ne remplace pas l'hypothèse de tendances parallèles.
+
+Il peut rendre cette hypothèse plus plausible si les variables utilisées sont pertinentes.
+
+## Ce qu'il faut documenter
+
+Pour une analyse DiD appliquée, il faut clarifier :
+
+- la date de traitement ;
+- la définition exacte des unités traitées ;
+- la construction du groupe de contrôle ;
+- les périodes disponibles avant et après ;
+- les risques de changement de composition ;
+- les preuves indirectes en faveur des tendances parallèles.
+
+## Résumé
+
+Pour mettre en œuvre une double différence, il faut :
+
+- au moins deux périodes ;
+- au moins deux groupes ;
+- une définition stable du traitement ;
+- un groupe de contrôle permettant de construire une trajectoire contrefactuelle crédible.
+
+. . .
+
+La formule est simple. La difficulté est de justifier le contrefactuel.
+
+## Résumé
+
+La crédibilité de l'estimation repose surtout sur l'hypothèse de tendances parallèles en l'absence du traitement.
+
+Cette hypothèse n'est pas vérifiable directement.
+
+Elle doit être défendue par :
+
+- la connaissance du contexte ;
+- les tendances prétraitement ;
+- des tests placebo ;
+- des analyses de robustesse.
+
+# Annexe : quelques précautions récentes
+
+## Traitements à dates différentes
+
+La présentation principale correspond au cas le plus simple : deux groupes et deux périodes.
+
+Dans beaucoup d'applications, les unités sont traitées à des dates différentes.
+
+Exemple : des aires protégées créées en 2003, 2008, 2015 et 2020.
+
+. . .
+
+Dans ce cas, la question n'est plus seulement « traité versus contrôle », mais aussi :
+
+> Qui sert de contrôle pour qui, et à quelle date ?
+
+## Effets hétérogènes
+
+Si l'effet du traitement varie selon les groupes ou selon le temps depuis le traitement, certains estimateurs standards avec effets fixes peuvent devenir difficiles à interpréter.
+
+Le problème n'est pas que la DiD serait inutilisable.
+
+Le problème est que l'estimation peut mélanger plusieurs comparaisons, dont certaines ne correspondent pas au contrefactuel que l'on souhaite défendre.
+
+. . .
+
+Il faut donc éviter de traiter le coefficient comme une boîte noire.
+
+## Que faire en pratique ?
+
+Quand les traitements arrivent à des dates différentes, il est préférable de :
+
+- expliciter les cohortes de traitement ;
+- montrer les tendances avant traitement ;
+- utiliser des graphiques d'événement avec prudence ;
+- choisir un estimateur adapté aux traitements échelonnés si nécessaire ;
+- dire clairement quels groupes servent de comparaison.
+
+Pour cette formation, l'idée centrale reste la même : la crédibilité d'une DiD dépend moins de la formule que de la qualité du contrefactuel construit.

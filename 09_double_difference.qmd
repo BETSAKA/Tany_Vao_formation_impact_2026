@@ -9,10 +9,10 @@ editor_options:
 ## Méthode des doubles différences
 
 ```{=html}
-<iframe src="/slides/fr/TVM_Double_difference.pdf" width="100%" height="400px"></iframe>
+<iframe src="/slides/fr/difference_in_differences.html" width="100%" height="400px"></iframe>
 ```
 
-[Cliquer ici pour télécharger la présentation](/slides/fr/TVM_Double_difference.pdf)
+[Cliquer ici pour télécharger la présentation](/slides/fr/difference_in_differences.html)
 
 La double différence constitue le second centre de gravité du format 5
 jours. Elle combine deux idées déjà rencontrées séparément :
