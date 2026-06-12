@@ -94,6 +94,59 @@ sont :
 - des objets spatiaux ;
 - des résultats de modèles.
 
+### Les fonctions
+
+Les fonctions sont des ensembles d'instructions qui effectuent des tâches spécifiques. Elles permettent de réutiliser du code facilement.
+
+-   **Créer une fonction** : Utilisez le mot-clé `function` pour créer une fonction.
+
+```{r}
+# Fonction qui additionne deux nombres
+addition <- function(x, y) {
+  return(x + y)
+}
+
+resultat <- addition(3, 4)  # Appel de la fonction
+print(resultat)  # Affiche 7
+```
+
+-   **Fonctions natives et packages** : De nombreuses fonctions sont intégrées à R, et d'autres sont disponibles via des packages additionnels.
+
+```{r}
+# Utilisation d'une fonction native
+somme <- sum(5, 10)
+print(somme)  # Affiche 15
+```
+
+
+## Les opérateurs logiques
+
+Les conditions reposent souvent sur des **opérateurs logiques** pour comparer des valeurs ou combiner des tests :
+
+| **Opérateur** | **Signification**        | **Exemple**      |
+|---------------|--------------------------|------------------|
+| `==`          | égal à                   | `x == 5`         |
+| `!=`          | différent de             | `x != 5`         |
+| `<`           | strictement inférieur à  | `x < 5`          |
+| `<=`          | inférieur ou égal à      | `x <= 5`         |
+| `>`           | strictement supérieur à  | `x > 5`          |
+| `>=`          | supérieur ou égal à      | `x >= 5`         |
+| `&`           | ET logique (conjonction) | `x > 5 & x < 10` |
+| `|`           | OU logique (disjonction) | `x < 5 | x > 10` |
+| `!`           | NON logique (négation)   | `! (x == 5)`     |
+
+
+Ces opérateurs sont essentiels pour formuler des conditions dans vos scripts.
+
+```{r}
+x <- 7
+
+x > 5 & x < 10   # TRUE : les deux conditions sont vraies
+x < 5 | x > 10   # FALSE : aucune des deux n’est vraie
+!(x == 7)        # FALSE : x est bien égal à 7
+```
+
+
 ## Charger des packages
 
 Les scripts commencent souvent par une série d'appels à `library()`.
@@ -176,6 +229,43 @@ observations %>%
 L'enjeu n'est pas d'écrire spontanément ce type de pipeline sans aide,
 mais de savoir le lire, repérer ce qu'il transforme et vérifier si le
 résultat répond bien à la question posée.
+
+## Import de données
+
+Pour cette section, nous allons développer l'importation de différents types de fichiers couramment utilisés dans R pour la manipulation et l'analyse de données. R permet d'importer et de manipuler divers formats de fichiers, notamment CSV, Excel et fichiers texte.
+
+### Utilisation du menu interactif de RStudio
+
+Avant de passer à l'importation via du code, il est recommandé de se familiariser avec le menu interactif de RStudio pour importer des fichiers.
+
+-   Pour importer un fichier, allez dans le panneau Files en bas à droite de l'interface RStudio.
+-   Naviguez vers le fichier `data/AP_Vahatra.csv`, faites un clic droit et sélectionnez Import Dataset.
+-   Un assistant d'import s'ouvrira, vous permettant de vérifier les données et de définir les options d'importation (séparateur, types de colonnes, etc.).
+-   Une fois satisfait, cliquez sur Import et examinez le code automatiquement généré par RStudio. Ce code pourra être utilisé et modifié par la suite pour automatiser l'importation des données.
+
+### Types de fichiers et comment les importer en ligne de code
+
+1.  Fichiers CSV : Les fichiers CSV sont très populaires pour leur simplicité. Pour importer un fichier CSV, vous pouvez utiliser la fonction read.csv() ou read_csv() (package readr, partie du tidyverse).
+
+```{r import csv}
+library(readr)
+
+AP_Vahatra <- read_csv("data/AP_Vahatra.csv")
+```
+
+**2. Fichiers Excel** : Pour importer des fichiers Excel, on peut utiliser le package readxl. La fonction read_xlsx() permet d'importer un fichier au format .xlsx.
+
+```{r ex_excel, eval=FALSE}
+library(readxl)
+
+Mon_objet_R <- read_xlsx("data/mon_fichier.xlsx")
+```
+
+**3. Fichiers texte** : Les fichiers texte peuvent être importés avec read.table() ou read_delim() (pour des délimiteurs personnalisés).
+
+```{r ex_read_delim, eval = FALSE}
+AP_Vahatra <- read_delim("data/mon_fichier.txt", delim = "\t")
+```
 
 ## Production de graphiques avec ggplot2
 
