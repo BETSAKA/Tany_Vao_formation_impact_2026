@@ -7,10 +7,9 @@ editor_options:
 
 # Clarification sur les unités d'analyse {#sec-mailles}
 
-Ce chapitre est un pivot du format 5 jours. Quand on raisonne sur une
-évaluation d'impact spatialisée, il ne suffit pas de choisir une méthode
-et des covariables. Il faut aussi décider ce qui constitue une **unité
-d'observation**, c'est-à-dire ce qui devient une ligne du tableau
+Quand on raisonne sur une évaluation d'impact spatialisée, il ne suffit pas de
+choisir une méthode et des covariables. Il faut aussi décider ce qui constitue
+une **unité d'observation**, c'est-à-dire ce qui devient une ligne du tableau
 d'analyse.
 
 ## Pourquoi cette question compte
