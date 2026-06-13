@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-42dbb3e0b7494ecd87b8c353a4276dc5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-0c4195a4947b29b824feb5edc89bc3b6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -239,18 +239,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#r-et-rstudio" id="toc-r-et-rstudio" class="nav-link active" data-scroll-target="#r-et-rstudio"><span class="header-section-number">2.1</span> R et RStudio</a></li>
   <li><a href="#ce-quil-faut-savoir-faire-ici" id="toc-ce-quil-faut-savoir-faire-ici" class="nav-link" data-scroll-target="#ce-quil-faut-savoir-faire-ici"><span class="header-section-number">2.2</span> Ce qu’il faut savoir faire ici</a></li>
   <li><a href="#lire-lenvironnement-de-travail" id="toc-lire-lenvironnement-de-travail" class="nav-link" data-scroll-target="#lire-lenvironnement-de-travail"><span class="header-section-number">2.3</span> Lire l’environnement de travail</a></li>
-  <li><a href="#objets-et-noms-dobjets" id="toc-objets-et-noms-dobjets" class="nav-link" data-scroll-target="#objets-et-noms-dobjets"><span class="header-section-number">2.4</span> Objets et noms d’objets</a></li>
-  <li><a href="#charger-des-packages" id="toc-charger-des-packages" class="nav-link" data-scroll-target="#charger-des-packages"><span class="header-section-number">2.5</span> Charger des packages</a></li>
-  <li><a href="#lire-un-tableau-et-ses-colonnes" id="toc-lire-un-tableau-et-ses-colonnes" class="nav-link" data-scroll-target="#lire-un-tableau-et-ses-colonnes"><span class="header-section-number">2.6</span> Lire un tableau et ses colonnes</a></li>
-  <li><a href="#le-pipeline-et-les-verbes-utiles-de-dplyr" id="toc-le-pipeline-et-les-verbes-utiles-de-dplyr" class="nav-link" data-scroll-target="#le-pipeline-et-les-verbes-utiles-de-dplyr"><span class="header-section-number">2.7</span> Le pipeline et les verbes utiles de <code>dplyr</code></a></li>
-  <li><a href="#production-de-graphiques-avec-ggplot2" id="toc-production-de-graphiques-avec-ggplot2" class="nav-link" data-scroll-target="#production-de-graphiques-avec-ggplot2"><span class="header-section-number">2.8</span> Production de graphiques avec ggplot2</a>
+  <li><a href="#objets-et-noms-dobjets" id="toc-objets-et-noms-dobjets" class="nav-link" data-scroll-target="#objets-et-noms-dobjets"><span class="header-section-number">2.4</span> Objets et noms d’objets</a>
   <ul class="collapse">
-  <li><a href="#philosophie-de-la-grammaire-des-graphiques" id="toc-philosophie-de-la-grammaire-des-graphiques" class="nav-link" data-scroll-target="#philosophie-de-la-grammaire-des-graphiques"><span class="header-section-number">2.8.1</span> Philosophie de la “grammaire des graphiques”</a></li>
-  <li><a href="#introduction-à-ggplot2" id="toc-introduction-à-ggplot2" class="nav-link" data-scroll-target="#introduction-à-ggplot2"><span class="header-section-number">2.8.2</span> Introduction à ggplot2</a></li>
-  <li><a href="#exercice-créer-un-graphique-avec-ggplot2" id="toc-exercice-créer-un-graphique-avec-ggplot2" class="nav-link" data-scroll-target="#exercice-créer-un-graphique-avec-ggplot2"><span class="header-section-number">2.8.3</span> Exercice : Créer un graphique avec ggplot2</a></li>
+  <li><a href="#les-fonctions" id="toc-les-fonctions" class="nav-link" data-scroll-target="#les-fonctions"><span class="header-section-number">2.4.1</span> Les fonctions</a></li>
   </ul></li>
-  <li><a href="#ce-quil-faut-retenir-pour-la-suite" id="toc-ce-quil-faut-retenir-pour-la-suite" class="nav-link" data-scroll-target="#ce-quil-faut-retenir-pour-la-suite"><span class="header-section-number">2.9</span> Ce qu’il faut retenir pour la suite</a></li>
-  <li><a href="#ressources-pour-poursuivre-la-pratique" id="toc-ressources-pour-poursuivre-la-pratique" class="nav-link" data-scroll-target="#ressources-pour-poursuivre-la-pratique"><span class="header-section-number">2.10</span> Ressources pour poursuivre la pratique</a></li>
+  <li><a href="#les-opérateurs-logiques" id="toc-les-opérateurs-logiques" class="nav-link" data-scroll-target="#les-opérateurs-logiques"><span class="header-section-number">2.5</span> Les opérateurs logiques</a></li>
+  <li><a href="#charger-des-packages" id="toc-charger-des-packages" class="nav-link" data-scroll-target="#charger-des-packages"><span class="header-section-number">2.6</span> Charger des packages</a></li>
+  <li><a href="#lire-un-tableau-et-ses-colonnes" id="toc-lire-un-tableau-et-ses-colonnes" class="nav-link" data-scroll-target="#lire-un-tableau-et-ses-colonnes"><span class="header-section-number">2.7</span> Lire un tableau et ses colonnes</a></li>
+  <li><a href="#le-pipeline-et-les-verbes-utiles-de-dplyr" id="toc-le-pipeline-et-les-verbes-utiles-de-dplyr" class="nav-link" data-scroll-target="#le-pipeline-et-les-verbes-utiles-de-dplyr"><span class="header-section-number">2.8</span> Le pipeline et les verbes utiles de <code>dplyr</code></a></li>
+  <li><a href="#import-de-données" id="toc-import-de-données" class="nav-link" data-scroll-target="#import-de-données"><span class="header-section-number">2.9</span> Import de données</a>
+  <ul class="collapse">
+  <li><a href="#utilisation-du-menu-interactif-de-rstudio" id="toc-utilisation-du-menu-interactif-de-rstudio" class="nav-link" data-scroll-target="#utilisation-du-menu-interactif-de-rstudio"><span class="header-section-number">2.9.1</span> Utilisation du menu interactif de RStudio</a></li>
+  <li><a href="#types-de-fichiers-et-comment-les-importer-en-ligne-de-code" id="toc-types-de-fichiers-et-comment-les-importer-en-ligne-de-code" class="nav-link" data-scroll-target="#types-de-fichiers-et-comment-les-importer-en-ligne-de-code"><span class="header-section-number">2.9.2</span> Types de fichiers et comment les importer en ligne de code</a></li>
+  </ul></li>
+  <li><a href="#production-de-graphiques-avec-ggplot2" id="toc-production-de-graphiques-avec-ggplot2" class="nav-link" data-scroll-target="#production-de-graphiques-avec-ggplot2"><span class="header-section-number">2.10</span> Production de graphiques avec ggplot2</a>
+  <ul class="collapse">
+  <li><a href="#philosophie-de-la-grammaire-des-graphiques" id="toc-philosophie-de-la-grammaire-des-graphiques" class="nav-link" data-scroll-target="#philosophie-de-la-grammaire-des-graphiques"><span class="header-section-number">2.10.1</span> Philosophie de la “grammaire des graphiques”</a></li>
+  <li><a href="#introduction-à-ggplot2" id="toc-introduction-à-ggplot2" class="nav-link" data-scroll-target="#introduction-à-ggplot2"><span class="header-section-number">2.10.2</span> Introduction à ggplot2</a></li>
+  <li><a href="#exercice-créer-un-graphique-avec-ggplot2" id="toc-exercice-créer-un-graphique-avec-ggplot2" class="nav-link" data-scroll-target="#exercice-créer-un-graphique-avec-ggplot2"><span class="header-section-number">2.10.3</span> Exercice : Créer un graphique avec ggplot2</a></li>
+  </ul></li>
+  <li><a href="#ce-quil-faut-retenir-pour-la-suite" id="toc-ce-quil-faut-retenir-pour-la-suite" class="nav-link" data-scroll-target="#ce-quil-faut-retenir-pour-la-suite"><span class="header-section-number">2.11</span> Ce qu’il faut retenir pour la suite</a></li>
+  <li><a href="#ressources-pour-poursuivre-la-pratique" id="toc-ressources-pour-poursuivre-la-pratique" class="nav-link" data-scroll-target="#ressources-pour-poursuivre-la-pratique"><span class="header-section-number">2.12</span> Ressources pour poursuivre la pratique</a></li>
   </ul>
 </nav>
     </div>
@@ -338,13 +347,120 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>des objets spatiaux ;</li>
 <li>des résultats de modèles.</li>
 </ul>
+<section id="les-fonctions" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="les-fonctions"><span class="header-section-number">2.4.1</span> Les fonctions</h3>
+<p>Les fonctions sont des ensembles d’instructions qui effectuent des tâches spécifiques. Elles permettent de réutiliser du code facilement.</p>
+<ul>
+<li><strong>Créer une fonction</strong> : Utilisez le mot-clé <code>function</code> pour créer une fonction.</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fonction qui additionne deux nombres</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>addition <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x <span class="sc">+</span> y)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>resultat <span class="ot">&lt;-</span> <span class="fu">addition</span>(<span class="dv">3</span>, <span class="dv">4</span>)  <span class="co"># Appel de la fonction</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(resultat)  <span class="co"># Affiche 7</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7</code></pre>
+</div>
+</div>
+<ul>
+<li><strong>Fonctions natives et packages</strong> : De nombreuses fonctions sont intégrées à R, et d’autres sont disponibles via des packages additionnels.</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Utilisation d'une fonction native</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>somme <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="dv">5</span>, <span class="dv">10</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(somme)  <span class="co"># Affiche 15</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 15</code></pre>
+</div>
+</div>
 </section>
-<section id="charger-des-packages" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="charger-des-packages"><span class="header-section-number">2.5</span> Charger des packages</h2>
+</section>
+<section id="les-opérateurs-logiques" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="les-opérateurs-logiques"><span class="header-section-number">2.5</span> Les opérateurs logiques</h2>
+<p>Les conditions reposent souvent sur des <strong>opérateurs logiques</strong> pour comparer des valeurs ou combiner des tests :</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Opérateur</strong></th>
+<th><strong>Signification</strong></th>
+<th><strong>Exemple</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>==</code></td>
+<td>égal à</td>
+<td><code>x == 5</code></td>
+</tr>
+<tr class="even">
+<td><code>!=</code></td>
+<td>différent de</td>
+<td><code>x != 5</code></td>
+</tr>
+<tr class="odd">
+<td><code>&lt;</code></td>
+<td>strictement inférieur à</td>
+<td><code>x &lt; 5</code></td>
+</tr>
+<tr class="even">
+<td><code>&lt;=</code></td>
+<td>inférieur ou égal à</td>
+<td><code>x &lt;= 5</code></td>
+</tr>
+<tr class="odd">
+<td><code>&gt;</code></td>
+<td>strictement supérieur à</td>
+<td><code>x &gt; 5</code></td>
+</tr>
+<tr class="even">
+<td><code>&gt;=</code></td>
+<td>supérieur ou égal à</td>
+<td><code>x &gt;= 5</code></td>
+</tr>
+<tr class="odd">
+<td><code>&amp;</code></td>
+<td>ET logique (conjonction)</td>
+<td><code>x &gt; 5 &amp; x &lt; 10</code></td>
+</tr>
+<tr class="even">
+<td><code>|</code></td>
+<td>OU logique (disjonction)</td>
+<td><code>x &lt; 5 | x &gt; 10</code></td>
+</tr>
+<tr class="odd">
+<td><code>!</code></td>
+<td>NON logique (négation)</td>
+<td><code>! (x == 5)</code></td>
+</tr>
+</tbody>
+</table>
+<p>Ces opérateurs sont essentiels pour formuler des conditions dans vos scripts.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">7</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">&amp;</span> x <span class="sc">&lt;</span> <span class="dv">10</span>   <span class="co"># TRUE : les deux conditions sont vraies</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">&lt;</span> <span class="dv">5</span> <span class="sc">|</span> x <span class="sc">&gt;</span> <span class="dv">10</span>   <span class="co"># FALSE : aucune des deux n’est vraie</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>(x <span class="sc">==</span> <span class="dv">7</span>)        <span class="co"># FALSE : x est bien égal à 7</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+</section>
+<section id="charger-des-packages" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="charger-des-packages"><span class="header-section-number">2.6</span> Charger des packages</h2>
 <p>Les scripts commencent souvent par une série d’appels à <code>library()</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Le premier réflexe n’est pas de mémoriser tous les packages, mais de repérer à quoi ils servent. Par exemple :</p>
 <ul>
@@ -354,8 +470,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>MatchIt</code> et <code>cobalt</code> pour l’appariement et ses diagnostics.</li>
 </ul>
 </section>
-<section id="lire-un-tableau-et-ses-colonnes" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="lire-un-tableau-et-ses-colonnes"><span class="header-section-number">2.6</span> Lire un tableau et ses colonnes</h2>
+<section id="lire-un-tableau-et-ses-colonnes" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="lire-un-tableau-et-ses-colonnes"><span class="header-section-number">2.7</span> Lire un tableau et ses colonnes</h2>
 <p>Avant de transformer un tableau, il faut vérifier ce qu’il contient. Les questions les plus utiles sont souvent :</p>
 <ul>
 <li>quel est le nom de l’objet ?</li>
@@ -363,17 +479,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>quelles sont les premières lignes ?</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>parcs <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">nom =</span> <span class="fu">c</span>(<span class="st">"Parc A"</span>, <span class="st">"Parc B"</span>, <span class="st">"Parc C"</span>),</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">statut =</span> <span class="fu">c</span>(<span class="st">"protégé"</span>, <span class="st">"protégé"</span>, <span class="st">"non protégé"</span>),</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">couverture_forestiere =</span> <span class="fu">c</span>(<span class="fl">0.82</span>, <span class="fl">0.67</span>, <span class="fl">0.51</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(parcs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>parcs <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">nom =</span> <span class="fu">c</span>(<span class="st">"Parc A"</span>, <span class="st">"Parc B"</span>, <span class="st">"Parc C"</span>),</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">statut =</span> <span class="fu">c</span>(<span class="st">"protégé"</span>, <span class="st">"protégé"</span>, <span class="st">"non protégé"</span>),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">couverture_forestiere =</span> <span class="fu">c</span>(<span class="fl">0.82</span>, <span class="fl">0.67</span>, <span class="fl">0.51</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(parcs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "nom"                   "statut"                "couverture_forestiere"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(parcs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(parcs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     nom      statut couverture_forestiere
 1 Parc A     protégé                  0.82
@@ -383,17 +499,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Ces deux commandes suffisent souvent à éviter des erreurs simples de nom de colonne ou de mauvais objet.</p>
 </section>
-<section id="le-pipeline-et-les-verbes-utiles-de-dplyr" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="le-pipeline-et-les-verbes-utiles-de-dplyr"><span class="header-section-number">2.7</span> Le pipeline et les verbes utiles de <code>dplyr</code></h2>
+<section id="le-pipeline-et-les-verbes-utiles-de-dplyr" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="le-pipeline-et-les-verbes-utiles-de-dplyr"><span class="header-section-number">2.8</span> Le pipeline et les verbes utiles de <code>dplyr</code></h2>
 <p>Dans cette formation, une grande partie du code prend la forme de pipelines avec <code>%&gt;%</code>. On peut lire ce symbole comme “puis” ou “ensuite”.</p>
 <p>L’idée est simple : on part d’un objet et on applique une série d’opérations successives.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>parcs <span class="sc">%&gt;%</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(statut <span class="sc">==</span> <span class="st">"protégé"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">couverture_pct =</span> couverture_forestiere <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(nom, couverture_pct)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>parcs <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(statut <span class="sc">==</span> <span class="st">"protégé"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">couverture_pct =</span> couverture_forestiere <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(nom, couverture_pct)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     nom couverture_pct
 1 Parc A             82
@@ -410,14 +526,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Voici un second exemple avec agrégation.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>observations <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">groupe =</span> <span class="fu">c</span>(<span class="st">"traité"</span>, <span class="st">"traité"</span>, <span class="st">"contrôle"</span>, <span class="st">"contrôle"</span>),</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">deforestation =</span> <span class="fu">c</span>(<span class="fl">1.2</span>, <span class="fl">0.8</span>, <span class="fl">2.1</span>, <span class="fl">1.9</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>observations <span class="sc">%&gt;%</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(groupe) <span class="sc">%&gt;%</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">deforestation_moyenne =</span> <span class="fu">mean</span>(deforestation), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>observations <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">groupe =</span> <span class="fu">c</span>(<span class="st">"traité"</span>, <span class="st">"traité"</span>, <span class="st">"contrôle"</span>, <span class="st">"contrôle"</span>),</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">deforestation =</span> <span class="fu">c</span>(<span class="fl">1.2</span>, <span class="fl">0.8</span>, <span class="fl">2.1</span>, <span class="fl">1.9</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>observations <span class="sc">%&gt;%</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(groupe) <span class="sc">%&gt;%</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">deforestation_moyenne =</span> <span class="fu">mean</span>(deforestation), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   groupe   deforestation_moyenne
@@ -428,11 +544,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>L’enjeu n’est pas d’écrire spontanément ce type de pipeline sans aide, mais de savoir le lire, repérer ce qu’il transforme et vérifier si le résultat répond bien à la question posée.</p>
 </section>
-<section id="production-de-graphiques-avec-ggplot2" class="level2" data-number="2.8">
-<h2 data-number="2.8" class="anchored" data-anchor-id="production-de-graphiques-avec-ggplot2"><span class="header-section-number">2.8</span> Production de graphiques avec ggplot2</h2>
+<section id="import-de-données" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="import-de-données"><span class="header-section-number">2.9</span> Import de données</h2>
+<p>Pour cette section, nous allons développer l’importation de différents types de fichiers couramment utilisés dans R pour la manipulation et l’analyse de données. R permet d’importer et de manipuler divers formats de fichiers, notamment CSV, Excel et fichiers texte.</p>
+<section id="utilisation-du-menu-interactif-de-rstudio" class="level3" data-number="2.9.1">
+<h3 data-number="2.9.1" class="anchored" data-anchor-id="utilisation-du-menu-interactif-de-rstudio"><span class="header-section-number">2.9.1</span> Utilisation du menu interactif de RStudio</h3>
+<p>Avant de passer à l’importation via du code, il est recommandé de se familiariser avec le menu interactif de RStudio pour importer des fichiers.</p>
+<ul>
+<li>Pour importer un fichier, allez dans le panneau Files en bas à droite de l’interface RStudio.</li>
+<li>Naviguez vers le fichier <code>data/AP_Vahatra.csv</code>, faites un clic droit et sélectionnez Import Dataset.</li>
+<li>Un assistant d’import s’ouvrira, vous permettant de vérifier les données et de définir les options d’importation (séparateur, types de colonnes, etc.).</li>
+<li>Une fois satisfait, cliquez sur Import et examinez le code automatiquement généré par RStudio. Ce code pourra être utilisé et modifié par la suite pour automatiser l’importation des données.</li>
+</ul>
+</section>
+<section id="types-de-fichiers-et-comment-les-importer-en-ligne-de-code" class="level3" data-number="2.9.2">
+<h3 data-number="2.9.2" class="anchored" data-anchor-id="types-de-fichiers-et-comment-les-importer-en-ligne-de-code"><span class="header-section-number">2.9.2</span> Types de fichiers et comment les importer en ligne de code</h3>
+<ol type="1">
+<li>Fichiers CSV : Les fichiers CSV sont très populaires pour leur simplicité. Pour importer un fichier CSV, vous pouvez utiliser la fonction read.csv() ou read_csv() (package readr, partie du tidyverse).</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>AP_Vahatra <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/AP_Vahatra.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>2. Fichiers Excel</strong> : Pour importer des fichiers Excel, on peut utiliser le package readxl. La fonction read_xlsx() permet d’importer un fichier au format .xlsx.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>Mon_objet_R <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/mon_fichier.xlsx"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>3. Fichiers texte</strong> : Les fichiers texte peuvent être importés avec read.table() ou read_delim() (pour des délimiteurs personnalisés).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>AP_Vahatra <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"data/mon_fichier.txt"</span>, <span class="at">delim =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="production-de-graphiques-avec-ggplot2" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="production-de-graphiques-avec-ggplot2"><span class="header-section-number">2.10</span> Production de graphiques avec ggplot2</h2>
 <p>Pour produire des graphiques de qualité avec R, nous utilisons souvent le package <code>ggplot2</code>. Ce package repose sur une approche appelée “la grammaire des graphiques”. Cette grammaire est une façon systématique de construire des visualisations, en combinant différents composants graphiques, comme des axes, des légendes, des points, des lignes, etc. Elle offre une grande flexibilité et permet de créer des graphiques complexes de manière progressive.</p>
-<section id="philosophie-de-la-grammaire-des-graphiques" class="level3" data-number="2.8.1">
-<h3 data-number="2.8.1" class="anchored" data-anchor-id="philosophie-de-la-grammaire-des-graphiques"><span class="header-section-number">2.8.1</span> Philosophie de la “grammaire des graphiques”</h3>
+<section id="philosophie-de-la-grammaire-des-graphiques" class="level3" data-number="2.10.1">
+<h3 data-number="2.10.1" class="anchored" data-anchor-id="philosophie-de-la-grammaire-des-graphiques"><span class="header-section-number">2.10.1</span> Philosophie de la “grammaire des graphiques”</h3>
 <p>La grammaire des graphiques est une méthode de pensée pour créer des visualisations. Elle repose sur l’idée que tout graphique peut être décomposé en une série de couches. Par exemple :</p>
 <ol type="1">
 <li><strong>Données</strong> : La première étape consiste à spécifier les données à utiliser pour le graphique.</li>
@@ -445,30 +596,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>En combinant ces différentes couches, <code>ggplot2</code> permet de construire des visualisations claires et personnalisées, adaptées aux besoins spécifiques de l’analyse.</p>
 </section>
-<section id="introduction-à-ggplot2" class="level3" data-number="2.8.2">
-<h3 data-number="2.8.2" class="anchored" data-anchor-id="introduction-à-ggplot2"><span class="header-section-number">2.8.2</span> Introduction à ggplot2</h3>
+<section id="introduction-à-ggplot2" class="level3" data-number="2.10.2">
+<h3 data-number="2.10.2" class="anchored" data-anchor-id="introduction-à-ggplot2"><span class="header-section-number">2.10.2</span> Introduction à ggplot2</h3>
 <p>Le package <code>ggplot2</code> suit cette logique en permettant d’ajouter chaque composant graphique avec le signe <code>+</code>. Voici une approche progressive pour comprendre <code>ggplot2</code> :</p>
 <ol type="1">
 <li><strong>Importer le package et les données</strong> :</li>
 </ol>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Création préalable de données simulées AP_superficie_annees</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>AP_superficie_annees <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">an_creation =</span> <span class="dv">1990</span><span class="sc">:</span><span class="dv">2020</span>,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">superficie_cumulee =</span> <span class="fu">cumsum</span>(<span class="fu">runif</span>(<span class="dv">31</span>, <span class="dv">50</span>, <span class="dv">500</span>))</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Création préalable de données simulées AP_superficie_annees</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>AP_superficie_annees <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">an_creation =</span> <span class="dv">1990</span><span class="sc">:</span><span class="dv">2020</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">superficie_cumulee =</span> <span class="fu">cumsum</span>(<span class="fu">runif</span>(<span class="dv">31</span>, <span class="dv">50</span>, <span class="dv">500</span>))</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol start="2" type="1">
 <li><strong>Créer la base du graphique</strong> :</li>
 </ol>
 <p>La première étape consiste à spécifier les données et les mappings esthétiques. Par exemple, nous allons indiquer que l’axe des abscisses (<code>x</code>) représente l’année de création (<code>an_creation</code>) et l’axe des ordonnées (<code>y</code>) représente la superficie cumulée (<code>superficie_cumulee</code>).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> AP_superficie_annees, <span class="fu">aes</span>(<span class="at">x =</span> an_creation, <span class="at">y =</span> superficie_cumulee))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> AP_superficie_annees, <span class="fu">aes</span>(<span class="at">x =</span> an_creation, <span class="at">y =</span> superficie_cumulee))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02_bases_R_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02_bases_R_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -478,13 +629,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>Pour visualiser les données, nous ajoutons des points (<code>geom_point()</code>) et des lignes (<code>geom_line()</code>).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> AP_superficie_annees, <span class="fu">aes</span>(<span class="at">x =</span> an_creation, <span class="at">y =</span> superficie_cumulee)) <span class="sc">+</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> AP_superficie_annees, <span class="fu">aes</span>(<span class="at">x =</span> an_creation, <span class="at">y =</span> superficie_cumulee)) <span class="sc">+</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02_bases_R_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02_bases_R_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -494,15 +645,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>Pour rendre le graphique plus compréhensible, nous ajoutons des labels pour les axes et un titre.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> AP_superficie_annees, <span class="fu">aes</span>(<span class="at">x =</span> an_creation, <span class="at">y =</span> superficie_cumulee)) <span class="sc">+</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Année"</span>, <span class="at">y =</span> <span class="st">"Superficie cumulée (km²)"</span>,</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Superficie cumulée en fonction de l'année de création"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> AP_superficie_annees, <span class="fu">aes</span>(<span class="at">x =</span> an_creation, <span class="at">y =</span> superficie_cumulee)) <span class="sc">+</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Année"</span>, <span class="at">y =</span> <span class="st">"Superficie cumulée (km²)"</span>,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Superficie cumulée en fonction de l'année de création"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02_bases_R_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02_bases_R_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -512,23 +663,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>Le thème permet de personnaliser l’apparence générale du graphique. Ici, nous utilisons <code>theme_minimal()</code> pour une apparence épurée.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> AP_superficie_annees, <span class="fu">aes</span>(<span class="at">x =</span> an_creation, <span class="at">y =</span> superficie_cumulee)) <span class="sc">+</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Année"</span>, <span class="at">y =</span> <span class="st">"Superficie cumulée (km²)"</span>,</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Superficie cumulée en fonction de l'année de création"</span>) <span class="sc">+</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> AP_superficie_annees, <span class="fu">aes</span>(<span class="at">x =</span> an_creation, <span class="at">y =</span> superficie_cumulee)) <span class="sc">+</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Année"</span>, <span class="at">y =</span> <span class="st">"Superficie cumulée (km²)"</span>,</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Superficie cumulée en fonction de l'année de création"</span>) <span class="sc">+</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02_bases_R_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02_bases_R_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="exercice-créer-un-graphique-avec-ggplot2" class="level3" data-number="2.8.3">
-<h3 data-number="2.8.3" class="anchored" data-anchor-id="exercice-créer-un-graphique-avec-ggplot2"><span class="header-section-number">2.8.3</span> Exercice : Créer un graphique avec ggplot2</h3>
+<section id="exercice-créer-un-graphique-avec-ggplot2" class="level3" data-number="2.10.3">
+<h3 data-number="2.10.3" class="anchored" data-anchor-id="exercice-créer-un-graphique-avec-ggplot2"><span class="header-section-number">2.10.3</span> Exercice : Créer un graphique avec ggplot2</h3>
 <ol type="1">
 <li><p><strong>Créer un graphique en nuages de points</strong> : Utilisez <code>ggplot2</code> pour créer un graphique de points qui montre la somme des superficies des aires protégées en fonction de leur année de création.</p></li>
 <li><p><strong>Ajouter des lignes de tendance</strong> : Ajoutez une une ligne reliant les points et une ligne de tendance (<code>geom_smooth()</code>).</p></li>
@@ -549,8 +700,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 </section>
 </section>
-<section id="ce-quil-faut-retenir-pour-la-suite" class="level2" data-number="2.9">
-<h2 data-number="2.9" class="anchored" data-anchor-id="ce-quil-faut-retenir-pour-la-suite"><span class="header-section-number">2.9</span> Ce qu’il faut retenir pour la suite</h2>
+<section id="ce-quil-faut-retenir-pour-la-suite" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="ce-quil-faut-retenir-pour-la-suite"><span class="header-section-number">2.11</span> Ce qu’il faut retenir pour la suite</h2>
 <p>Si vous savez :</p>
 <ul>
 <li>charger les packages ;</li>
@@ -561,8 +712,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>alors vous avez l’essentiel pour suivre les chapitres appliqués qui suivent.</p>
 </section>
-<section id="ressources-pour-poursuivre-la-pratique" class="level2" data-number="2.10">
-<h2 data-number="2.10" class="anchored" data-anchor-id="ressources-pour-poursuivre-la-pratique"><span class="header-section-number">2.10</span> Ressources pour poursuivre la pratique</h2>
+<section id="ressources-pour-poursuivre-la-pratique" class="level2" data-number="2.12">
+<h2 data-number="2.12" class="anchored" data-anchor-id="ressources-pour-poursuivre-la-pratique"><span class="header-section-number">2.12</span> Ressources pour poursuivre la pratique</h2>
 <p>La réduction de ce chapitre signifie aussi que l’apprentissage de R doit se poursuivre en dehors de la séance. Quelques ressources utiles :</p>
 <ul>
 <li><a href="https://juba.github.io/tidyverse/index.html">Introduction à R et au Tidyverse</a> ;</li>
