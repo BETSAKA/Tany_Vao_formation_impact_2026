@@ -36,7 +36,7 @@ grille_mada <- grille_mada[sort(cellules_emergees)] %>%
   st_sf()
 
 
-my_s3 <- "/vsis3/fbedecarrats/diffusion/test"
+my_s3 <- "/vsis3/projet-betsaka/diffusion/test"
 my_local <- "test"
 
 

@@ -100,7 +100,7 @@ if (file.exists("data/grille_mada_mapme.rds")) {
 } else {
   
   # Traitement des données satellitaires avec {mapme.bidiversity}---------------
-  my_outdir <- "/vsis3/fbedecarrats/diffusion/mapme_impact_training/data/mapme"
+  my_outdir <- "/vsis3/projet-betsaka/diffusion/tany_vao_2026/data/mapme"
 
   # Définir le répertoire de sortie
   mapme_options(outdir = my_outdir)
