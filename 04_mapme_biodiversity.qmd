@@ -1,195 +1,205 @@
 ---
 output: html_document
-editor_options:
+editor_options: 
   chunk_output_type: console
 execute:
-  timeout: 1000
+  timeout: 1000 
 ---
 
 # L'outil mapme.biodiversity
 
-Le package `mapme.biodiversity` occupe une place centrale dans la chaîne
-de traitement du cas d'étude. Il permet de partir d'un portefeuille de
-polygones, d'acquérir les ressources spatiales utiles, puis de calculer
-des indicateurs exploitables dans les chapitres suivants.
+## Démarche
 
-Dans le format 5 jours, la logique du package est présentée,
-mais les calculs les plus lourds sont traités en démonstration
-ou via des objets pré-calculés afin de préserver le temps de travail sur
-les méthodes d'évaluation.
+Le package [*mapme.biodiversity*](https://mapme-initiative.github.io/mapme.biodiversity/index.html) facilite l'analyse statistique de la biodiversité ou d'autres politiques et projets spatialisés. Il propose divers indicateurs pour évaluer la préservation de l'environnement et les activités humaines. Le package est conçu pour permettre des extensions futures grâce à des ressources et des indicateurs personnalisés.
 
-## Démarche générale
+![](figs/logo_mapme.png){fig-align="left" width="30%"}
 
-Le schéma de travail reste le suivant :
+Le package fournit une interface unifiée pour télécharger et analyser différents jeux de données spatiales, gérant la complexité liée aux divers formats. Il simplifie l'accès aux données en interagissant avec plusieurs backends utilisés par les organisations qui distribuent ces données. Les utilisateurs peuvent contrôler l'analyse en sélectionnant les indicateurs à calculer, permettant ainsi un ajustement précis des processus.
 
-1. définir un portefeuille de polygones ;
-2. indiquer les options de travail ;
-3. acquérir les ressources nécessaires ;
-4. calculer les indicateurs ;
-5. passer à un format de données utilisable pour l'analyse.
+Pour commencer, les utilisateurs saisissent un objet sf contenant uniquement des géométries de type polygone. Le package télécharge ensuite les données raster et vecteur spatiales et temporelles nécessaires correspondant à l'étendue du portefeuille. Les résultats sont ajoutés sous forme de colonnes de listes imbriquées dans l'objet portefeuille, permettant une utilisation aisée d'une large gamme d'indicateurs dans R.
 
-Cette séquence est importante, car elle relie directement les chapitres
-sur les données spatiales aux chapitres de randomisation, matching et
-double différence.
+Le processus d'utilisation est le suivant :
 
-## Le portefeuille de départ
+```{r diagram_mapme}
+library(DiagrammeR) # Package R pour produire des diagrammes Mermaid
 
-On repart des aires protégées utilisées dans le reste de la formation.
+#| fig-cap: "Processus de traitement avec mapme.biodiversity"
 
-```{r}
+mermaid("
+graph TB
+    AA(Définition des polygones d'analyse)
+    A(Définition des options)
+    B(Acquisition des ressources)
+    C(Calcul des indicateurs)
+    D(Analyse statistique avec R)
+    E(Export vers QGIS ou autre)
+    AA-->A
+    A-->B
+    B-->C
+    C-->D
+    C-->E
+")
+```
+
+## Tutoriel pratique avec mapme.biodiversity
+
+Nous allons maintenant découvrir comment utiliser le package *mapme.biodiversity* de manière pratique. Pour cela, nous allons travailler avec le jeu de données `data/AP_Vahatra.geojson`, qui contient des informations sur les aires protégées à Madagascar.
+
+### Charger les données d'aires protégées
+
+Nous allons commencer par charger notre jeu de données d'aires protégées, qui est stocké au format GeoJSON.
+
+```{r load_data}
+library(mapme.biodiversity)
 library(sf)
 library(tidyverse)
-library(mapme.biodiversity)
+library(tmap)
+library(progressr) # Pour avoir des bares de progression
+library(tictoc) # Pour minuter des temps d'exécution
+library(future) # Pour permettre du calcul parallèle
 
+# Charger le jeu de données AP_Vahatra
 AP_Vahatra <- st_read("data/AP_Vahatra.geojson", quiet = TRUE)
-
-AP_Vahatra %>%
-	st_drop_geometry() %>%
-	select(nom, region, hectares) %>%
-	head()
 ```
 
-Le portefeuille doit être constitué de polygones, car les indicateurs
-seront calculés sur ces unités spatiales.
+### Définir les options standard avec `mapme_options`
 
-## Explorer les ressources et indicateurs disponibles
+Avant d'acquérir les ressources, nous devons définir certaines options pour le package, comme le répertoire de sortie.
 
-Une première étape utile consiste à regarder ce que le package sait
-faire.
-
-```{r}
-available_resources() %>% head()
-available_indicators() %>% head()
-```
-
-Cette exploration sert à relier les questions d'analyse aux ressources
-disponibles. Par exemple, on cherchera dans cette formation des éléments
-liés à :
-
-- l'altitude ;
-- la pente ;
-- le couvert forestier ;
-- le temps d'accès ;
-- d'autres variables de contexte utiles à la comparabilité.
-
-## Définir les options
-
-Avant d'acquérir les ressources, on indique un répertoire de travail.
-
-```{r}
+```{r set_options}
+# Définir le répertoire de sortie
 mapme_options(outdir = "data/mapme")
 ```
 
-Dans un atelier complet, cette étape précède les téléchargements et les
-calculs. Dans le format condensé, elle est surtout montrée pour rendre la
-chaîne de traitement lisible.
+### Exploration des indicateurs et des ressources disponibles
 
-## Démonstration minimale de la logique du package
+Avant de se lancer dans l'acquisition des ressources, il est important de comprendre ce que le package peut faire. Utilisons les fonctions `available_indicators()` et `available_resources()` pour explorer les indicateurs et ressources disponibles.
 
-Le bloc suivant garde la structure du flux de travail original, mais il
-est laissé en démonstration car son exécution peut être longue selon la
-machine et les ressources à télécharger.
+```{r explore_resources}
+# Explorer les indicateurs disponibles
+available_indicators()
 
-```{r, eval=FALSE}
+# Explorer les ressources disponibles
+available_resources()
+```
+
+Ces fonctions permettent de voir la liste des indicateurs et ressources que le package propose. Vous pouvez également consulter l'aide en ligne pour chaque indicateur ou ressource afin de mieux comprendre leur utilité.
+
+> **Exercice :** Quelles ressources sont disponibles pour calculer la pente, l'altitude, la distance aux villes, le couvert forestier annuel et la densité de population ? Consultez régulièrement cette liste, car elle peut évoluer au fil des mises à jour du package.
+
+### Acquisition des ressources nécessaires
+
+Nous allons maintenant acquérir les ressources spatiales nécessaires pour nos analyses. Le package *mapme.biodiversity* propose un large éventail de ressources, notamment des données d'altitude, de couvert forestier, et de temps de déplacement jusqu'à une ville.
+
+```{r acquire_resources, eval=FALSE}
 AP_Vahatra <- AP_Vahatra %>%
-	get_resources(
-		get_nasa_srtm(),
-		get_gfw_treecover(),
-		get_gfw_lossyear(),
-		get_nelson_et_al(ranges = "5k_110mio")
-	) %>%
-	calc_indicators(
-		calc_elevation(),
-		calc_slope(),
-		calc_treecover_area(years = 2000:2023, min_size = 1, min_cover = 30),
-		calc_traveltime()
-	)
+  get_nasa_srtm() %>%
+  calc_indicators(calc_elevation()
+
+# Acquérir les ressources pour l'élévation
+AP_Vahatra <- get_resources(
+  x = AP_Vahatra,
+  get_nasa_srtm()
+)
+
+# Calculer l'indicateur d'élévation
+
+tic() # On lance un minuteur
+with_progress({
+  AP_Vahatra <- AP_Vahatra %>%
+    calc_indicators(calc_elevation())
+})
+toc() # On relève le minuteur, 123 secondes sur mon test
 ```
 
-L'objectif pédagogique ici n'est pas que chaque participant exécute tous
-les calculs, mais qu'il comprenne clairement ce que fait chaque étape.
+### Parallélisation avec {future}
 
-## Travailler sur un objet pré-calculé
+Le package *mapme.biodiversity* suit le paradigme de calcul parallèle du package {future}. Cela signifie que vous, en tant qu'utilisateur, pouvez décider de configurer le calcul en parallèle ou non. Depuis la version 0.9 de {mapme.biodiversity}, un pré-découpage est appliqué à tous les actifs du portefeuille, ce qui permet de diviser les actifs en composantes de taille approximativement égale. Ces composantes peuvent ensuite être itérées en parallèle afin d'accélérer le traitement. Les valeurs des indicateurs seront ensuite agrégées automatiquement.
 
-Pour la suite du parcours, on utilise un objet déjà calculé et enregistré
-dans le dépôt.
+Voici un exemple d'utilisation de la parallélisation avec le plan cluster, qui permet de répartir les calculs sur plusieurs cœurs de votre machine :
 
-```{r}
-AP_Vahatra_mapme <- readRDS("data/AP_Vahatra_mapme.rds")
+```{r parallel_processing, eval=FALSE}
+plan(cluster, workers = 6)
 
-AP_Vahatra_mapme %>%
-	st_drop_geometry() %>%
-	select(nom, assetid, elevation, slope, treecover_area) %>%
-	head()
+# tic() # On lance un minuteur
+with_progress({
+  AP_Vahatra <- AP_Vahatra %>%
+    calc_indicators(calc_elevation())
+})
+
+plan(sequential) # On libère les processus parallèles réservés
+# toc() # On relève le minuteur, 69 secondes sur mon test
 ```
 
-Les colonnes `elevation`, `slope` et `treecover_area` sont ici des
-colonnes de listes : chacune contient un petit tableau d'indicateurs
-calculés pour un polygone donné.
+### Acquisition des autres ressources
 
-## Passer à un format exploitable avec `portfolio_long()`
-
-Une fois les indicateurs calculés, le passage en format long permet de
-les analyser plus facilement dans R.
-
-```{r}
-AP_long <- portfolio_long(AP_Vahatra_mapme)
-
-AP_long %>%
-	filter(variable %in% c("elevation_mean", "slope_mean")) %>%
-	select(assetid, variable, value) %>%
-	head()
+```{r acquire_other_resources, eval=FALSE}
+# Acquérir les ressources pour la pente, le couvert forestier et le temps de déplacement
+with_progress({
+  AP_Vahatra <- AP_Vahatra %>%
+    get_resources(get_gfw_treecover(),
+                  get_gfw_lossyear(),
+                  get_nelson_et_al(ranges = "5k_110mio")
+  )
+})
 ```
 
-On peut aussi observer une série temporelle d'indicateur issue du couvert
-forestier.
+### Calcul des indicateurs
 
-```{r}
-AP_long %>%
-	filter(variable == "treecover") %>%
-	select(assetid, datetime, value) %>%
-	head()
+Après l'acquisition des ressources, nous allons calculer les indicateurs pour chaque polygone de notre portefeuille. Les indicateurs permettent de synthétiser les informations spatiales pour chaque entité géographique (aire protégée) de notre jeu de données.
+
+```{r calculate_indicators, eval=FALSE}
+plan(cluster, workers = 6)
+# tic()
+with_progress({
+  AP_Vahatra <- AP_Vahatra %>%
+    calc_indicators(
+      calc_slope(),
+      calc_treecover_area(years = 2000:2023, min_size = 1, min_cover = 30),
+      calc_traveltime()
+    )
+})
+plan(sequential)
+# toc() # 331 secondes
+```
+```{r echo=FALSE, eval=FALSE}
+write_rds(AP_Vahatra, "data/AP_Vahatra_mapme.rds")
 ```
 
-Cette transformation est essentielle, car elle fait le pont entre le
-calcul spatial et la table d'analyse statistique.
+```{r echo=FALSE}
+AP_Vahatra <- read_rds("data/AP_Vahatra_mapme.rds")
+```
 
-## Visualiser les indicateurs calculés
+### Visualisation des résultats
 
-Pour donner un sens concret à ces calculs, nous pouvons cartographier les valeurs obtenues pour l'ensemble du portefeuille. Par exemple, visualisons l'altitude moyenne de chaque aire protégée à l'aide de `tmap`.
+Pour visualiser les résultats, nous allons utiliser le package *tmap*. Cela nous permettra de cartographier certaines des valeurs d'indicateurs calculées, telles que l'élévation moyenne ou la couverture forestière des aires protégées.
 
-```{r}
-library(tmap)
+```{r visualize_results}
+# Visualiser les aires protégées colorées par l'élévation moyenne
 tmap_mode("view")
-
-AP_Vahatra_mapme %>%
+AP_Vahatra %>%
   portfolio_long() %>%
   filter(variable == "elevation_mean") %>%
   tm_shape() +
   tm_polygons(fill = "value", fill.legend = tm_legend(title = "Altitude Moyenne (m)"))
 ```
 
-## Ce que produisent les indicateurs
+Nous avons maintenant une carte interactive qui nous permet de voir les différences d'élévation entre les différentes aires protégées de notre portefeuille.
 
-Dans la logique de cette formation, `mapme.biodiversity` ne sert pas à
-faire une carte pour elle-même. Le package sert surtout à produire des
-variables qui alimentent ensuite :
+### Transformation des résultats en format long ou large
 
-- les tableaux descriptifs ;
-- les comparaisons entre traités et contrôles ;
-- les covariables du score de propension ;
-- la construction du panel utilisé pour la double différence.
+Les résultats des indicateurs calculés par *mapme.biodiversity* sont stockés dans des colonnes de listes imbriquées. Pour faciliter l'exportation vers d'autres logiciels ou pour certaines analyses spécifiques, il peut être utile de transformer ces résultats en format long ou large.
 
-Autrement dit, il fait le lien entre données géospatiales brutes et
-variables d'évaluation.
+- Le format **long** est utile pour des analyses dans R, en particulier lorsqu'on utilise des outils comme *ggplot2* qui requièrent une observation par ligne.
+- Le format **large** est plus intuitif pour une visualisation dans des tableurs comme Excel ou pour un export vers des SIG comme QGIS.
 
-## Ce qu'il faut retenir pour la suite
+Pour transformer les résultats en format long :
 
-Trois idées doivent rester en tête :
+```{r transform_long, eval=FALSE}
+portfolio_long(AP_Vahatra)
+```
 
-1. le portefeuille de polygones est le point d'entrée de la chaîne ;
-2. les indicateurs calculés ne tombent pas du ciel, ils résultent d'une
-	 chaîne explicite de ressources et de fonctions ;
-3. dans le format 5 jours, on présente la logique complète du package, pour que 
-les participants sachent comment se procurer des données pour leurs propres études, 
-mais on utilise des objets pré-calculés pour se concentrer sur les méthodes d'évaluation.
+### Exercice
+- Consulter la documentation pour identifier la source et l'indicateur correspondant à la population vivant dans la zone
+- Obtenez la donnée de population et calculez l'indicateur de population
+- Représentez la sur une carte

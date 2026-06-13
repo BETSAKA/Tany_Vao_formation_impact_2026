@@ -137,7 +137,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Evaluation d’impact de politiques et projets</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/BETSAKA/statcap_impact_training" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/BETSAKA/Tany_Vao_formation_impact_2026" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
     </div>
       </div>
@@ -199,7 +199,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07_unites_analyse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">library(mapme.biodiversity)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Clarification sur les unités d’analyse</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -252,14 +252,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#utilisation-du-menu-interactif-de-rstudio" id="toc-utilisation-du-menu-interactif-de-rstudio" class="nav-link" data-scroll-target="#utilisation-du-menu-interactif-de-rstudio"><span class="header-section-number">2.9.1</span> Utilisation du menu interactif de RStudio</a></li>
   <li><a href="#types-de-fichiers-et-comment-les-importer-en-ligne-de-code" id="toc-types-de-fichiers-et-comment-les-importer-en-ligne-de-code" class="nav-link" data-scroll-target="#types-de-fichiers-et-comment-les-importer-en-ligne-de-code"><span class="header-section-number">2.9.2</span> Types de fichiers et comment les importer en ligne de code</a></li>
   </ul></li>
-  <li><a href="#production-de-graphiques-avec-ggplot2" id="toc-production-de-graphiques-avec-ggplot2" class="nav-link" data-scroll-target="#production-de-graphiques-avec-ggplot2"><span class="header-section-number">2.10</span> Production de graphiques avec ggplot2</a>
+  <li><a href="#traitement-simple" id="toc-traitement-simple" class="nav-link" data-scroll-target="#traitement-simple"><span class="header-section-number">2.10</span> Traitement simple</a></li>
+  <li><a href="#production-de-graphiques-avec-ggplot2" id="toc-production-de-graphiques-avec-ggplot2" class="nav-link" data-scroll-target="#production-de-graphiques-avec-ggplot2"><span class="header-section-number">2.11</span> Production de graphiques avec ggplot2</a>
   <ul class="collapse">
-  <li><a href="#philosophie-de-la-grammaire-des-graphiques" id="toc-philosophie-de-la-grammaire-des-graphiques" class="nav-link" data-scroll-target="#philosophie-de-la-grammaire-des-graphiques"><span class="header-section-number">2.10.1</span> Philosophie de la “grammaire des graphiques”</a></li>
-  <li><a href="#introduction-à-ggplot2" id="toc-introduction-à-ggplot2" class="nav-link" data-scroll-target="#introduction-à-ggplot2"><span class="header-section-number">2.10.2</span> Introduction à ggplot2</a></li>
-  <li><a href="#exercice-créer-un-graphique-avec-ggplot2" id="toc-exercice-créer-un-graphique-avec-ggplot2" class="nav-link" data-scroll-target="#exercice-créer-un-graphique-avec-ggplot2"><span class="header-section-number">2.10.3</span> Exercice : Créer un graphique avec ggplot2</a></li>
+  <li><a href="#philosophie-de-la-grammaire-des-graphiques" id="toc-philosophie-de-la-grammaire-des-graphiques" class="nav-link" data-scroll-target="#philosophie-de-la-grammaire-des-graphiques"><span class="header-section-number">2.11.1</span> Philosophie de la “grammaire des graphiques”</a></li>
+  <li><a href="#introduction-à-ggplot2" id="toc-introduction-à-ggplot2" class="nav-link" data-scroll-target="#introduction-à-ggplot2"><span class="header-section-number">2.11.2</span> Introduction à ggplot2</a></li>
+  <li><a href="#exercice-créer-un-graphique-avec-ggplot2" id="toc-exercice-créer-un-graphique-avec-ggplot2" class="nav-link" data-scroll-target="#exercice-créer-un-graphique-avec-ggplot2"><span class="header-section-number">2.11.3</span> Exercice : Créer un graphique avec ggplot2</a></li>
   </ul></li>
-  <li><a href="#ce-quil-faut-retenir-pour-la-suite" id="toc-ce-quil-faut-retenir-pour-la-suite" class="nav-link" data-scroll-target="#ce-quil-faut-retenir-pour-la-suite"><span class="header-section-number">2.11</span> Ce qu’il faut retenir pour la suite</a></li>
-  <li><a href="#ressources-pour-poursuivre-la-pratique" id="toc-ressources-pour-poursuivre-la-pratique" class="nav-link" data-scroll-target="#ressources-pour-poursuivre-la-pratique"><span class="header-section-number">2.12</span> Ressources pour poursuivre la pratique</a></li>
+  <li><a href="#ce-quil-faut-retenir-pour-la-suite" id="toc-ce-quil-faut-retenir-pour-la-suite" class="nav-link" data-scroll-target="#ce-quil-faut-retenir-pour-la-suite"><span class="header-section-number">2.12</span> Ce qu’il faut retenir pour la suite</a></li>
+  <li><a href="#ressources-pour-poursuivre-la-pratique" id="toc-ressources-pour-poursuivre-la-pratique" class="nav-link" data-scroll-target="#ressources-pour-poursuivre-la-pratique"><span class="header-section-number">2.13</span> Ressources pour poursuivre la pratique</a></li>
   </ul>
 </nav>
     </div>
@@ -579,11 +580,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="production-de-graphiques-avec-ggplot2" class="level2" data-number="2.10">
-<h2 data-number="2.10" class="anchored" data-anchor-id="production-de-graphiques-avec-ggplot2"><span class="header-section-number">2.10</span> Production de graphiques avec ggplot2</h2>
+<section id="traitement-simple" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="traitement-simple"><span class="header-section-number">2.10</span> Traitement simple</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>AP_superficie_annees <span class="ot">&lt;-</span> AP_Vahatra <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">superficie_km2 =</span> hectares <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(an_creation) <span class="sc">%&gt;%</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">superficie_nouvelle =</span> <span class="fu">sum</span>(superficie_km2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(an_creation) <span class="sc">%&gt;%</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">superficie_cumulee =</span> <span class="fu">cumsum</span>(superficie_nouvelle))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="production-de-graphiques-avec-ggplot2" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="production-de-graphiques-avec-ggplot2"><span class="header-section-number">2.11</span> Production de graphiques avec ggplot2</h2>
 <p>Pour produire des graphiques de qualité avec R, nous utilisons souvent le package <code>ggplot2</code>. Ce package repose sur une approche appelée “la grammaire des graphiques”. Cette grammaire est une façon systématique de construire des visualisations, en combinant différents composants graphiques, comme des axes, des légendes, des points, des lignes, etc. Elle offre une grande flexibilité et permet de créer des graphiques complexes de manière progressive.</p>
-<section id="philosophie-de-la-grammaire-des-graphiques" class="level3" data-number="2.10.1">
-<h3 data-number="2.10.1" class="anchored" data-anchor-id="philosophie-de-la-grammaire-des-graphiques"><span class="header-section-number">2.10.1</span> Philosophie de la “grammaire des graphiques”</h3>
+<section id="philosophie-de-la-grammaire-des-graphiques" class="level3" data-number="2.11.1">
+<h3 data-number="2.11.1" class="anchored" data-anchor-id="philosophie-de-la-grammaire-des-graphiques"><span class="header-section-number">2.11.1</span> Philosophie de la “grammaire des graphiques”</h3>
 <p>La grammaire des graphiques est une méthode de pensée pour créer des visualisations. Elle repose sur l’idée que tout graphique peut être décomposé en une série de couches. Par exemple :</p>
 <ol type="1">
 <li><strong>Données</strong> : La première étape consiste à spécifier les données à utiliser pour le graphique.</li>
@@ -596,21 +608,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>En combinant ces différentes couches, <code>ggplot2</code> permet de construire des visualisations claires et personnalisées, adaptées aux besoins spécifiques de l’analyse.</p>
 </section>
-<section id="introduction-à-ggplot2" class="level3" data-number="2.10.2">
-<h3 data-number="2.10.2" class="anchored" data-anchor-id="introduction-à-ggplot2"><span class="header-section-number">2.10.2</span> Introduction à ggplot2</h3>
+<section id="introduction-à-ggplot2" class="level3" data-number="2.11.2">
+<h3 data-number="2.11.2" class="anchored" data-anchor-id="introduction-à-ggplot2"><span class="header-section-number">2.11.2</span> Introduction à ggplot2</h3>
 <p>Le package <code>ggplot2</code> suit cette logique en permettant d’ajouter chaque composant graphique avec le signe <code>+</code>. Voici une approche progressive pour comprendre <code>ggplot2</code> :</p>
 <ol type="1">
-<li><strong>Importer le package et les données</strong> :</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Création préalable de données simulées AP_superficie_annees</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>AP_superficie_annees <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">an_creation =</span> <span class="dv">1990</span><span class="sc">:</span><span class="dv">2020</span>,</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">superficie_cumulee =</span> <span class="fu">cumsum</span>(<span class="fu">runif</span>(<span class="dv">31</span>, <span class="dv">50</span>, <span class="dv">500</span>))</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<ol start="2" type="1">
 <li><strong>Créer la base du graphique</strong> :</li>
 </ol>
 <p>La première étape consiste à spécifier les données et les mappings esthétiques. Par exemple, nous allons indiquer que l’axe des abscisses (<code>x</code>) représente l’année de création (<code>an_creation</code>) et l’axe des ordonnées (<code>y</code>) représente la superficie cumulée (<code>superficie_cumulee</code>).</p>
@@ -678,8 +679,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="exercice-créer-un-graphique-avec-ggplot2" class="level3" data-number="2.10.3">
-<h3 data-number="2.10.3" class="anchored" data-anchor-id="exercice-créer-un-graphique-avec-ggplot2"><span class="header-section-number">2.10.3</span> Exercice : Créer un graphique avec ggplot2</h3>
+<section id="exercice-créer-un-graphique-avec-ggplot2" class="level3" data-number="2.11.3">
+<h3 data-number="2.11.3" class="anchored" data-anchor-id="exercice-créer-un-graphique-avec-ggplot2"><span class="header-section-number">2.11.3</span> Exercice : Créer un graphique avec ggplot2</h3>
 <ol type="1">
 <li><p><strong>Créer un graphique en nuages de points</strong> : Utilisez <code>ggplot2</code> pour créer un graphique de points qui montre la somme des superficies des aires protégées en fonction de leur année de création.</p></li>
 <li><p><strong>Ajouter des lignes de tendance</strong> : Ajoutez une une ligne reliant les points et une ligne de tendance (<code>geom_smooth()</code>).</p></li>
@@ -700,8 +701,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 </section>
 </section>
-<section id="ce-quil-faut-retenir-pour-la-suite" class="level2" data-number="2.11">
-<h2 data-number="2.11" class="anchored" data-anchor-id="ce-quil-faut-retenir-pour-la-suite"><span class="header-section-number">2.11</span> Ce qu’il faut retenir pour la suite</h2>
+<section id="ce-quil-faut-retenir-pour-la-suite" class="level2" data-number="2.12">
+<h2 data-number="2.12" class="anchored" data-anchor-id="ce-quil-faut-retenir-pour-la-suite"><span class="header-section-number">2.12</span> Ce qu’il faut retenir pour la suite</h2>
 <p>Si vous savez :</p>
 <ul>
 <li>charger les packages ;</li>
@@ -712,8 +713,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>alors vous avez l’essentiel pour suivre les chapitres appliqués qui suivent.</p>
 </section>
-<section id="ressources-pour-poursuivre-la-pratique" class="level2" data-number="2.12">
-<h2 data-number="2.12" class="anchored" data-anchor-id="ressources-pour-poursuivre-la-pratique"><span class="header-section-number">2.12</span> Ressources pour poursuivre la pratique</h2>
+<section id="ressources-pour-poursuivre-la-pratique" class="level2" data-number="2.13">
+<h2 data-number="2.13" class="anchored" data-anchor-id="ressources-pour-poursuivre-la-pratique"><span class="header-section-number">2.13</span> Ressources pour poursuivre la pratique</h2>
 <p>La réduction de ce chapitre signifie aussi que l’apprentissage de R doit se poursuivre en dehors de la séance. Quelques ressources utiles :</p>
 <ul>
 <li><a href="https://juba.github.io/tidyverse/index.html">Introduction à R et au Tidyverse</a> ;</li>
@@ -801,7 +802,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/github\.com\/BETSAKA\/statcap_impact_training\/");
+        var filterRegex = new RegExp("https:\/\/github\.com\/BETSAKA\/Tany_Vao_formation_impact_2026\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

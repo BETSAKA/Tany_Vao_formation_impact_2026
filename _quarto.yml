@@ -3,11 +3,11 @@ project:
   output-dir: docs
 
 book:
-  site-url: https://github.com/BETSAKA/statcap_impact_training/
+  site-url: https://github.com/BETSAKA/Tany_Vao_formation_impact_2026/
   title: "Evaluation d'impact de politiques et projets"
   subtitle: "Version condensee en 5 jours sur les aires protegees a Madagascar"
   author: "Florent Bédécarrats (Coord.)"
-  repo-url: https://github.com/BETSAKA/statcap_impact_training
+  repo-url: https://github.com/BETSAKA/Tany_Vao_formation_impact_2026
   cover-image: figs/IRD_010664_ORI_small_title_copyright.png
   cover-image-alt: "Déforestation à Madagascar © IRD - Bernard Moizo"
   date: "11/07/2025"
