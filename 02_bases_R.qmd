@@ -267,6 +267,17 @@ Mon_objet_R <- read_xlsx("data/mon_fichier.xlsx")
 AP_Vahatra <- read_delim("data/mon_fichier.txt", delim = "\t")
 ```
 
+## Traitement simple
+
+```{r}
+AP_superficie_annees <- AP_Vahatra %>%
+  mutate(superficie_km2 = hectares / 100) %>%
+  group_by(an_creation) %>%
+  summarise(superficie_nouvelle = sum(superficie_km2, na.rm = TRUE)) %>%
+  arrange(an_creation) %>%
+  mutate(superficie_cumulee = cumsum(superficie_nouvelle))
+```
+
 ## Production de graphiques avec ggplot2
 
 Pour produire des graphiques de qualité avec R, nous utilisons souvent le package `ggplot2`. Ce package repose sur une approche appelée "la grammaire des graphiques". Cette grammaire est une façon systématique de construire des visualisations, en combinant différents composants graphiques, comme des axes, des légendes, des points, des lignes, etc. Elle offre une grande flexibilité et permet de créer des graphiques complexes de manière progressive.
@@ -289,18 +300,8 @@ En combinant ces différentes couches, `ggplot2` permet de construire des visual
 
 Le package `ggplot2` suit cette logique en permettant d'ajouter chaque composant graphique avec le signe `+`. Voici une approche progressive pour comprendre `ggplot2` :
 
-1.  **Importer le package et les données** :
 
-```{r}
-library(ggplot2)
-# Création préalable de données simulées AP_superficie_annees
-AP_superficie_annees <- data.frame(
-  an_creation = 1990:2020,
-  superficie_cumulee = cumsum(runif(31, 50, 500))
-)
-```
-
-2.  **Créer la base du graphique** :
+1.  **Créer la base du graphique** :
 
 La première étape consiste à spécifier les données et les mappings esthétiques. Par exemple, nous allons indiquer que l'axe des abscisses (`x`) représente l'année de création (`an_creation`) et l'axe des ordonnées (`y`) représente la superficie cumulée (`superficie_cumulee`).
 
