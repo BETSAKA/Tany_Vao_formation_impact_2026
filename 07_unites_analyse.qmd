@@ -157,93 +157,92 @@ if (file.exists("data/grille_mada_mapme.rds")) {
 On peut représenter sous forme de cartes et d'histogrammes les différentes valeurs des indicateurs générés à partir des données satellitaires.
 
 ```{r}
-if (!file.exists("data/carte_mailles.png")) {
-  grille_mada_summary <- grille_mada %>%
-    portfolio_long() %>%
-    filter(!(variable == "treecover" & year(datetime) %in% 2001:2022)) %>%
-    mutate(datetime = year(datetime)) %>%
-    pivot_wider(names_from = c(indicator, datetime, variable, unit), values_from = value)
+grille_mada_summary <- grille_mada %>%
+  portfolio_long() %>%
+  filter(!(variable == "treecover" & year(datetime) %in% 2001:2022)) %>%
+  mutate(datetime = year(datetime)) %>%
+  pivot_wider(names_from = c(indicator, datetime, variable, unit), values_from = value)
 
-  grille_mada_summary <- grille_mada_summary   %>%
-    mutate(couv_foret_2000 = `treecover_area_2000_treecover_ha` / 5,
-           pop_km2 = population_count_2000_population_sum_count / 5,
-           altitude = `elevation_2000_elevation_mean_m`,
-           pente = `slope_2000_slope_mean_degrees`,
-           dist_ville = `traveltime_2015_5k_110mio_traveltime_mean_minutes`,
-           taux_deforestation_2000_2023 = 
-             -((`treecover_area_2023_treecover_ha` - 
-                `treecover_area_2000_treecover_ha`)/`treecover_area_2000_treecover_ha`) * 100) 
-  
-  
-  tmap_mode("plot")
-  carte_acces <- tm_shape(grille_mada_summary) +
-    tm_fill("dist_ville",
-            title = "Distance ville (>5K hab)",
-            palette = "Oranges",
-            style = "fisher",
-            n = 8,
-            legend.hist = TRUE) +
-    tm_layout(legend.outside = TRUE,
-              legend.hist.width = 1,
-              legend.hist.height = 1)
-  
-  carte_pop <- tm_shape(grille_mada_summary) +
-    tm_fill("pop_km2",
-            title = "Population par km2",
-            palette = "YlOrBr",
-            n = 8,
-            legend.hist = TRUE) +
-    tm_layout(legend.outside = TRUE,
-              legend.hist.width = 1,
-              legend.hist.height = 1)
-  
-  carte_pente <- tm_shape(grille_mada_summary) +
-    tm_fill("pente",
-            title = c("Pente"),
-            palette = "Blues",
-            n = 8,
-            legend.hist = TRUE) +
-    tm_layout(legend.outside = TRUE,
-              legend.hist.width = 1,
-              legend.hist.height = 1)
-  
-  carte_alt <- tm_shape(grille_mada_summary) +
-    tm_fill("altitude",
-            title = "Altitude",
-            palette = "Purples",
-            n = 8,
-            legend.hist = TRUE) +
-    tm_layout(legend.outside = TRUE,
-              legend.hist.width = 1,
-              legend.hist.height = 1)
-  
-  carte_cover <- graph_alt <- tm_shape(grille_mada_summary) +
-    tm_fill("couv_foret_2000",
-            title = "Couvert arboré en 2000",
-            palette = "Greens",
-            n = 8,
-            legend.hist = TRUE) +
-    tm_layout(legend.outside = TRUE,
-              legend.hist.width = 1,
-              legend.hist.height = 1)
-  
-  carte_loss <- graph_alt <- tm_shape(grille_mada_summary) +
-    tm_fill("taux_deforestation_2000_2023",
-            title = "Perte couvert (2000-2023)",
-            palette = "Reds",
-            n = 8,
-            legend.hist = TRUE) +
-    tm_layout(legend.outside = TRUE,
-              legend.hist.width = 1,
-              legend.hist.height = 1)
-  
-  carte_mailles <- tmap_arrange(carte_acces, carte_pop, 
-                                carte_alt, carte_pente, 
-                                carte_cover, carte_loss,
-                                ncol = 2, nrow = 3)
-  
-  tmap_save(carte_mailles, "data/carte_mailles.png")
-}
+grille_mada_summary <- grille_mada_summary   %>%
+  mutate(couv_foret_2000 = `treecover_area_2000_treecover_ha` / 5,
+   pop_km2 = population_count_2000_population_sum_count / 5,
+   altitude = `elevation_2000_elevation_mean_m`,
+   pente = `slope_2000_slope_mean_degrees`,
+   dist_ville = `traveltime_2015_5k_110mio_traveltime_mean_minutes`,
+   taux_deforestation_2000_2023 = 
+     -((`treecover_area_2023_treecover_ha` - 
+        `treecover_area_2000_treecover_ha`)/`treecover_area_2000_treecover_ha`) * 100) 
+
+
+tmap_mode("plot")
+carte_acces <- tm_shape(grille_mada_summary) +
+  tm_fill("dist_ville",
+    title = "Distance ville (>5K hab)",
+    palette = "Oranges",
+    style = "fisher",
+    n = 8,
+    legend.hist = TRUE) +
+  tm_layout(legend.outside = TRUE,
+      legend.hist.width = 1,
+      legend.hist.height = 1)
+
+carte_pop <- tm_shape(grille_mada_summary) +
+  tm_fill("pop_km2",
+    title = "Population par km2",
+    palette = "YlOrBr",
+    style = "quantile",
+    n = 16,
+    legend.hist = FALSE) +
+  tm_layout(legend.outside = TRUE,
+      legend.hist.width = 1,
+      legend.hist.height = 1)
+
+carte_pente <- tm_shape(grille_mada_summary) +
+  tm_fill("pente",
+    title = c("Pente"),
+    palette = "Blues",
+    n = 8,
+    legend.hist = TRUE) +
+  tm_layout(legend.outside = TRUE,
+      legend.hist.width = 1,
+      legend.hist.height = 1)
+
+carte_alt <- tm_shape(grille_mada_summary) +
+  tm_fill("altitude",
+    title = "Altitude",
+    palette = "Purples",
+    n = 8,
+    legend.hist = TRUE) +
+  tm_layout(legend.outside = TRUE,
+      legend.hist.width = 1,
+      legend.hist.height = 1)
+
+carte_cover <- graph_alt <- tm_shape(grille_mada_summary) +
+  tm_fill("couv_foret_2000",
+    title = "Couvert arboré en 2000",
+    palette = "Greens",
+    n = 8,
+    legend.hist = TRUE) +
+  tm_layout(legend.outside = TRUE,
+      legend.hist.width = 1,
+      legend.hist.height = 1)
+
+carte_loss <- graph_alt <- tm_shape(grille_mada_summary) +
+  tm_fill("taux_deforestation_2000_2023",
+    title = "Perte couvert (2000-2023)",
+    palette = "Reds",
+    n = 8,
+    legend.hist = TRUE) +
+  tm_layout(legend.outside = TRUE,
+      legend.hist.width = 1,
+      legend.hist.height = 1)
+
+carte_mailles <- tmap_arrange(carte_acces, carte_pop, 
+            carte_alt, carte_pente, 
+            carte_cover, carte_loss,
+            ncol = 2, nrow = 3)
+
+tmap_save(carte_mailles, "data/carte_mailles.png")
 ```
 ![](data/carte_mailles.png)
 Les cartes et histogrammes ci-dessus illustrent la distribution des variables spatiales calculées par hexagones. 
