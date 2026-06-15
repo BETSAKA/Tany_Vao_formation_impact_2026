@@ -1,0 +1,137 @@
+nom	cat_iucn	creation	date_creation	date_modification	mention_changement	hectares	num_atlas_	full_name	province	region	district	gest_1	gest_2	type_ap	an_creation	nom_wdpa	geometry	rownum
+Agnakatrika	VI	Décret n°2015-794 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	789.366	54	Réserve de Ressources Naturelles d'Agnakatrika	Fianarantsoa	Atsimo Atsinanana	Vangaindrano	Missouri Botanical Garden	MBG	TERRESTRE	2015	Agnakatrika	NA	1
+Agnalazaha	VI	Décret n°2015-767 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	2745.313	50	Réserve de Ressources Naturelles d'Agnalazaha	Fianarantsoa	Atsimo Atsinanana	Farafangana	Missouri Botanical Garden	MBG	TERRESTRE	2015	Agnalazaha	NA	2
+Ambatofotsy	V	Décret n°2015 -724 du 21 avril 2015	2015-04-21T00:00:00Z	NA	FALSE	1593.638	75	Paysage Harmonieux Protégé d'Ambatofotsy	Toamasina	Alaotra Mangoro	Anosibe an'Ala	Madagasikara Voakajy	MV	TERRESTRE	2015	Ambatofotsy	NA	3
+Ambatotsirongorongo	V	Décret n°2015-792 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	1030.048	62	"Réserve Spéciale d'Ambatotsirongorongo
+"	Toliary	Anosy	"Taolagnaro (Fort Dauphin)
+"	"Ministère de l'Environnement, de l'Ecologie et des Forêts
+"	"MEEF
+"	"TERRESTRE
+"	2015	Ambatotsirongorongo	NA	4
+Ambatovaky	IV	Créée depuis le 28.10.58; Changement de limite en 2015 sous le décret n°2015-782 du 28 avril 2015	1958-10-28T00:00:00Z	2015-04-28T00:00:00Z	TRUE	78139.102	28	Réserve Spéciale d'Ambatovaky	Toamasina	Analanjirofo	Soanierana Ivongo	Madagascar National Parks	MNP	TERRESTRE	1958	Ambatovaky	NA	5
+Ambohidray	NA	Décret n°2015-808 du 5 mai 2015	2015-05-05T00:00:00Z	NA	FALSE	1241.048	38	Nouvelle Aire Protégée d'Ambohidray	Toamasina	Alaotra Mangoro	Moramanga	Département de Biologie et Ecologie Végétales	DBEV	TERRESTRE	2015	Ambohidray	NA	6
+Ambohijanahary	IV	Créée depuis le 28 octobre 1958	1958-10-28T00:00:00Z	NA	FALSE	24302.027	72	"Réserve Spéciale d'Ambohijanahary
+"	"Mahajanga, Toliary
+"	"Melaky, Menabe
+"	"Morafenobe, Miandrivazo
+"	"Sauvegarde de l'Environnement et développement Intégré de Magadagascar
+"	"SEDIM
+"	"TERRESTRE
+"	1958	Ambohijanahary	NA	7
+Ambohitantely	IV	Créée depuis le  12.02.82; Changement de limite en 2015 sous le decret n° 2015-731 du 21 avril 2015	1982-02-12T00:00:00Z	2015-04-21T00:00:00Z	TRUE	4943.684	71	Réserve Spéciale d'Ambohitantely	Antananarivo	Analamanga	Ankazobe	Madagascar National Parks	MNP	TERRESTRE	1982	Ambohitantely	NA	8
+Ambohitr'Antsingy Montagne des Français	V	Décret n°2015-780 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	6106.793	3	Paysage Harmonieux Protégé d'Ambohitr'Antsingy Montagne des Français	Antsiranana	Diana	Antsiranana II	Service d'Appui à la Gestion de l'Environnement	SAGE	TERRESTRE	2015	Ambohitr'Antsingy Montagne des Français	NA	9
+Amoron'i Onilahy	V	Décret n°2015-788 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	102071.884	94	Paysage Harmonieux Protégé d'Amoron'i Onilahy	Toliary	Atsimo Andrefana	Toliara II, Betioky Atsimo	World Wide Fund for Nature	WWF	TERRESTRE	2015	Amoron'i Onilahy	NA	10
+Ampananganandehibe-Behasina	V	Décret n°2015-749 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	579.726	37	Paysage Harmonieux Protégé d'Ampanangandehibe-Behasina	Toamasina	Alaotra Mangoro	Ambatondrazaka	Madagasikara Voakajy	MV	TERRESTRE	2015	Ampanganandehibe-Behasina	NA	11
+Ampasindava	V	Décret n°2015-769 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	91534.324	12	Paysage Harmonieux Protégé d'Ampasindava	Antsiranana	Diana	Ambanja	Missouri Botanical Garden	MBG	TERRESTRE	2015	Ampasindava	NA	12
+Analalava	IV	Décret n°2015-765 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	224.853	33	Réserve Spéciale d'Analalava	Toamasina	Atsinanana	Toamasina II	Missouri Botanical Garden	MBG	TERRESTRE	2015	Analalava	NA	13
+Analamazaotra	II	Créée le 21 juin 1970	1970-06-21T00:00:00Z	NA	FALSE	872.147	42	Parc National d'Analamazaotra	Toamasina	Alaotra Mangoro	Moramanga	Madagascar National Parks	MNP	TERRESTRE	1970	Analamazaotra	NA	14
+Analamerana	IV	Créée depuis le 20.02.56, PN actuel sous le décret n° 2015-732 du 21 avril 2015	1956-02-20T00:00:00Z	2015-04-21T00:00:00Z	TRUE	47135.945	5	Réserve Spéciale d'Analamerana	Antsiranana	Diana	Antsiranana II	Madagascar National Parks	MNP	TERRESTRE	1956	Analamerana	NA	15
+Forêt Sacrée Alandraza Analavelo	III	Décret n°2015-766 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	4416.52	92	Monument Naturel de la Forêt Sacrée Alandraza Analavelo	Toliary	Atsimo Andrefana	Sakaraha	Missouri Botanical Garden	MBG	TERRESTRE	2015	Analavelona	NA	16
+Andohahela	II	Créée depuis le 07.08.07, Changement limite en 2015 sous le n° décret 2015-785 du 28 avril 2015	2007-08-07T00:00:00Z	2015-04-28T00:00:00Z	TRUE	76140.811	57	Parc National d'Andohahela	Toliary	Anosy	Amboasary Atsimo, Taolagnaro (Fort Dauphin)	Madagascar National Parks	MNP	TERRESTRE	2007	Andohahela	NA	17
+Andrafiamena Andavakoera	V	Décret n°2015-761 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	73319.412	7	Paysage Harmonieux Protégé d'Andrafiamena Andavakoera	Antsiranana	Diana	Ambilobe, Antsiranana II	Association Fanamby	NA	TERRESTRE	2015	Andrafiamena Andavakoera	NA	18
+Andranomena	IV	Créée depuis le 28.10.58	1958-10-28T00:00:00Z	NA	FALSE	8170.795	86	Réserve Spéciale d'Andranomena	Toliary	Menabe	Morondava	Madagascar National Parks	MNP	TERRESTRE	1958	Andranomena	NA	19
+Andringitra	II	Créée le 19 octobre 1998	1998-10-19T00:00:00Z	NA	FALSE	31460.697	47	"Parc National d'Andringitra
+"	"Fianarantsoa
+"	"Haute Matsiatra, Ihorombe
+"	"Ambalavao, Ivohibe
+"	"Madagascar National Parks
+"	"MNP
+"	"TERRESTRE
+"	1998	Andringitra	NA	20
+Anjanaharibe Sud	IV	Créée le 28 octobre 1958	1958-10-28T00:00:00Z	NA	FALSE	26908.057	22	Réserve Spéciale d'Anjanaharibe-Sud	Antsiranana, Mahajanga	Sava, Sofia	Andapa, Bealanana, Befandriana Nord	Madagascar National Parks	MNP	TERRESTRE	1958	Anjanaharibe_sud	NA	21
+Ankarabolava	VI	Décret n°2015-793 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	773.051	53	Réserve de Ressources Naturelles d'Ankarabolava	Fianarantsoa	Atsimo Atsinanana	Vangaindrano	Missouri Botanical Garden	MBG	TERRESTRE	2015	Ankarabolava	NA	22
+Ankarafantsika	II	Créée le 07.08.02, Changement de limite en 2015 sous le n° décret 2015-730 du 21 avril 2015	2002-08-07T00:00:00Z	2015-04-21T00:00:00Z	TRUE	136513.446	68	Parc National d'Ankarafantsika	Mahajanga	Boeny	Ambato Boina (Ambato Boeni), Marovoay	Madagascar National Parks	MNP	TERRESTRE	2002	Ankarafantsika	NA	23
+Ankarana	IV	Changement de limite en 2015 sous le décret n° 2015-729 du 21 avril 2015, Créée depuis le 20.02.56	1956-02-20T00:00:00Z	2015-04-21T00:00:00Z	TRUE	25228.584	8	Réserve Spéciale d'Ankarana	Antsiranana	Diana	Ambilobe, Antsiranana II	Madagascar National Parks	MNP	TERRESTRE	1956	Ankarana	NA	24
+Ankodida	V	Décret n°2015-787 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	10628.513	60	Paysage Harmonieux Protégé d'Ankodida	Toliary	Anosy	Amboasary Atsimo, Taolagnaro (Fort Dauphin)	World Wide Fund for Nature	WWF	TERRESTRE	2015	Ankodida	NA	25
+Baie de Baly	II	Créée le 18 decembre 1997	1997-12-18T00:00:00Z	NA	FALSE	62815.732	67	Parc National de la Baie de Baly	Mahajanga	Boeny	Soalala	Madagascar National Parks	MNP	TERRESTRE Avec Partie Marine (Mangroves en contact ac les massifs forestiers)	1997	Baie de Baly	NA	26
+Beanka	V	Décret n°2015-727 du 21 avril 2015	2015-04-21T00:00:00Z	NA	FALSE	17184.626	81	Paysage Harmonieux Protégé de Beanka	Mahajanga	Melaky	Maintirano, Morafenobe	Biodiversity Conservation Madagascar	BCM	TERRESTRE	2015	Beanka	NA	27
+Midongy du Sud	II	Créée le 18 decembre 1997	1997-12-18T00:00:00Z	NA	FALSE	205984.912	51	Parc National de Befotaka-Midongy du Sud	Fianarantsoa	Atsimo Atsinanana, Ihorombe	Befotaka, Iakora, Midongy Atsimo, Vangaindrano	Madagascar National Parks	MNP	TERRESTRE	1997	Befotaka Midongy	NA	28
+Bemaraha	II	Créée le 07.08.97, Changement de statut en 2011 auparavant PN et RNI , actuellement PN	1997-08-07T00:00:00Z	2011-07-06T00:00:00Z	TRUE	157671.538	82	Parc National de Tsingy de Bemaraha	Mahajanga	Melaky	Antsalova, Morafenobe	Madagascar National Parks	MNP	TERRESTRE	1997	Bemaraha	NA	29
+Bemarivo	IV	Créée le 10 septembre 1956	1956-09-10T00:00:00Z	NA	FALSE	12046.314	79	Réserve Spéciale de Bemarivo	Mahajanga	Melaky	Besalampy, Maintirano	Ministère de l'Environnement, de l'Ecologie et des Forêts	MEEF	TERRESTRE	1956	Bemarivo	NA	30
+Betampona	I	Créée le 31 decembre 1997	1997-12-31T00:00:00Z	NA	FALSE	2239.796	35	Réserve Naturelle Intégrale de Betampona	Toamasina	Atsinanana	Toamasina II	Madagascar National Parks	MNP	TERRESTRE	1997	Betampona	NA	31
+Beza Mahafaly	IV	Créée le 04 juin 1986	1986-06-04T00:00:00Z	NA	FALSE	4199.524	96	Réserve Spéciale de Bezà-Mahafaly	Toliary	Atsimo Andrefana	Betioky Atsimo	Madagascar National Parks	MNP	TERRESTRE	1986	Beza Mahafaly	NA	32
+Bombetoka Beloboka	NA	Décret n°2015-808 du 5 mai 2015	2015-05-05T00:00:00Z	NA	FALSE	71943.496	65	Nouvelle Aire Protégée de Bombetoka Beloboka	Mahajanga	Boeny	Mahajanga II, Marovoay, Mitsinjo	Development and Environmental Law Center	DELC	TERRESTRE (delta, mangrove, fleuve)	2015	Bombetoka Belemboka	NA	33
+Bora	IV	Créée le 20 fevrier 1956	1956-02-20T00:00:00Z	NA	FALSE	4052.102	21	"Réserve Spéciale de Bora
+"	"Mahajanga
+"	"Sofia
+"	"Antsohihy
+"	"Ministère de l'Environnement, de l'Ecologie et des Forêts
+"	MEEF	TERRESTRE	1956	Bora	NA	34
+COMATSA Nord	VI	Décret n°2015-782 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	238176.879	11	Réserve de Ressources Naturelles du Corridor Marojejy-Anjanaharibe Sud-Tsaratanàna partie Nord	Antsiranana, Mahajanga	Diana, Sava, Sofia	Ambanja, Ambilobe, Andapa, Bealanana,  Sambava, Vohimarina (Vohémar)	World Wide Fund for Nature	WWF	TERRESTRE	2015	COMATSA Nord	NA	35
+COMATSA Sud	V	Décret n°2015-782 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	82234.065	20	Paysage Harmonieux Protégé du Corridor Marojejy-Anjanaharibe Sud-Tsaratanàna partie Sud	Antsiranana, Mahajanga	Sava, Sofia	Andapa, Bealanana	World Wide Fund for Nature	WWF	TERRESTRE	2015	COMATSA Sud	NA	36
+Cap Sainte Marie	IV	Créée le 24.10.62, Changement de limite en 2015 sous le décret n° 2015-733 du 21 avril 2015	1962-10-24T00:00:00Z	2015-04-21T00:00:00Z	TRUE	3619.615	98	Réserve Spéciale de Cap Sainte Marie	Toliary	Androy	Beloha, Tsihombe	Madagascar National Parks	MNP	TERRESTRE Avec Partie Marine (Zone Côtière)	1962	Cap Sainte Marie	NA	37
+Complexe Anjozorobe Angavo	V	Décret n°2015-763 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	41102.227	73	Paysage Harmonieux Protégé du Complexe Anjozorobe-Angavo	Antananarivo, Toamasina	Alaotra Mangoro, Analamanga	Anjozorobe, Manjakandriana, Moramanga	Association Fanamby	NA	TERRESTRE	2015	Complexe Anjozorobe Angavo	NA	38
+Complexe Lac Forêt Ambondrobe	V	Décret n°2015-758 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	7027.52	84	Paysage Harmonieux Protégé du Complexe Lac-Forêt Ambondrobe	Toliary	Menabe	Belo Tsiribihina	Durrell Wildlife Conservation Trust	DWTC	TERRESTRE	2015	Complexe Lac Forêt Ambondrobe	NA	39
+Complexe Tsimembo Manambolomaty 	V	Décret n°2015 -715 du 21 avril 2015	2015-04-21T00:00:00Z	NA	FALSE	62659.364	83	Paysage Harmonieux Protégé du Complexe Tsimembo Manambolomaty 	Mahajanga	Melaky	Antsalova, Maintirano, Morafenobe	The Peregrine Fund	TPF	TERRESTRE Avec Partie Marine (Mangroves)	2015	Complexe Tsimembo Manambolomaty	NA	40
+Complexe Zones Humides Mahavavy Kinkony	V	Décret n°2015 -718 du 21 avril 2015	2015-04-21T00:00:00Z	NA	FALSE	351016.949	66	Paysage Harmonieux Protégé du Complexe Zones Humides Mahavavy Kinkony	Mahajanga	Boeny	Mitsinjo	Asity Madagascar	NA	TERRESTRE Avec Partie Marine (Mangroves)	2015	Complexe Zones Humides Mahavavy Kinkony	NA	41
+Complexe Zones Humides Mangoky Ihotry	V	Décret n°2015 -719 du 21 avril 2015	2015-04-21T00:00:00Z	NA	FALSE	426594.219	88	Paysage Harmonieux Protégé du Complexe Zones Humides Mangoky Ihotry	Toliary	Atsimo Andrefana, Menabe	Manja, Morombe	Asity Madagascar	NA	TERRESTRE	2015	Complexe Zones Humides Mangoky Ihotry	NA	42
+Paysage Harmonieux Protégés Bemanevika	V	Décret n°2015-782 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	35608.32	18	Paysage Harmonieux Protégé de Bemanevika	Mahajanga	Sofia	Bealanana	The Peregrine Fund	TPF	TERRESTRE	2015	Complexe des Zones Humides de Bemanevika	NA	43
+Corridor Ankeniheny Zahamena	VI	Décret n°2015-754 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	369153.009	34	Réserve de Ressources Naturelles du Corridor Ankeniheny-Zahamena	Toamasina	Alaotra Mangoro, Atsinanana	Ambatondrazaka, Moramanga, Toamasina II, Vatomandry,  Vohibinany (Brickaville)	Conservation International	CI	TERRESTRE	2015	Corridor Ankeniheny Zahamena	NA	44
+Corridor Forestier Ambositra-Vondrozo 	V	Décret n°2015-755 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	311881.773	45	Paysage Harmonieux Protégé du Corridor Forestier Ambositra-Vondrozo	Fianarantsoa	Amoron'i Mania, Atsimo Atsinanana, Haute Matsiatra, Ihorombe, Vatovavy Fitovinany	Ambalavao, Ambohimahasoa, Ambositra, Fianarantsoa II, Ifanadiana, Ikongo, Ivohibe, Lalangina, Mananjary, Vohibato, Vondrozo	Conservation International	CI	TERRESTRE	2015	Corridor Forestier Ambositra Vondrozo	NA	45
+Corridor Forestier Bongolava	NA	Décret n°2015-790 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	60589.816	63	Paysage Harmonieux Protégé du Corridor Forestier Bongolava	Mahajanga	Sofia	Mampikony, Boriziny (Port Bergé)	Fikambananana Bongolava Maintso	FBM	TERRESTRE	2015	Corridor forestier Bongolava	NA	46
+Forêt Naturelle de Petriky	V	Décret n°2015-777 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	301.869	61	Paysage Harmonieux Protégé de la Forêt Naturelle de Petriky	Toliary	Anosy	Taolagnaro (Fort Dauphin)	QIT Madagascar Minerals - Rio Tinto	QMM	TERRESTRE	2015	Forêt Naturel de Petriky	NA	47
+Forêt Naturelle de Tsitongambarika	VI	Décret n°2015 -720 du 21 avril 2015	2015-04-21T00:00:00Z	NA	FALSE	58597.801	56	Réserve de Ressources Naturelles de la Forêt Naturelle de Tsitongambarika	Toliary	Anosy	Taolagnaro (Fort Dauphin)	Asity Madagascar	NA	TERRESTRE	2015	Forêt Naturelle de Tsitongambarika	NA	48
+Galoko Kalobinono	V	Décret n°2015-770 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	75009.42	10	Paysage Harmonieux Protégé de Galoko-Kalobinono	Antsiranana	Diana	Ambanja, Ambilobe	Missouri Botanical Garden	MBG	TERRESTRE	2015	Galoko Kalobinono	NA	49
+Nord Ifotaky	V	Décret n°2015-786 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	22426.534	58	Paysage Harmonieux Protégé de Nord-Ifotaka	Toliary	Androy, Anosy	Amboasary Atsimo, Ambovombe Androy	World Wide Fund for Nature	WWF	TERRESTRE	2015	INord fotaky	NA	50
+Isalo	II	Créée depuis le 19 juillet 1962	1962-07-19T00:00:00Z	NA	FALSE	86566.582	90	Parc National de l'Isalo	Fianarantsoa	Ihorombe	Ihosy	Madagascar National Parks	MNP	TERRESTRE	1962	Isalo	NA	51
+Pic d'Ivohibe	IV	Créée le 16.09.64, Changement statut & limite en 2015, RS avant , PN en 2015 - déc n° 2015-775	1964-09-16T00:00:00Z	2015-04-28T00:00:00Z	TRUE	4493.574	48	Réserve Spéciale du Pic d'Ivohibe	Fianarantsoa	Ihorombe	Ivohibe	Madagascar National Parks	MNP	TERRESTRE	1964	Ivohibe	NA	52
+Kalambatritra	IV	Créée le 24.04.59, Changement de limite en 2015 sous le décret n° 2015-734 du 21 avril 2015	1959-04-24T00:00:00Z	2015-04-21T00:00:00Z	TRUE	30403.06	52	Réserve Spéciale de Kalambatritra	Fianarantsoa, Toliary	Anosy, Ihorombe	Betroka, Iakora	Madagascar National Parks	MNP	TERRESTRE	1959	Kalambatrika	NA	53
+Kasijy	IV	Créée le 10 setembre 1956	1956-09-10T00:00:00Z	NA	FALSE	22956.386	70	Réserve Spéciale de Kasijy	Mahajanga	Betsiboka	Kandreho	Ministère de l'Environnement, de l'Ecologie et des Forêts	MEEF	TERRESTRE	1956	Kasijy	NA	54
+Kirindy - Mitea	II	Créée depuis le 18.12.97, Changement limite en 2015 sous le décret 2015-735 du 21 avril 2015	1997-12-18T00:00:00Z	2015-04-21T00:00:00Z	TRUE	156220.884	87	Parc National de Kirindy Mité	Toliary	Menabe	Manja, Morondava	Madagascar National Parks	MNP	TERRESTRE Avec Partie Marine	1997	Kirindy Mite	NA	55
+Lac Alaotra	V	Décret n°2015-756 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	42479.661	31	Paysage Harmonieux Protégé du Lac Alaotra	Toamasina	Alaotra Mangoro	Ambatondrazaka, Amparafaravola	Durrell Wildlife Conservation Trust	DWTC	TERRESTRE	2015	Lac Alaotra	NA	56
+Lokobe	II	Décret n°2011 - 499 du 06 juillet 2011, anciennement RNI	1927-12-31T00:00:00Z	2011-07-06T00:00:00Z	TRUE	845.199	9	"Parc National de Lokobe
+"	"Antsiranana
+"	"Diana
+"	"Nosy Be
+"	"Madagascar National Parks
+"	"MNP
+"	"TERRESTRE Avec Partie Marine
+"	1927	Lokobe	NA	57
+Loky Manambato	V	Décret n°2015-759 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	248409.453	6	Paysage Harmonieux Protégé de Loky Manambato	Antsiranana	Sava	Vohimarina (Vohémar)	Association Fanamby	NA	TERRESTRE Avec Partie Marine (Iles, zones côtières)	2015	Loky Manambato	NA	58
+Réserve de Ressources Naturelle Mahimborondro	VI	Décret n°2015-782 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	75167.734	17	Réserve de Ressources Naturelles de Mahimborondro	Mahajanga	Sofia	Ambaja, Bealanana	The Peregrine Fund	TPF	TERRESTRE	2015	Mahimborondro	NA	59
+Makira	II	Décret n°2012-641 du 19 juin 2012	2012-06-19T00:00:00Z	NA	FALSE	372179.355	23	Parc Naturel de Makira	Antsiranana, Mahajanga, Toamasina	Analanjirofo, Sava, Sofia	Andapa, Antalaha, Befandriana Nord, Mandritsara, Maroantsetra	Wildlife Conservation Society	WCS	TERRESTRE	2012	Makira	NA	60
+Makirovana Tsihomanaomby	VI	Décret n°2015-768 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	3386.6	16	Réserve de Ressources Naturelles de Makirovana Tsihomanaomby	Antsiranana	Sava	Sambava, Vohimarina (Vohémar)	Missouri Botanical Garden	MBG	TERRESTRE	2015	Makirovana Tsihomanaomby	NA	61
+Mananara-Nord	II	Créée le 25 juillet 1989	1989-07-25T00:00:00Z	NA	FALSE	24155.934	26	"Parc National de Mananara Nord
+"	"Toamasina
+"	"Analanjirofo
+"	"Mananara Nord
+"	"Madagascar National Parks
+"	"MNP
+"	"TERRESTRE Avec Partie Marine
+"	1989	Mananara Nord	NA	62
+Mandena	V	Décret n°2015-779 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	437.112	59	Paysage Harmonieux Protégé de Mandena	Toliary	Anosy	Taolagnaro (Fort Dauphin)	QIT Madagascar Minerals - Rio Tinto	QMM	TERRESTRE	2015	Mandena	NA	63
+Mangabe-Ranomena-Sahasarotra	VI	Décret n°2015-725 du 21 avril 2015	2015-04-21T00:00:00Z	NA	FALSE	27131.518	44	Réserve de Ressources Naturelles de Mangabe-Ranomena-Sahasarotra	Toamasina	Alaotra Mangoro	Moramanga	Madagasikara Voakajy	MV	TERRESTRE	2015	Mangabe-Ranomena-Sahasarotra	NA	64
+Mangerivola	IV	Créée le 28 octobre 1958	1958-10-28T00:00:00Z	NA	FALSE	12479.001	36	Réserve Spéciale de Mangerivola	Toamasina	Atsinanana	Toamasina II, Vohibinany	Madagascar National Parks	MNP	TERRESTRE	1958	Mangerivola	NA	65
+Manjakatompo Ankaratra	VI	Décret n°2015 -711 du 21 avril 2015	2015-04-21T00:00:00Z	NA	FALSE	8130.97	74	Réserve de Ressources Naturelles de Manjakatompo Ankaratra	Antananarivo	Vakinankaratra	Ambatolampy	Vondrona Ivon'ny Fampandrosoana	VIF	TERRESTRE	2015	Manjakatompo Ankaratra	NA	66
+Manombo	IV	Créée depuis le 05 decembre 1962	1962-12-05T00:00:00Z	NA	FALSE	6548.27	49	Réserve Spéciale de Manombo	Fianarantsoa	Atsimo Atsinanana	Farafangana	Madagascar National Parks	MNP	TERRESTRE	1962	Manombo	NA	67
+Manongarivo	IV	Créée depuis le 20 fevrier 1956	1956-02-20T00:00:00Z	NA	FALSE	51567.896	14	Réserve Spéciale de Manongarivo	Antsiranana, Mahajanga	Diana, Sofia	Ambanja, Analalava	Madagascar National Parks	MNP	TERRESTRE	1956	Manongarivo	NA	68
+Mantadia	II	Changement de limite le 07 aout 2002	1989-01-11T00:00:00Z	2002-08-07T00:00:00Z	TRUE	15455.784	40	Parc National de Mantadia	Toamasina	Alaotra Mangoro	Moramanga	Madagascar National Parks	MNP	TERRESTRE	1989	Mantadia	NA	69
+Marojejy	II	Créée le 19 mai 1998	1998-05-19T00:00:00Z	NA	FALSE	55560.307	19	Parc National de Marojejy	Antsiranana	Sava	Andapa, Sambava	Madagascar National Parks	MNP	TERRESTRE	1998	Marojejy	NA	70
+Marolambo	II	Décret n°2015 -716 du 21 avril 2015	2015-04-21T00:00:00Z	NA	FALSE	95063.089	76	Parc National de Marolambo	Antananarivo, Fianarantsoa, Toamasina	Amoron'i Mania, Atsinanana, Vakinankaratra, Vatovavy fitovinany	Ambositra, Antanifotsy, Fandriana, Ifanadiana, Marolambo, Nosy Varika	Madagascar National Parks	MNP	TERRESTRE	2015	Marolambo	NA	71
+Maromizaha	VI	Décret n°2015-783 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	1580.46	43	Réserve de Ressources Naturelles de Maromizaha	Toamasina	Alaotra Mangoro	Moramanga	Groupe d’étude et de recherche sur les primates de Madagascar	GERP	TERRESTRE	2015	Maromizaha	NA	72
+Marotandrano	IV	Créée le 20.02.56, Changement de limite en 2015 sous le décret n° 2015- 784 du 28 avril 2015	1956-02-20T00:00:00Z	2015-04-28T00:00:00Z	TRUE	45102.37	27	Réserve Spéciale de Marotandrano	Toamasina, Mahajanga	Alaotra Mangoro, Sofia	Andilamena, Mandritsara	Madagascar National Parks	MNP	TERRESTRE	1956	Marotandrano	NA	73
+Masoala	II	Créée le 02 mars 1997	1997-03-02T00:00:00Z	NA	FALSE	222070.442	24	Parc National de Masoala	Antsiranana, Toamasina	Analanjirofo, Sava	Antalaha, Maroantsetra	Madagascar National Parks	MNP	TERRESTRE Avec Partie Marine	1997	Masoala	NA	74
+Massif d'Ibity	V	Décret n°2015-772 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	6136.602	77	Paysage Harmonieux Protégé du Massif d'Ibity	Antananarivo	Vakinankaratra	Antsirabe II	Missouri Botanical Garden	MBG	TERRESTRE	2015	Massif d'Ibity	NA	75
+Massif d'Itremo	V	Décret n°2015 -713 du 21 avril 2015	2015-04-21T00:00:00Z	NA	FALSE	24696.443	78	Paysage Harmonieux Protégé du Massif d'Itremo	Fianarantsoa	Amoron'i Mania	Ambatofinandrahana	Royal Botanical Gardens	RBG KEW	TERRESTRE	2015	Massif d'Itremo	NA	76
+Menabe Antimena	V	Décret n°2015-762 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	201927.135	85	Paysage Harmonieux Protégé de Menabe Antimena	Toliary	Menabe	Morondava, Belo Tsiribihina	Association Fanamby	NA	TERRESTRE Avec Partie Marine (mangroves et zones côtières)	2015	Menabe Antimena	NA	77
+Mikea	II	Décret n°2011 - 499 du 06 juillet 2011	2011-07-06T00:00:00Z	NA	FALSE	184639.555	89	Parc National de Mikea	Toliary	Atsimo Andrefana	Morombe, Toliara II	Madagascar National Parks	MNP	TERRESTRE	2011	Mikea	NA	78
+Montagne d'Ambre/Forêt d'Ambre	II	Créée le 28.10.58, changement limite; PN et RS avant, PN actuel déc 2015-776 du 28/04/15	1958-10-28T00:00:00Z	2015-04-28T00:00:00Z	TRUE	30537.216	4	Parc National de Montagne d'Ambre	Antsiranana	Diana	Antsiranana II	Madagascar National Parks	MNP	TERRESTRE	1958	Montagne d'Ambre	NA	79
+Tsingy de Namoroka	II	Créée le 07 aout 04	2004-08-07T00:00:00Z	NA	FALSE	22523.984	69	Parc National de Namoroka	Mahajanga	Boeny	Soalala	Madagascar National Parks	MNP	TERRESTRE	2004	Namoroka	NA	80
+Nosy Hara	II	Décret n°2011 - 499 du 06 juillet 2011	2011-07-06T00:00:00Z	NA	FALSE	125713.6	1	Parc National de Nosy Hara	Antsiranana	Diana	Antsiranana II	Madagascar National Parks	MNP	MARINE (Ilots, bancs récifaux, mangroves, étendue marine)	2011	Nosy Hara	NA	81
+Nosy Mangabe	IV	Créée le 14 decembre 1965	1965-12-14T00:00:00Z	NA	FALSE	595.899	25	Parc National de Nosy Mangabe	Toamasina	Analanjirofo	Maroantsetra	Madagascar National Parks	MNP	TERRESTRE (4 Iles avec Zone de protection marine)	1965	Nosy Mangabe	NA	82
+Oronjia	V	Décret n°2015-771 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	1678.333	2	Paysage Harmonieux Protégé d'Oronjia	Antsiranana	Diana	Antsiranana II	Missouri Botanical Garden	MBG	TERRESTRE	2015	Oronjia	NA	83
+Ranobe PK32	NA	Décret n°2015-808 du 5 mai 2015	2015-05-05T00:00:00Z	NA	FALSE	168500.237	93	Nouvelle Aire Protégée de Ranobe PK32	Toliary	Atsimo Andrefana	Sakaraha, Toliara II	Ministère de l'Environnement, de l'Ecologie et des Forêts	MEEF	TERRESTRE	2015	Ranobe PK 32	NA	84
+Ranomafana	II	Créée le 27 mai 1991	1991-05-27T00:00:00Z	NA	FALSE	40519.245	46	Parc National de Ranomafana	Fianarantsoa	Haute Matsiatra, Vatovavy Fitovinany	Ambohimahasoa, Fianarantsoa II, Ifanadiana	Madagascar National Parks	MNP	TERRESTRE	1991	Ranomafana	NA	85
+Réserve deTampolo	V	Décret n°2015-789 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	727.286	30	Paysage Harmonieux Protégé de la Réserve de Tampolo	Toamasina	Analanjirofo	Fenoarivo Est	Ecole Supérieure des Sciences Agronomiques - Forêts	ESSA-Forêts	TERRESTRE	2015	Réserve de Tampolo	NA	86
+Réserve speciale Pointe à Larrée	IV	Décret n°2015-773 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	770.65	29	Réserve Spéciale de Pointe à Larrée	Toamasina	Analanjirofo	Soanierana Ivongo	Missouri Botanical Garden	MBG	TERRESTRE	2015	Réserve spéciale Pointe à Larrée	NA	87
+Sahafina	VI	Décret n°2015-728 du 21 avril 2015	2015-04-21T00:00:00Z	NA	FALSE	2406.855	39	Paysage Harmonieux Protégé de Sahafina	Toamasina	Atsinanana	Vohibinany (Brickaville)	Biodiversity Conservation Madagascar	BCM	TERRESTRE	2015	Sahafina	NA	88
+Iles Radama/Sahamalaza	II	Décret N°2007/247 du 19/03/07	2007-03-19T00:00:00Z	NA	FALSE	24025.575	15	Parc National de Sahamalaza-Iles Radama	Mahajanga	Sofia	Ambanja, Analalava	Madagascar National Parks	MNP	TERRESTRE Avec Partie Marine (Mangroves et zones côtières)	2007	Sahamalaza Iles Radama	NA	89
+Site Bioculturel d'Antrema	VI	Décret n°2015 -712 du 21 avril 2015	2015-04-21T00:00:00Z	NA	FALSE	20425.397	64	Réserve de Ressources Naturelles du Site Bioculturel d'Antrema	Mahajanga	Boeny	Mitsinjo	Muséum national d'Histoire naturelle	MNHN	TERRESTRE Avec Partie Marine	2015	Site Bioculturel d'Antrema	NA	90
+Torotorofotsy	NA	Décret n°2015-808 du 5 mai 2015	2015-05-05T00:00:00Z	NA	FALSE	9764.4	41	Nouvelle Aire Protégée de Torotorofotsy	Toamasina	Alaotra Mangoro	Moramanga	Asity Madagascar	NA	TERRESTRE	2015	Torotorofotsy	NA	91
+Tsaratanana	II	Créée depuis le 31.12.97, Changement de statut en 2011 auparavant RNI, actuellement PN	1997-12-31T00:00:00Z	2011-07-06T00:00:00Z	TRUE	108616.154	13	Réserve Naturelle Intégrale de Tsaratanàna	Antsiranana, Mahajanga	Diana, Sava, Sofia	Ambanja, Ambilobe, Bealalana	Madagascar National Parks	MNP	TERRESTRE	1997	Tsaratanana	NA	92
+Tsimanampesotsa	II	Créée depuis le 07.08.03, Changement de limite en 2015 sous le n° décret 2015-736 du 21 avril 2015	2003-08-07T00:00:00Z	2015-04-21T00:00:00Z	TRUE	201429.639	97	Parc National de Tsimanampesotse	Toliary	Atsimo Andrefana	Ampanihy, Betioky Atsimo, Toliara II	Madagascar National Parks	MNP	TERRESTRE	2003	Tsimanampesotse	NA	93
+Tsinjoriake	V	Décret n°2015-781 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	13722.018	95	Paysage Harmonieux Protégé de Tsinjoriake	Toliary	Atsimo Andrefana	Toliara I, Toliara II	Association TAMIA	NA	TERRESTRE	2015	Tsinjoriake	NA	94
+Vohidava-Betsimalaho	VI	Décret n°2015-774 du 28 avril 2015	2015-04-28T00:00:00Z	NA	FALSE	18107.365	55	Réserve de Ressources Naturelles de Vohidava-Betsimalaho	Toliary	Anosy	Amboasary Asimo	Missouri Botanical Garden	MBG	TERRESTRE	2015	Vohidava Betsimalao	NA	95
+Zahamena	II	Créée depuis le 07.08.97; auparavant RNI et PN actuellement  (déc: 2015-737 du 21/04/2015)	1997-08-07T00:00:00Z	2015-04-21T00:00:00Z	TRUE	64663.075	32	Parc National de Zahamena	Toamasina	Alaotra Mangoro, Analanjirofo, Atsinanana	Ambatondrazaka, Toamasina II, Vavatenina	Madagascar National Parks	MNP	TERRESTRE	1997	Zahamena	NA	96
+Zombitse Vohibasia	II	Créée le 18 decmbre 1997	1997-12-18T00:00:00Z	NA	FALSE	35811.195	91	Parc National de Zombitse-Vohibasia	Toliary	Atsimo Andrefana	Ankazoabe Atsimo, Sakaraha	Madagascar National Parks	MNP	TERRESTRE	1997	Zombitse Vohibasia	NA	97
+Mandrozo	V	Décret n°2015 -714 du 21 avril 2015	2015-04-21T00:00:00Z	NA	FALSE	15145.212	80	Paysage Harmonieux Protégé de Mandrozo	Mahajanga	Melaky	Maintirano	The Peregrine Fund	TPF	TERRESTRE	2015	Zone Humide de Mandrozo	NA	98
