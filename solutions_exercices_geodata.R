@@ -1,5 +1,5 @@
 
-# EXERCICES DONNEES GADM
+# EXERCICES DONNEES geoBoundaries
 
 # -   Visualisez les données `gadm_mada0` téléchargées avec tmap. De quel niveau administratif s'agit-il ?
 # -   En utilisant les autres niveaux administratifs disponibles (1, 2, 3, 4), déduisez à quoi correspond
