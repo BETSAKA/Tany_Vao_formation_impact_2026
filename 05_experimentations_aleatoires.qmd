@@ -1,127 +1,228 @@
 ---
 output: html_document
-editor_options:
+editor_options: 
   chunk_output_type: console
 ---
 
 # Expérimentations par assignation aléatoire
 
-```{=html}
-<iframe src="/slides/fr/randomization.html" width="100%" height="400px"></iframe>
-```
+<iframe src="slides/fr/randomization.html" width="100%" height="400px">
 
-[Cliquer ici pour télécharger la présentation](/slides/fr/randomization.html)
+</iframe>
 
-Ce chapitre est conservé comme **benchmark conceptuel**. Dans le cas des
-aires protégées à Madagascar, il est clair que le traitement n'a pas été
-assigné aléatoirement. L'intérêt de cette séquence est donc ailleurs :
-elle sert à montrer ce que l'on attend d'une comparaison crédible quand
-traités et contrôles sont comparables dès le départ.
 
-## Pourquoi garder cette séquence
+<a href="slides/fr/randomization.html" download>Cliquer ici pour télécharger la présentation</a>.
 
-La randomisation fournit un point de référence utile pour la suite du
-parcours. Elle aide à comprendre :
+## Mise en pratique
 
-- pourquoi l'équilibre initial des groupes est si important ;
-- pourquoi une différence moyenne peut recevoir une interprétation plus
-	directe dans un cadre expérimental ;
-- pourquoi, dans les chapitres suivants, il faudra reconstruire une
-	comparabilité plus crédible.
+> **ATTENTION :** Il va de soi que les AP malgaches n'ont à aucun moment été assignées aléatoirement. Lors de cette séquence, on fait "comme si", pour montrer la manière dont les données sont analysées quand il y a eu assignation aléatoire. On verra en fin de session les limites d'une telle approche et dans les suivantes des manières de construire des contrefactuels plus vraisemblables pour un sujet comme celui-ci.
 
-## Préparer une version compacte des données
+## Préparation des données
 
-On repart de l'objet pré-calculé enrichi avec `mapme.biodiversity`, puis
-on garde un petit nombre de covariables utiles pour illustrer l'idée
-d'équilibre.
+Pour commencer, on charge les librairies requises (après les avoir installées si nécessaire).
 
 ```{r}
-library(sf)
-library(tidyverse)
-library(lubridate)
+# On charge les librairies utiles pour cette analyse
+library(tidyverse) # Facilite la manipulation de données
+library(gt) # Aide à formater de jolis tableaux de rendu
+library(broom) # Aide à formater les rendus de régressions
+library(stargazer) # idem
+library(sf) # Pour les données spatiales
+library(lubridate) # Pour gérer des dates
+library(htmltools)
 library(mapme.biodiversity)
+library(units)
+library(lmtest)      # Tests statistiques sur des modèles linéaires (waldtest, coeftest)
+library(sandwich)    # Calcul d'erreurs standards robustes (vcovHC pour heteroskedasticité)
 
-AP_Vahatra <- readRDS("data/AP_Vahatra_mapme.rds")
 
+
+# Désactiver les notations scientifiques
+options(scipen = 999)
+
+# On charge AP_Vahatra
+AP_Vahatra <- read_rds("data/AP_Vahatra_mapme.rds")
+```
+
+## Analyse des équilibres initiaux
+
+On commence par vérifier s'il existe des déséquilibres flagrants entre les aires qui ont été protégées avant 2015 et celles qui ont été protégées en 2015, en matière de surface totale ou de part couverte par des forêts en 2000.
+
+```{r}
+# Définir les variables dans les bonnes unités
 AP_RCT <- AP_Vahatra %>%
-	portfolio_wide() %>%
-	rename(
-		Altitude_moyenne_m = `elevation_2000-02-01_elevation_mean_m`,
-		Pente_moyenne_degres = `slope_2000-02-01_slope_mean_degrees`,
-		Temps_trajet_minutes = `traveltime_2015-01-01_5k_110mio_traveltime_mean_minutes`,
-		Couvert_2000_ha = `treecover_area_2000-01-01_treecover_ha`,
-		Couvert_2014_ha = `treecover_area_2014-01-01_treecover_ha`
-	) %>%
-	mutate(
-		Groupe = ifelse(year(date_creation) < 2015, "Traitement", "Contrôle"),
-		Traitement = ifelse(Groupe == "Traitement", 1, 0),
-		Surface_ha = as.numeric(st_area(.)) / 10000,
-		Couvert_2000_pct = (Couvert_2000_ha / Surface_ha) * 100,
-		taux_deforestation_2000_2014 =
-			-((Couvert_2014_ha - Couvert_2000_ha) / Couvert_2000_ha) * 100
-	)
+  portfolio_wide() %>% 
+  rename(`Altitude moyenne (m)` = `elevation_2000-02-01_elevation_mean_m`,
+         `Pente moyenne (degres)` = `slope_2000-02-01_slope_mean_degrees`,
+         `Temps de trajet (minutes)` =
+           `traveltime_2015-01-01_5k_110mio_traveltime_mean_minutes`,
+         `Couvert forestier en 2000 (ha)` = 
+           `treecover_area_2000-01-01_treecover_ha`,  
+         `Couvert forestier en 2014 (ha)` = 
+           `treecover_area_2014-01-01_treecover_ha`) %>%
+  mutate(Groupe = ifelse(year(date_creation) < 2015, "Traitement", "Contrôle"),
+         Traitement = ifelse(Groupe == "Traitement", 1, 0),
+         `Surface (ha)` = as.numeric(st_area(AP_Vahatra)) / 10000,
+         `Couvert forestier en 2000 (%)` = 
+           (`Couvert forestier en 2000 (ha)` / `Surface (ha)`)*100)
+
+
+# Définir la fonction pour les étoiles de significativité
+stars <- function(p) {
+  if (is.na(p)) return("")
+  if (p < 0.01) return("***")
+  else if (p < 0.05) return("**")
+  else if (p < 0.10) return("*")
+  else return("")
+}
+
+
+# Liste des covariables à inclure dans le tableau d’équilibre
+covars <- c("Surface (ha)", "Couvert forestier en 2000 (ha)", "Couvert forestier en 2000 (%)", "Altitude moyenne (m)", "Pente moyenne (degres)", "Temps de trajet (minutes)")
+
+# Création du tableau d’équilibre
+balance_data <- map_dfr(covars, function(var) {
+    
+      # Moyennes et écart-types par groupe
+      stats <- AP_RCT %>%
+        group_by(Groupe) %>%
+        summarise(
+          mean = mean(.data[[var]], na.rm = TRUE),
+          sd = sd(.data[[var]], na.rm = TRUE),
+          n = sum(!is.na(.data[[var]]))
+        ) %>%
+        ungroup()
+    
+      # Extraire les statistiques pour les deux groupes
+      treat <- stats %>% filter(Groupe == "Traitement")
+      control <- stats %>% filter(Groupe == "Contrôle")
+      
+      # Différence brute
+      diff <- treat$mean - control$mean
+      
+      # Estimation de l’erreur standard via régression avec erreurs robustes
+      mod <- lm(as.formula(paste0("`", var, "` ~ Groupe")), data = AP_RCT)
+      coef_test <- coeftest(mod, vcov. = vcovHC(mod, type = "HC1"))
+      se_diff <- coef_test["GroupeTraitement", "Std. Error"]
+        p_val <- coef_test["GroupeTraitement", "Pr(>|t|)"]
+        etoiles <- stars(p_val)
+      
+      # Calcul de la différence standardisée
+      pooled_sd <- sqrt(0.5 * (treat$sd^2 + control$sd^2))
+      std_diff <- diff / pooled_sd
+    
+  # Construction de la ligne du tableau
+      tibble(
+        Variable = var,
+        Moy_Traitement = 
+          str_glue("{round(treat$mean, 2)}\n({round(treat$sd, 2)})"),
+        Moy_Contrôle = 
+          str_glue("{round(control$mean, 2)}\n({round(control$sd, 2)})"),
+        Diff = str_glue("{round(diff, 2)}{etoiles}\n[{round(se_diff, 2)}]"),
+        Diff_std = str_glue("{round(std_diff, 2)}")
+      )
+}) %>% bind_rows()
+  
+  # Test de significativité conjointe des covariables (p-value du F-test)
+  f_test_mod <- lm(as.formula(paste("Traitement ~", paste0("`", covars, "`", collapse = " + "))), data = AP_RCT)
+  f_test <- waldtest(f_test_mod, vcov = vcovHC(f_test_mod, type = "HC1"))
+  p_val_joint <- signif(f_test$`Pr(>F)`[2], 3)
+  
+  # Ajouter une ligne au tableau avec la p-value du F-test
+  balance_data <- bind_rows(
+    balance_data,
+    tibble(
+      Variable = "P-value F-test conjoint",
+      Moy_Traitement = "", Moy_Contrôle = "",
+      Diff = sprintf("p = %.3f", p_val_joint),
+      Diff_std = ""
+    )
+  )
+
+# Affichage final
+balance_data %>%
+  gt() %>%
+  tab_header(
+    title = "Tableau de contrôle d'équilibre initial entre groupes",
+    subtitle = "(exercice : \"comme si\" c'était un RCT)"
+  ) %>%
+  cols_label(
+    Variable = "Variable",
+    Moy_Traitement = "Traitement\n(SD)",
+    Moy_Contrôle = "Contrôle\n(SD)",
+    Diff = "Différence\n[SE]",
+    Diff_std = "Différence\nstandardisée"
+  ) %>%
+  tab_source_note("Source : Association Vahatra et données GFC (*: p < 0,1 ; **: p < 0,05 ; ***: p < 0,01)")
+
+
 ```
 
-## Lire un équilibre initial
+> **Exercice** : Analysez le résultat de cette table.
 
-Dans un cadre réellement randomisé, on espère que les groupes se
-ressemblent en moyenne avant traitement. Une manière simple d'illustrer
-cela ici consiste à comparer quelques moyennes descriptives.
+
+## Différences de déforestation "après intervention"
+
+On va maintenant s'intéresser aux différences de déforestation observées "après intervention" dans le groupe de traitement, entre 2000 et 2014.
 
 ```{r}
-AP_RCT %>%
-	st_drop_geometry() %>%
-	group_by(Groupe) %>%
-	summarise(
-		Surface_ha = mean(Surface_ha, na.rm = TRUE),
-		Couvert_2000_pct = mean(Couvert_2000_pct, na.rm = TRUE),
-		Altitude_moyenne_m = mean(Altitude_moyenne_m, na.rm = TRUE),
-		.groups = "drop"
-	)
+# Calculer le taux de déforestation pour la période 2000-2014
+
+AP_RCT <- AP_RCT %>%
+  mutate(taux_deforestation_2000_2014 = 
+           -((`Couvert forestier en 2014 (ha)` - 
+              `Couvert forestier en 2000 (ha)`) /
+           `Couvert forestier en 2000 (ha)`)* 100)
+
+# Comparer les taux de déforestation entre les groupes
+comparaison_deforestation <- AP_RCT %>%
+  st_drop_geometry() %>%
+  group_by(Groupe) %>%
+  summarise(`Taux de déforestation 2000-2014 (%)` = 
+              mean(taux_deforestation_2000_2014, na.rm = TRUE)) %>%
+  mutate(across(!Groupe, ~round(., 2)))
+
+# Ce qui suit est une série d'opérations pour formater le rendu en tableau
+comparaison_deforestation %>%
+  t() %>%
+  as.data.frame() %>%
+  tibble::rownames_to_column() %>%
+  `colnames<-` (filter(., row_number() == 1)) %>%
+  filter(row_number() != 1) %>%
+  gt() %>%
+  tab_header(title = "Moyennes des taux de déforestation",
+             subtitle = "(exercice : \"comme si\" c'était une RCT)") %>%
+  tab_source_note("Source : Association Vahatra et données GFC")
 ```
 
-L'objectif n'est pas d'épuiser tous les diagnostics possibles, mais de
-faire apparaître l'idée centrale : si les groupes diffèrent déjà au
-départ, la comparaison brute du résultat final devient difficile à
-interpréter.
+> **Exercice** : Commentez le résultat de cette table.
 
-## Lire une différence de résultat
-
-On peut ensuite comparer un indicateur simple de résultat, ici le taux de
-déforestation entre 2000 et 2014.
+On peut également réaliser une régression simple, qu'on présente selon le format courant pour la littérature en économie grâce au package {stargazer} [@hlavac2022].
 
 ```{r}
-AP_RCT %>%
-	st_drop_geometry() %>%
-	group_by(Groupe) %>%
-	summarise(
-		taux_deforestation_2000_2014 =
-			mean(taux_deforestation_2000_2014, na.rm = TRUE),
-		.groups = "drop"
-	)
+#| output: false
+
+# On exécute une régression pour la période 2000-2014
+def_2000_2014 <- lm(taux_deforestation_2000_2014 ~ Groupe, data = AP_RCT)
+
+# On consolide les résultats des régressions dans une table qu'on formate
+# avec le package stargazer
+rct_out1 <- stargazer(def_2000_2014, type = "html",
+          title = "Impact de la conservation sur la perte de couvert forestier",
+          notes = "Données : Association Vahatra et données GFC")  
+```
+```{r, echo=FALSE}
+# Cette commande s'imprime aussi bien dans RStudio que dans le rendu quarto
+output_html <- browsable(HTML(paste(rct_out1, collapse = "")))
+browsable(div(style = "width: 300px;", output_html))
 ```
 
-## Une régression minimale
+> **Exercice** : Analysez le résultat de cette table. Qu'est-ce qu'elle suggère ?
 
-La régression suivante ne change pas la logique de fond. Elle reformule
-la même comparaison dans un langage très courant en économétrie.
+> **Rappel sur les régressions**
 
-```{r}
-modele_rct <- lm(taux_deforestation_2000_2014 ~ Groupe,
-								 data = AP_RCT %>% st_drop_geometry())
+> **Application finale** : 
 
-broom::tidy(modele_rct)
-```
+- Régressez à nouveau le taux de déforestation entre 2000 et 2014 sur la variable de traitement en ajoutant le taux de déforestation en 2000 comme variable de contrôle (vous ajoutez un deuxième régresseur en plus de 'Groupe').
 
-Le coefficient associé au groupe indique ici la différence moyenne de
-résultat entre traitement et contrôle. Dans un vrai RCT, cette lecture
-serait beaucoup plus défendable. Dans notre cas, elle sert surtout à
-montrer ce qu'il manque lorsque la comparabilité initiale n'est pas
-garantie.
-
-## Ce qu'il faut retenir
-
-La randomisation n'est pas ici une stratégie empirique crédible pour le
-cas étudié. En revanche, elle joue un rôle pédagogique décisif : elle
-permet de comprendre pourquoi les chapitres suivants vont se concentrer
-sur la construction d'un groupe de comparaison plus plausible.
+- Utilisez le même modèle pour estimer l'effet du traitement sur le pourcentage de couvert forestier en 2023.
