@@ -6,12 +6,22 @@ editor_options:
 
 # Expérimentations par assignation aléatoire
 
+
+## Session introductive
+
+```{=html}
+<iframe src="slides/fr/202606_TanyVao_RCT.pdf" width="100%" height="400px"></iframe>
+```
+
+<a href="slides/fr/202606_TanyVao_RCT.pdf" download>Cliquer ici pour télécharger la partie introductive de la présentation</a>.
+
+## Suite de la présentation
+
 <iframe src="slides/fr/randomization.html" width="100%" height="400px">
 
 </iframe>
 
-
-<a href="slides/fr/randomization.html" download>Cliquer ici pour télécharger la présentation</a>.
+<a href="slides/fr/randomization.html" download>Cliquer ici pour télécharger la suite de la présentation</a>.
 
 ## Mise en pratique
 
