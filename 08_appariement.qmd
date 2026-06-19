@@ -7,11 +7,12 @@ editor_options:
 # Méthodes d'appariement
 
 
-<iframe src="slides/fr/matching.html" width="100%" height="400px">
+```{=html}
+<iframe src="slides/fr/Méthodes_appariement_2026_06.pdf" width="100%" height="400px"></iframe>
+```
 
-</iframe>
+<a href="slides/fr/Méthodes_appariement_2026_06.pdf" download>Cliquer ici pour télécharger la partie introductive de la présentation</a>.
 
-<a href="slides/fr/matching.html" download>Cliquer ici pour télécharger la présentation</a>.
 
 ## La question de la comparabilité des groupes
 
