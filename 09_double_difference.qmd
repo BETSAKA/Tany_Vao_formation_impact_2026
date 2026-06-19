@@ -14,26 +14,30 @@ editor_options:
 
 [Cliquer ici pour télécharger la présentation](/slides/fr/difference_in_differences.html)
 
-La double différence constitue le second centre de gravité du format 5
-jours. Elle combine deux idées déjà rencontrées séparément :
+La double différence combine deux idées déjà rencontrées séparément :
 
 - comparer des unités traitées et non traitées ;
 - comparer des périodes avant et après traitement.
 
-Dans ce chapitre, on applique cette logique à des mailles spatiales dont
-la date de traitement varie dans le temps.
+La difficulté centrale ne vient pas de la formule, mais de l'hypothèse de
+**tendances parallèles**. Autrement dit, en l'absence du traitement, les
+groupes comparés auraient dû évoluer de manière comparable.
 
-## Pourquoi cette étape compte
+Dans ce chapitre, on procède en deux temps :
 
-La méthode permet d'aller plus loin que les comparaisons simples, mais au
-prix d'une hypothèse centrale : les **tendances parallèles**. Autrement
-dit, en l'absence de traitement, les groupes comparés auraient dû suivre
-des trajectoires comparables.
+1. un exemple pédagogique simple sur les aires protégées agrégées, en
+	 reprenant le pivot 2015 déjà utilisé dans les chapitres précédents ;
+2. une application plus solide sur les mailles appariées, avec des dates
+	 de traitement qui varient selon les unités.
 
-## Préparer le panel à partir des mailles appariées
+## Exemple simple sur les aires protégées agrégées
 
-On repart de l'objet de mailles appariées et on lui rattache la série de
-couvert forestier détaillée, issue de l'objet `mapme` correspondant.
+On reprend ici les données agrégées par aire protégée. Comme dans les
+chapitres précédents, on oppose les aires créées avant 2015 aux aires
+créées en 2015 ou après.
+
+Cet exemple est surtout pédagogique. Il permet de lire la logique de la
+double différence dans un cadre très simple, avant de passer aux mailles.
 
 ```{r}
 library(sf)
@@ -41,7 +45,198 @@ library(tidyverse)
 library(lubridate)
 library(mapme.biodiversity)
 library(did)
+library(gt)
+library(stargazer)
+library(htmltools)
 
+options(scipen = 999)
+
+AP_Vahatra <- readRDS("data/AP_Vahatra_mapme.rds")
+
+AP_did <- AP_Vahatra %>%
+	filter(!is.na(an_creation), an_creation > 2000) %>%
+	portfolio_long() %>%
+	filter(variable == "treecover") %>%
+	st_drop_geometry() %>%
+	transmute(
+		nom,
+		an_creation,
+		years = year(datetime),
+		treecover = value
+	) %>%
+	arrange(nom, years) %>%
+	group_by(nom) %>%
+	mutate(
+		treecover_lag = lag(treecover),
+		tx_defor = if_else(
+			is.na(treecover_lag) | treecover_lag <= 0,
+			NA_real_,
+			-((treecover - treecover_lag) / treecover_lag) * 100
+		),
+		traitement = an_creation < 2015,
+		groupe = if_else(traitement, "Traitement (< 2015)", "Contrôle (>= 2015)"),
+		post = years >= 2015,
+		periode = if_else(post, "Après 2015", "Avant 2015")
+	) %>%
+	ungroup() %>%
+	filter(!is.na(tx_defor))
+```
+
+## Lire les trajectoires moyennes
+
+Avant de passer à la régression, on regarde l'évolution moyenne du taux
+annuel de déforestation dans les deux groupes.
+
+```{r}
+AP_did %>%
+	group_by(groupe, years) %>%
+	summarise(tx_defor_moy = mean(tx_defor, na.rm = TRUE), .groups = "drop") %>%
+	ggplot(aes(x = years, y = tx_defor_moy, color = groupe)) +
+	geom_line(linewidth = 1) +
+	geom_point() +
+	geom_vline(xintercept = 2015, linetype = "dashed") +
+	labs(
+		x = "Année",
+		y = "Taux annuel moyen de déforestation (%)",
+		color = "Groupe"
+	)
+```
+
+> **Exercice** : Comment évoluent les deux groupes autour de 2015 ? Les
+> niveaux initiaux sont-ils similaires ? Les trajectoires semblent-elles
+> plausiblement comparables ?
+
+## Approche simple à deux périodes
+
+Pour coller au schéma le plus simple présenté dans les diapositives, on
+regroupe maintenant les années en deux périodes : avant 2015 et après
+2015. On peut alors calculer une double différence canonique.
+
+```{r}
+AP_did_2p <- AP_did %>%
+	group_by(groupe, periode, traitement, post) %>%
+	summarise(
+		tx_defor_moy = mean(tx_defor, na.rm = TRUE),
+		n = n(),
+		.groups = "drop"
+	)
+
+AP_did_2p %>%
+	mutate(
+		tx_defor_moy = round(tx_defor_moy, 2)
+	) %>%
+	select(
+		Groupe = groupe,
+		Période = periode,
+		`Taux annuel moyen de déforestation (%)` = tx_defor_moy,
+		`Nombre d'observations` = n
+	) %>%
+	gt() %>%
+	tab_header(
+		title = "Comparaison simple à deux périodes",
+		subtitle = "Aires protégées agrégées, pivot 2015"
+	) %>%
+	tab_source_note("Source : Association Vahatra et données GFC")
+```
+
+```{r, output = FALSE}
+mod_did_AP <- lm(tx_defor ~ traitement * post, data = AP_did)
+
+did_AP_out <- stargazer(
+	mod_did_AP,
+	type = "html",
+	title = "Double différence simple sur les aires protégées agrégées",
+	dep.var.labels = "Taux annuel de déforestation (%)",
+	notes = "Le coefficient de l'interaction traitement:post est l'estimateur DiD."
+)
+```
+
+```{r, echo = FALSE}
+did_AP_html <- browsable(HTML(paste(did_AP_out, collapse = "")))
+browsable(div(style = "width: 450px;", did_AP_html))
+```
+
+Dans cette régression, le coefficient de l'interaction `traitement:post`
+mesure l'évolution supplémentaire du groupe traité après 2015,
+relativement à l'évolution du groupe de contrôle.
+
+> **Exercice** : Interprétez le signe et l'ordre de grandeur du
+> coefficient d'interaction. Quelles limites voyez-vous à ce groupe de
+> contrôle constitué d'aires protégées plus tardivement ?
+
+## Pré-tendances : un placebo simple avant 2015
+
+L'hypothèse de tendances parallèles ne se teste pas directement, mais on
+peut regarder si les deux groupes avaient déjà des trajectoires très
+différentes avant le pivot 2015.
+
+On commence par représenter les tendances prétraitement.
+
+```{r}
+AP_pretrends <- AP_did %>%
+	filter(years < 2015) %>%
+	mutate(
+		faux_post = years >= 2008,
+		periode_placebo = if_else(faux_post, "2008-2014", "2001-2007")
+	)
+
+AP_pretrends %>%
+	group_by(groupe, years) %>%
+	summarise(tx_defor_moy = mean(tx_defor, na.rm = TRUE), .groups = "drop") %>%
+	ggplot(aes(x = years, y = tx_defor_moy, color = groupe)) +
+	geom_line(linewidth = 1) +
+	geom_point() +
+	geom_vline(xintercept = 2008, linetype = "dotted") +
+	labs(
+		x = "Année",
+		y = "Taux annuel moyen de déforestation (%)",
+		color = "Groupe"
+	)
+```
+
+On peut ensuite reprendre la même logique DiD, mais en utilisant une
+fausse date de rupture située entièrement avant 2015. Si l'interaction
+reste forte et significative ici, cela fragilise l'hypothèse de
+tendances parallèles.
+
+```{r, output = FALSE}
+mod_pretrends_AP <- lm(tx_defor ~ traitement * faux_post, data = AP_pretrends)
+
+pretrends_AP_out <- stargazer(
+	mod_pretrends_AP,
+	type = "html",
+	title = "Placebo prétraitement sur les aires protégées agrégées",
+	dep.var.labels = "Taux annuel de déforestation (%)",
+	notes = "Ici, l'interaction traitement:faux_post devrait idéalement être proche de 0."
+)
+```
+
+```{r, echo = FALSE}
+pretrends_AP_html <- browsable(HTML(paste(pretrends_AP_out, collapse = "")))
+browsable(div(style = "width: 450px;", pretrends_AP_html))
+```
+
+> **Exercice** : La comparaison placebo avant 2015 rassure-t-elle sur les
+> tendances parallèles, ou suggère-t-elle déjà une divergence entre les
+> groupes ?
+
+## Passer à des mailles appariées
+
+L'exemple précédent est utile pour comprendre la mécanique, mais il reste
+fragile. Le groupe de contrôle est composé d'aires protégées plus tardives
+et l'analyse repose sur des unités assez agrégées.
+
+On passe maintenant à l'approche plus convaincante construite dans le
+chapitre précédent : des mailles appariées, suivies dans le temps. Dans
+les fichiers actuellement présents dans le dépôt, la série va de 2000 à
+2023.
+
+## Préparer le panel de mailles
+
+On repart de l'objet de mailles appariées et on lui rattache la série de
+couvert forestier détaillée issue de l'objet `mapme` correspondant.
+
+```{r}
 grille_matched <- readRDS("data/grille_matched.rds")
 grille_mada_mapme <- readRDS("data/grille_mada_mapme.rds")
 
@@ -49,45 +244,57 @@ treecover_data <- grille_mada_mapme %>%
 	st_drop_geometry() %>%
 	select(assetid, treecover_area)
 
-grille_matched <- grille_matched %>%
-	left_join(treecover_data, by = "assetid")
-```
-
-## Passer en format long
-
-Comme dans les chapitres précédents, le passage en format long est une
-étape clé. Il permet ici de suivre, pour chaque maille, l'évolution de la
-variable d'intérêt dans le temps.
-
-```{r}
 class(grille_matched) <- class(grille_mada_mapme)
 
 grille_matched_long <- grille_matched %>%
+	left_join(treecover_data, by = "assetid") %>%
 	portfolio_long() %>%
-	rename(treecover = value) %>%
-	mutate(years = year(datetime)) %>%
+	filter(variable == "treecover") %>%
+	st_drop_geometry() %>%
+	transmute(
+		assetid,
+		an_creation,
+		position_ap,
+		weights,
+		years = year(datetime),
+		treecover = value
+	) %>%
 	arrange(assetid, years) %>%
+	group_by(assetid) %>%
 	mutate(
-		tx_defor = ifelse(assetid != lag(assetid), NA,
-											-((treecover - lag(treecover)) / lag(treecover)) * 100),
-		time_treated = ifelse(position_ap == "Intérieur", an_creation, 0)
-	)
+		treecover_lag = lag(treecover),
+		tx_defor = if_else(
+			is.na(treecover_lag) | treecover_lag <= 0,
+			NA_real_,
+			-((treecover - treecover_lag) / treecover_lag) * 100
+		),
+		time_treated = if_else(position_ap == "Intérieur", an_creation, 0)
+	) %>%
+	ungroup() %>%
+	filter(!is.na(tx_defor))
 ```
 
-## Lire la structure du panel
+## Vérifier la structure du panel
 
 ```{r}
 grille_matched_long %>%
-	st_drop_geometry() %>%
-	group_by(position_ap, years) %>%
-	summarise(n = n(), .groups = "drop") %>%
-	head()
+	group_by(position_ap) %>%
+	summarise(
+		n_mailles = n_distinct(assetid),
+		annee_min = min(years, na.rm = TRUE),
+		annee_max = max(years, na.rm = TRUE),
+		n_observations = n(),
+		.groups = "drop"
+	)
 ```
 
-Cette étape permet de vérifier que l'on suit bien des unités dans le
-temps et que la variable de traitement est définie de manière cohérente.
+Cette étape sert à vérifier que l'on suit bien les mêmes mailles dans le
+temps et que la date de traitement est renseignée de manière cohérente.
 
 ## Estimer l'effet moyen du traitement
+
+On utilise maintenant le package `{did}` pour tenir compte du fait que les
+mailles n'entrent pas toutes en traitement à la même date.
 
 ```{r}
 did_result <- att_gt(
@@ -106,10 +313,10 @@ agg_att_mailles <- aggte(did_result, type = "dynamic")
 summary(agg_att_mailles)
 ```
 
-Cette sortie est déjà très informative. Elle signale aussi qu'une partie
-des lignes ou des unités peut être écartée pour rendre le panel conforme
-aux exigences de la méthode. Cela ne doit pas être ignoré dans
-l'interprétation.
+Cette sortie est plus riche que la DiD à deux périodes. Elle distingue
+les effets avant traitement, au moment du traitement, puis après
+traitement. Elle peut aussi écarter certaines observations si le panel ne
+respecte pas complètement les exigences de la méthode.
 
 ## Lecture graphique
 
@@ -117,15 +324,16 @@ l'interprétation.
 ggdid(agg_att_mailles)
 ```
 
-Le graphique dynamique aide à distinguer :
+Le graphique dynamique est particulièrement utile pour deux lectures :
 
-- les périodes avant traitement ;
-- l'année de traitement ;
-- les effets après traitement.
+- avant traitement, les coefficients devraient rester proches de zéro si
+	l'hypothèse de tendances parallèles est plausible ;
+- après traitement, les coefficients décrivent la dynamique de l'effet
+	estimé.
 
-Dans ce format condensé, l'objectif principal n'est pas d'entrer dans
-tous les détails du package `did`, mais d'apprendre à lire cette sortie
-et à la relier à l'hypothèse de tendances parallèles.
+> **Exercice** : Comment interpréter les coefficients prétraitement ? Que
+> suggèrent les coefficients post-traitement sur l'évolution de l'effet
+> dans le temps ?
 
 ## Ce qu'il faut retenir
 
@@ -134,8 +342,8 @@ amont. Elle s'appuie au contraire sur tout ce qui précède :
 
 - le choix de l'unité d'analyse ;
 - la définition du traitement ;
-- la construction d'un échantillon plus comparable ;
-- la vérification de la structure temporelle.
+- la construction d'un groupe de contrôle crédible ;
+- la vérification des tendances prétraitement.
 
 Autrement dit, l'estimation finale n'a de sens que si la chaîne complète
 reste cohérente.
