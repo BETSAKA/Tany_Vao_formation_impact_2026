@@ -53,64 +53,72 @@ options(scipen = 999)
 
 AP_Vahatra <- readRDS("data/AP_Vahatra_mapme.rds")
 
-AP_did <- AP_Vahatra %>%
+AP_treecover <- AP_Vahatra %>%
 	filter(!is.na(an_creation), an_creation > 2000) %>%
 	portfolio_long() %>%
-	filter(variable == "treecover") %>%
+	filter(variable == "treecover", year(datetime) %in% c(2000, 2007, 2014, 2023)) %>%
 	st_drop_geometry() %>%
 	transmute(
 		nom,
 		an_creation,
-		years = year(datetime),
+		year = year(datetime),
 		treecover = value
 	) %>%
-	arrange(nom, years) %>%
-	group_by(nom) %>%
-	mutate(
-		treecover_lag = lag(treecover),
-		tx_defor = if_else(
-			is.na(treecover_lag) | treecover_lag <= 0,
-			NA_real_,
-			-((treecover - treecover_lag) / treecover_lag) * 100
-		),
+	pivot_wider(names_from = year, values_from = treecover, names_prefix = "treecover_")
+
+AP_did <- AP_treecover %>%
+	transmute(
+		nom,
 		traitement = an_creation < 2015,
 		groupe = if_else(traitement, "Traitement (< 2015)", "Contrôle (>= 2015)"),
-		post = years >= 2015,
-		periode = if_else(post, "Après 2015", "Avant 2015")
+		`2000-2014` = if_else(
+			is.na(treecover_2000) | is.na(treecover_2014) | treecover_2000 <= 0,
+			NA_real_,
+			-((treecover_2014 / treecover_2000)^(1 / 14) - 1) * 100
+		),
+		`2014-2023` = if_else(
+			is.na(treecover_2014) | is.na(treecover_2023) | treecover_2014 <= 0,
+			NA_real_,
+			-((treecover_2023 / treecover_2014)^(1 / 9) - 1) * 100
+		)
 	) %>%
-	ungroup() %>%
+	pivot_longer(
+		cols = c(`2000-2014`, `2014-2023`),
+		names_to = "periode",
+		values_to = "tx_defor"
+	) %>%
+	mutate(post = periode == "2014-2023") %>%
 	filter(!is.na(tx_defor))
 ```
 
-## Lire les trajectoires moyennes
+## Lire les moyennes par période
 
-Avant de passer à la régression, on regarde l'évolution moyenne du taux
-annuel de déforestation dans les deux groupes.
+Comme les deux sous-périodes n'ont pas la même durée, on travaille ici
+sur un **taux annuel moyen** de déforestation calculé pour chacune des
+deux périodes : 2000-2014 et 2014-2023.
 
 ```{r}
 AP_did %>%
-	group_by(groupe, years) %>%
+	group_by(groupe, periode) %>%
 	summarise(tx_defor_moy = mean(tx_defor, na.rm = TRUE), .groups = "drop") %>%
-	ggplot(aes(x = years, y = tx_defor_moy, color = groupe)) +
+	ggplot(aes(x = periode, y = tx_defor_moy, color = groupe, group = groupe)) +
 	geom_line(linewidth = 1) +
 	geom_point() +
-	geom_vline(xintercept = 2015, linetype = "dashed") +
 	labs(
-		x = "Année",
+		x = "Période",
 		y = "Taux annuel moyen de déforestation (%)",
 		color = "Groupe"
 	)
 ```
 
-> **Exercice** : Comment évoluent les deux groupes autour de 2015 ? Les
-> niveaux initiaux sont-ils similaires ? Les trajectoires semblent-elles
-> plausiblement comparables ?
+> **Exercice** : Entre 2000-2014 et 2014-2023, comment évoluent les deux
+> groupes ? L'écart d'évolution entre les groupes semble-t-il important ?
 
 ## Approche simple à deux périodes
 
-Pour coller au schéma le plus simple présenté dans les diapositives, on
-regroupe maintenant les années en deux périodes : avant 2015 et après
-2015. On peut alors calculer une double différence canonique.
+On a maintenant exactement le format canonique présenté dans les
+diapositives : deux groupes et deux périodes. On peut donc calculer une
+double différence très simple.
 
 ```{r}
 AP_did_2p <- AP_did %>%
@@ -157,8 +165,8 @@ browsable(div(style = "width: 450px;", did_AP_html))
 ```
 
 Dans cette régression, le coefficient de l'interaction `traitement:post`
-mesure l'évolution supplémentaire du groupe traité après 2015,
-relativement à l'évolution du groupe de contrôle.
+mesure l'évolution supplémentaire du groupe traité entre 2000-2014 et
+2014-2023, relativement à l'évolution du groupe de contrôle.
 
 > **Exercice** : Interprétez le signe et l'ordre de grandeur du
 > coefficient d'interaction. Quelles limites voyez-vous à ce groupe de
@@ -167,36 +175,53 @@ relativement à l'évolution du groupe de contrôle.
 ## Pré-tendances : un placebo simple avant 2015
 
 L'hypothèse de tendances parallèles ne se teste pas directement, mais on
-peut regarder si les deux groupes avaient déjà des trajectoires très
+peut regarder si les deux groupes avaient déjà des trajectoires
 différentes avant le pivot 2015.
 
-On commence par représenter les tendances prétraitement.
+Pour cela, on construit un placebo entièrement avant 2015, en comparant
+2000-2007 à 2007-2014.
 
 ```{r}
-AP_pretrends <- AP_did %>%
-	filter(years < 2015) %>%
-	mutate(
-		faux_post = years >= 2008,
-		periode_placebo = if_else(faux_post, "2008-2014", "2001-2007")
-	)
+AP_pretrends <- AP_treecover %>%
+	transmute(
+		nom,
+		traitement = an_creation < 2015,
+		groupe = if_else(traitement, "Traitement (< 2015)", "Contrôle (>= 2015)"),
+		`2000-2007` = if_else(
+			is.na(treecover_2000) | is.na(treecover_2007) | treecover_2000 <= 0,
+			NA_real_,
+			-((treecover_2007 / treecover_2000)^(1 / 7) - 1) * 100
+		),
+		`2007-2014` = if_else(
+			is.na(treecover_2007) | is.na(treecover_2014) | treecover_2007 <= 0,
+			NA_real_,
+			-((treecover_2014 / treecover_2007)^(1 / 7) - 1) * 100
+		)
+	) %>%
+	pivot_longer(
+		cols = c(`2000-2007`, `2007-2014`),
+		names_to = "periode_placebo",
+		values_to = "tx_defor"
+	) %>%
+	mutate(faux_post = periode_placebo == "2007-2014") %>%
+	filter(!is.na(tx_defor))
 
 AP_pretrends %>%
-	group_by(groupe, years) %>%
+	group_by(groupe, periode_placebo) %>%
 	summarise(tx_defor_moy = mean(tx_defor, na.rm = TRUE), .groups = "drop") %>%
-	ggplot(aes(x = years, y = tx_defor_moy, color = groupe)) +
+	ggplot(aes(x = periode_placebo, y = tx_defor_moy, color = groupe, group = groupe)) +
 	geom_line(linewidth = 1) +
 	geom_point() +
-	geom_vline(xintercept = 2008, linetype = "dotted") +
 	labs(
-		x = "Année",
+		x = "Période placebo",
 		y = "Taux annuel moyen de déforestation (%)",
 		color = "Groupe"
 	)
 ```
 
 On peut ensuite reprendre la même logique DiD, mais en utilisant une
-fausse date de rupture située entièrement avant 2015. Si l'interaction
-reste forte et significative ici, cela fragilise l'hypothèse de
+fausse rupture située entièrement avant 2015. Si l'interaction reste
+forte et significative ici, cela fragilise l'hypothèse de
 tendances parallèles.
 
 ```{r, output = FALSE}
