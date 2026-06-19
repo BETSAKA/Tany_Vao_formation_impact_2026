@@ -66,6 +66,22 @@ AP_treecover <- AP_Vahatra %>%
 	) %>%
 	pivot_wider(names_from = year, values_from = treecover, names_prefix = "treecover_")
 
+AP_points <- AP_treecover %>%
+	transmute(
+		nom,
+		traitement = an_creation < 2015,
+		groupe = if_else(traitement, "Traitement (< 2015)", "Contrôle (>= 2015)"),
+		`2000` = treecover_2000,
+		`2014` = treecover_2014,
+		`2023` = treecover_2023
+	) %>%
+	pivot_longer(
+		cols = c(`2000`, `2014`, `2023`),
+		names_to = "annee",
+		values_to = "treecover"
+	) %>%
+	mutate(annee = factor(annee, levels = c("2000", "2014", "2023")))
+
 AP_did <- AP_treecover %>%
 	transmute(
 		nom,
@@ -91,34 +107,56 @@ AP_did <- AP_treecover %>%
 	filter(!is.na(tx_defor))
 ```
 
-## Lire les moyennes par période
+## Lire les niveaux moyens aux trois dates
 
-Comme les deux sous-périodes n'ont pas la même durée, on travaille ici
-sur un **taux annuel moyen** de déforestation calculé pour chacune des
-deux périodes : 2000-2014 et 2014-2023.
+Avant de passer à la double différence, il est utile de regarder les
+niveaux moyens de couvert forestier dans les deux groupes aux trois dates
+qui structurent l'exemple simplifié : 2000, 2014 et 2023.
 
 ```{r}
-AP_did %>%
-	group_by(groupe, periode) %>%
-	summarise(tx_defor_moy = mean(tx_defor, na.rm = TRUE), .groups = "drop") %>%
-	ggplot(aes(x = periode, y = tx_defor_moy, color = groupe, group = groupe)) +
+AP_points %>%
+	group_by(groupe, annee) %>%
+	summarise(treecover_moy = mean(treecover, na.rm = TRUE), .groups = "drop") %>%
+	ggplot(aes(x = annee, y = treecover_moy, color = groupe, group = groupe)) +
 	geom_line(linewidth = 1) +
 	geom_point() +
 	labs(
-		x = "Période",
-		y = "Taux annuel moyen de déforestation (%)",
+		x = "Année",
+		y = "Couvert forestier moyen (ha)",
 		color = "Groupe"
 	)
 ```
 
-> **Exercice** : Entre 2000-2014 et 2014-2023, comment évoluent les deux
-> groupes ? L'écart d'évolution entre les groupes semble-t-il important ?
+```{r}
+AP_points %>%
+	group_by(nom) %>%
+	mutate(indice_2000 = treecover / treecover[annee == "2000"] * 100) %>%
+	ungroup() %>%
+	group_by(groupe, annee) %>%
+	summarise(indice_moyen = mean(indice_2000, na.rm = TRUE), .groups = "drop") %>%
+	ggplot(aes(x = annee, y = indice_moyen, color = groupe, group = groupe)) +
+	geom_line(linewidth = 1) +
+	geom_point() +
+	geom_hline(yintercept = 100, linetype = "dotted") +
+	labs(
+		x = "Année",
+		y = "Indice moyen du couvert forestier (base 100 en 2000)",
+		color = "Groupe"
+	)
+```
+
+> **Exercice** : Entre 2000, 2014 et 2023, comment évoluent les deux
+> groupes ? Les tendances entre 2000 et 2014 paraissent-elles proches ?
 
 ## Approche simple à deux périodes
 
 On a maintenant exactement le format canonique présenté dans les
 diapositives : deux groupes et deux périodes. On peut donc calculer une
 double différence très simple.
+
+Comme les deux sous-périodes n'ont pas la même durée, le résultat est
+mesuré ci-dessous en **taux annuel moyen** de déforestation pour chacune
+des deux périodes : 2000-2014 et 2014-2023.
 
 ```{r}
 AP_did_2p <- AP_did %>%
